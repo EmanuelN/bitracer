@@ -14,10 +14,3 @@ You can view the public GitHub Projects board [here](https://github.com/greatlak
   Installating instructions go here
 ## Usage
   Usage instructions go here
-
-
-  BLAH BLAH
-
-
-  BLAH BLAH
-  Seconds
