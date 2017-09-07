@@ -9,7 +9,7 @@ The Roadmap will give you an overview of the features and tasks that we are curr
 You can view the public GitHub Projects board [here](https://github.com/greatlakesracing/bitracer/projects/1) or click on the "Roadmap".
 
 # Requirements
- [Phoenix](https://hexdocs.pm/phoenix/installation.html)
+  [Phoenix](https://hexdocs.pm/phoenix/installation.html)
 # Installation
 After installing Phoenix and all its dependencies, create a Postgres role called "final" with the password "final" using these two commands:
 `CREATE ROLE final WITH PASSWORD 'final' CREATEDB;`
