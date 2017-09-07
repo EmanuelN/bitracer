@@ -21,13 +21,6 @@ import "phoenix_html"
 import socket from "./socket"
 import React from "react"
 import ReactDOM from "react-dom"
+import Chat from "./components/Chat.jsx"
 
-class HelloWorld extends React.Component {
-  render() {
-    return (
-      <h2>Hello World, from React!</h2>
-    )
-  }
-}
-
-ReactDOM.render(<HelloWorld />, document.getElementById("chat-bar"))
+ReactDOM.render(<Chat />, document.getElementById("chat-bar"))
