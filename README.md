@@ -11,9 +11,8 @@ You can view the public GitHub Projects board [here](https://github.com/greatlak
 # Requirements
   [Phoenix](https://hexdocs.pm/phoenix/installation.html)
 # Installation
-After installing Phoenix and all its dependencies, create a Postgres role called "final" with the password "final" using these two commands:
-`CREATE ROLE final WITH PASSWORD 'final' CREATEDB;`
-and `ALTER ROLE "final" WITH LOGIN;`
+After installing Phoenix and all its dependencies, create a Postgres role called "final" with the password "final" using this command:
+`CREATE ROLE final WITH PASSWORD 'final' CREATEDB LOGIN;`
 Then use `mix ecto.create` to initialize the app and its databse
 ## Usage
 Usage instructions go here
