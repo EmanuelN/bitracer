@@ -18,4 +18,16 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+import socket from "./socket"
+import React from "react"
+import ReactDOM from "react-dom"
+
+class HelloWorld extends React.Component {
+  render() {
+    return (
+      <h2>Hello World, from React!</h2>
+    )
+  }
+}
+
+ReactDOM.render(<HelloWorld />, document.getElementById("chat-bar"))
