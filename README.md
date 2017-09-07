@@ -1,7 +1,7 @@
 # bitracer
 
 ## Goals
-Enable our users to enjoy the thrill of horse race gambling from the comfort of their own homes without any of the risks! 
+Enable our users to enjoy the thrill of horse race gambling from the comfort of their own homes without any of the risks!
 
 ## [Roadmap](https://github.com/greatlakesracing/bitracer/projects/1)
 The Roadmap will give you an overview of the features and tasks that we are currently discussing, working on and have completed.
@@ -11,6 +11,9 @@ You can view the public GitHub Projects board [here](https://github.com/greatlak
 # Requirements
   [Phoenix](https://hexdocs.pm/phoenix/installation.html)
 # Installation
-  Installating instructions go here
+After installing Phoenix and all its dependencies, create a Postgres role called "final" with the password "final" using these two commands:
+`CREATE ROLE final WITH PASSWORD 'final' CREATEDB;`
+and `ALTER ROLE "final" WITH LOGIN;`
+Then use `mix ecto.create` to initialize the app and its databse
 ## Usage
-  Usage instructions go here
+Usage instructions go here
