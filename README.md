@@ -12,6 +12,7 @@ You can view the public GitHub Projects board [here](https://github.com/greatlak
 # Requirements
 
   [Phoenix](https://hexdocs.pm/phoenix/installation.html)
+  
   [Comeonin](https://github.com/riverrun/comeonin)
 
 # Installation
