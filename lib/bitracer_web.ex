@@ -37,6 +37,7 @@ defmodule BitracerWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
+      import Bitracer.Game
       import BitracerWeb.Router.Helpers
       import BitracerWeb.ErrorHelpers
       import BitracerWeb.Gettext
