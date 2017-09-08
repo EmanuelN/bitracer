@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import MessageList from "./MessageList.jsx"
 import ChatBar from "./ChatBar.jsx"
-import socket from "../socket"
 
 class Chat extends Component {
   constructor(props) {
@@ -32,15 +31,6 @@ class Chat extends Component {
 
   }
 
-  updateUser(username) {
-    if (username !== this.state.currUser) {
-      this.channel.push('post_notification', {
-        content: `* *${this.state.currUser || 'Anonymous'}* changed their name to *${username}* *`,
-      });
-      this.setState({ currUser: username });
-    }
-  }
-
   sendMessage(message) {
     this.channel.push('post_message', {
       username: message.username,
@@ -52,7 +42,7 @@ class Chat extends Component {
     return (
       <div>
         <MessageList messages={this.state.messages} />
-        <ChatBar username={this.state.currUser} userCallback={(...args) => this.updateUser(...args)} updateMessages={(...args) => this.sendMessage(...args)} />
+        <ChatBar username={this.state.currUser} updateMessages={(...args) => this.sendMessage(...args)} />
       </div>
     )
   }
