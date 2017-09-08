@@ -1,6 +1,6 @@
 defmodule BitracerWeb.UserController do
   use BitracerWeb, :controller
-
+  require Logger
   alias Bitracer.Accounts
   alias Bitracer.Accounts.User
 
@@ -15,7 +15,10 @@ defmodule BitracerWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Accounts.create_user(user_params) do
+
+    changeset = User.changeset(%User{}, user_params)
+
+    case Bitracer.Registration.create(changeset, Bitracer.Repo) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
@@ -28,25 +31,6 @@ defmodule BitracerWeb.UserController do
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
     render(conn, "show.html", user: user)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    changeset = Accounts.change_user(user)
-    render(conn, "edit.html", user: user, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id)
-
-    case Accounts.update_user(user, user_params) do
-      {:ok, user} ->
-        conn
-        |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: user_path(conn, :show, user))
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", user: user, changeset: changeset)
-    end
   end
 
   def delete(conn, %{"id" => id}) do
