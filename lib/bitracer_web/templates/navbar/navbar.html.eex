@@ -1,7 +1,6 @@
 <div>
   <span>About Us</span>
   <span>Game Rules</span>
-  <%= frames()[:a][:a].speed %>
   <span class="user">
     <%= if logged_in?(@conn) do %>
       <span class="currentuser"><%= current_user(@conn).username %></span>
