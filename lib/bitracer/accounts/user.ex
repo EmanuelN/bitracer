@@ -23,6 +23,7 @@ defmodule Bitracer.Accounts.User do
     |> validate_length(:password, min: 6)
     |> validate_length(:password_confirmation, min: 6)
     |> unique_constraint(:email)
+    |> unique_constraint(:username)
     |> validate_confirmation(:password)
   end
 end
