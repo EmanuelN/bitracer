@@ -1,6 +1,4 @@
 defmodule Bitracer.Game do
-  require Logger
-
   use GenServer
 
   def horses_list do

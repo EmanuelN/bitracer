@@ -9,7 +9,7 @@ class Chat extends Component {
       numUsers: 0,
       currUser: '',
       messages: [],
-      randData: 0,
+      randData: [],
     };
     this.channel = this.props.channel;
   }
@@ -36,7 +36,7 @@ class Chat extends Component {
       username: message.username,
       content: message.value,
     });
-  }  
+  }
 
   render() {
     return (
