@@ -11,29 +11,24 @@ class Chat extends Component {
       currUser: '',
       messages: [],
     };
+    this.channel = this.props.channel;
   }
 
   componentDidMount() {
-    this.channel = socket.channel("room:lobby", {});
-    this.channel.join()
-      .receive("ok", resp => { console.log("Joined successfully", resp) })
-      .receive("error", resp => { console.log("Unable to join", resp) })
-
-    this.channel.on('incomingMessage', recieveData);
-    this.channel.on('incomingNotification', recieveData);
-  }
-
-  recieveData(data) {
-    const newMessage = JSON.parse(data.data);
-    switch (newMessage.type) {
-    case 'incomingNewUser':
-      this.setState({ numUsers: newMessage.userNum });
-    }
+    this.channel.on('incoming_message', (payload) => {
+      const messages = this.state.messages.concat(payload);
+      this.setState({ messages });
+    });
+    this.channel.on('incoming_notification', (payload) => {
+      payload.username = 'System';
+      const messages = this.state.messages.concat(payload);
+      this.setState({ messages });
+    });
   }
 
   updateUser(username) {
     if (username !== this.state.currUser) {
-      this.channel.push('postNotification', {
+      this.channel.push('post_notification', {
         content: `* *${this.state.currUser || 'Anonymous'}* changed their name to *${username}* *`,
       });
       this.setState({ currUser: username });
@@ -41,7 +36,7 @@ class Chat extends Component {
   }
 
   sendMessage(message) {
-    this.channel.push('postMessage', {
+    this.channel.push('post_message', {
       username: message.username,
       content: message.value,
     });

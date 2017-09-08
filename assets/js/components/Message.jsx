@@ -5,8 +5,8 @@ class Message extends Component {
     let renderMessage = '';
     renderMessage = (
       <div className="message">
-        <span className="message-username" style={{color: `#${this.props.message.color}`}}>{this.props.message.username || 'Anonymous'}</span>
-        <span className="message-content">{parsed}</span>
+        <span className="message-username" style={{color: `#${this.props.message.color}`}}>{this.props.message.username || 'Anonymous'} Says: </span>
+        <span className="message-content">{this.props.message.content}</span>
       </div>
     );
 
