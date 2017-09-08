@@ -1,0 +1,21 @@
+<h2>Show User</h2>
+
+<ul>
+
+  <li>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li>
+    <strong>Encrypted password:</strong>
+    <%= @user.encrypted_password %>
+  </li>
+
+</ul>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>
