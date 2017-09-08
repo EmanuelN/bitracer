@@ -1,13 +1,16 @@
 <div>
-      <%= if logged_in?(@conn) do %>
-        <li><%= current_user(@conn).username %></li>
-        <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></li>
-      <% else %>
         <span>About Us</span>
         <span>Game Rules</span>
+        <span class="user">
+        <%= if logged_in?(@conn) do %>
+          <span class="currentuser"><%= current_user(@conn).username %></span>
+          <span class="logout"><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></span>
+        <% else %>
+
         <span class="login"><%= link "Login",    to: "/login" %></span>
-        <span class="login"><%= link "Register", to: user_path(@conn, :new) %></span>
-      <% end %>
+        <span class="register"><%= link "Register", to: user_path(@conn, :new) %></span>
+        <% end %>
+        </span>
 
 
 </div>
