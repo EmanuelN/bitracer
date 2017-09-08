@@ -14,6 +14,7 @@ defmodule Bitracer.Application do
       supervisor(BitracerWeb.Endpoint, []),
       # Start your own worker by calling: Bitracer.Worker.start_link(arg1, arg2, arg3)
       # worker(Bitracer.Worker, [arg1, arg2, arg3]),
+      worker(Bitracer.Game, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -25,7 +26,7 @@ defmodule Bitracer.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    BitracerWeb.Endpoint.config_change(changed, removed)
+    Bitracer.Endpoint.config_change(changed, removed)
     :ok
   end
 end

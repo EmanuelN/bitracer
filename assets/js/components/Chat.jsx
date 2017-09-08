@@ -10,6 +10,7 @@ class Chat extends Component {
       numUsers: 0,
       currUser: '',
       messages: [],
+      randData: 0,
     };
     this.channel = this.props.channel;
   }
@@ -24,6 +25,11 @@ class Chat extends Component {
       const messages = this.state.messages.concat(payload);
       this.setState({ messages });
     });
+    this.channel.on('game_data', (payload) => {
+      const randData = payload.content;
+      this.setState({ randData });
+    });
+
   }
 
   updateUser(username) {
