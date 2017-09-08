@@ -2,7 +2,7 @@ defmodule BitracerWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", BitracerWeb.RoomChannel
+  channel "chat:*", BitracerWeb.ChatChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

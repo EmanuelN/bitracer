@@ -17,7 +17,7 @@ defmodule BitracerWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/users", UserController, except: [:edit, :update]
+    resources "/users", UserController, only: [:new, :delete, :create]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete

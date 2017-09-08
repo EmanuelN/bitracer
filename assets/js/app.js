@@ -21,13 +21,11 @@ import "phoenix_html"
 import socket from "./socket"
 import React from "react"
 import ReactDOM from "react-dom"
+import Chat from "./components/Chat.jsx"
 
-class HelloWorld extends React.Component {
-  render() {
-    return (
-      <h2>Hello World, from React!</h2>
-    )
-  }
-}
+const channel = socket.channel("chat:chat", {});
+channel.join()
+  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("error", resp => { console.log("Unable to join", resp) });
 
-ReactDOM.render(<HelloWorld />, document.getElementById("chat-bar"))
+ReactDOM.render(<Chat channel={channel}/>, document.getElementById("chat-bar"))

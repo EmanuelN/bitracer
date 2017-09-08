@@ -12,10 +12,5 @@
     <%= @user.email %>
   </li>
 
-  <li>
-    <strong>Encrypted password:</strong>
-    <%= @user.encrypted_password %>
-  </li>
-
 </ul>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<span><%= link "Back", to: "/" %></span>
