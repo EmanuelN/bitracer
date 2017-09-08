@@ -18,6 +18,10 @@ defmodule BitracerWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController, except: [:edit, :update]
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
+
   end
 
   # Other scopes may use custom stacks.

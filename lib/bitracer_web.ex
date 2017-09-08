@@ -40,6 +40,7 @@ defmodule BitracerWeb do
       import BitracerWeb.Router.Helpers
       import BitracerWeb.ErrorHelpers
       import BitracerWeb.Gettext
+      import Bitracer.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 

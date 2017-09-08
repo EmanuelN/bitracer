@@ -21,6 +21,7 @@ defmodule BitracerWeb.UserController do
     case Bitracer.Registration.create(changeset, Bitracer.Repo) do
       {:ok, user} ->
         conn
+        |> put_session(:current_user, user.id)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: user_path(conn, :show, user))
       {:error, %Ecto.Changeset{} = changeset} ->
