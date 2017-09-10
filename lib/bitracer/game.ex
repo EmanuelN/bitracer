@@ -61,7 +61,8 @@ defmodule Bitracer.Game do
       true ->
         %{state | :pos => state[:pos] + 1}
     end
-    IO.puts inspect state
+#TODO: remove this, for debugging purposes
+IO.puts inspect state
     schedule_work()
     {:noreply, state}
   end
