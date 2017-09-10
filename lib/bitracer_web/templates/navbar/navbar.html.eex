@@ -1,8 +1,8 @@
 <div>
-      <center><h2>BitRacer!</h2></center>
+      <center><span class="logo"><h2>BitRacer!</h2></span></center>
 
-        <span>About Us</span>
-        <span>Game Rules</span>
+        <span><%= link "About Us",    to: "/root" %> </span>
+        <span><%= link "Game Rules",    to: "/root" %> </span>
 
         <span class="user">
 

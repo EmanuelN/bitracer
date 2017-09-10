@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bitracer!</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+  </head>
+
+    <body style="background-color:powderblue;">
+
+      <div>
+
+        <h2> About Us </h2>
+
+        <h4> About BitRacer </h4>
+
+        It matters more when there's money on it and that's a fact. Sport becomes even
+        more exciting. There's more passion, more pleasure and more pain. Football,
+        horse racing, golf, cricket, tennis, rugby, speedway... the list goes on and
+        on!
+
+        BitRacer primarily offer an online sports betting service although our
+        customers can also use the service on their mobile or tablet too. To bet with
+        BitRacer you need to open a free account and register a debit card, credit
+        card or e-wallet. You can then deposit into and withdraw from your account as
+        your needs require. Any bets are deducted from your balance and your winnings
+        from bets are added back to it.
+
+        For great value betting, choose BitRacer.
+
+      </div>
+
+
+
+        <div>
+
+          <h4> Game Rules </h4>
+
+          Horse Racing - Rule 4 Rules
+
+          If your horse racing bet hasn’t returned as much as you thought it would, the first action to take is to check if the race was affected by a 'Rule 4' (or R4). The quickest way to do so is by using our Account History or Settled bets options within the My Account area.
+
+          Rule 4 (or Rule 4(c) to give it it's full title) is a Tattersalls Rule of Racing which governs all Horse Racing to compensate for the later withdrawal of a horse or runner in your chosen race. To explain the spirit of the rule in it's simplest terms, please consider the following hypothetical example:
+
+          You have elected to bet on Horse A @ 5/1 in the 2.30 at Ascot. There are only 3 runners in this particular race and later on in the day, Horse B @ 7/4 unfortunately has to withdraw from the race.
+          The race now becomes a 2 runner race and immediately your horse's chance of winning have increased from 1 in 3 runners to 1 in 2 runners. Once the non-runner is official we will revise the race at the earliest opportunity with new odds for the 2 remaining runners. Therefore with this in mind, the 5/1 taken earlier in the day is now no longer a fair reflection of Horse A's chances and some form of reduction is needed to compensate.
+          Therefore the concept of Rule 4 involves deducting a set value in pence out of every pound (£GBP) of winnings in winning bets. The size of this deduction is determined by the price (Early or Board/Show) of the non-runner at the time of withdrawal. In our example, as Horse B was 7/4 at the time of withdrawal, a deduction of 35p in every £1 of winnings would be deducted from winning bets:
+          Odds    Deduction
+          1/9 or shorter  90p (in £)
+          2/11 to 2/17    85p
+          1/4 to 1/5  80p
+          3/10 to 2/7 75p
+          2/5 to 1/3  70p
+          8/15 to 4/9 65p
+          8/13 to 4/7 60p
+          4/5 to 4/6  55p
+          20/21 to 5/6    50p
+          Evens (1/1) to 6/5  45p
+          5/4 to 6/4  40p
+          13/8 to 7/4 35p
+          15/8 to 9/4 30p
+          5/2 to 3/1  25p
+          10/3 to 4/1 20p
+          9/2 to 11/2 15p
+          6/1 to 9/1  10p
+          10/1 to 14/1    5p
+          Further Rules regarding Rule 4
+
+          The application of Rule 4(c) will be determined by the price of the withdrawn horse at the time of withdrawal.
+          For races where more than one horse is withdrawn, the deduction won’t be bigger than 90p per £1.
+          Where the total deduction on the market in which you have placed your bet is 5p in the £, as a concession, the deduction will be waived.
+          In the case of withdrawals in reformed markets, the total deduction over the two or more horses (i.e. one in the original and one in the reformed market) will be calculated on the prices applicable in the original market.
+          For bets placed in reformed markets, deductions applied to withdrawn horses in these markets will be calculated on the prices applicable in these markets.
+
+        </div>
+
+    </body>
+
+</html>
