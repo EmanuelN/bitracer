@@ -34,17 +34,18 @@ defmodule Bitracer.Game do
   end
 
   def random_list do
-    for n <- 1..2 do
-      if n == 1 do
-        horse_positions(horses_list())[:a]
-      else
-        horse_positions(horses_list())[:b]
-      end
-    end
+    #for n <- 1..2 do
+    #  if n == 1 do
+    #    horse_positions(horses_list())[:a]
+    #  else
+    #    horse_positions(horses_list())[:b]
+    #  end
+    #end
+    Enum.map(1..10, fn(n) -> random_number() end)
   end
 
   def start_link do
-    GenServer.start_link(__MODULE__, %{})
+    GenServer.start_link(__MODULE__, %{:pos => 0, :list => random_list()})
   end
 
   def init(state) do
@@ -53,7 +54,14 @@ defmodule Bitracer.Game do
   end
 
   def handle_info(:work, state) do
-    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{content: random_list()}
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{content: Enum.at(state[:list], state[:pos])}
+    state = cond do
+      state[:pos] >= 9 ->
+        %{state | :list => random_list(), :pos => 0}
+      true ->
+        %{state | :pos => state[:pos] + 1}
+    end
+    IO.puts inspect state
     schedule_work()
     {:noreply, state}
   end
