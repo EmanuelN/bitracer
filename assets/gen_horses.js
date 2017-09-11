@@ -6,8 +6,8 @@ function genHorseList() {
   const list = [];
   for (let i = 0; i < 100; i++) {
     const name = nm1[Math.floor(Math.random()*nm1.length)];
-    const speed = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
-    const endurance = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+    const speed = Math.random() * (4 - 2 + 1) + 2;
+    const endurance = Math.random() * (10 - 5 + 1) + 5;
     list.push({
       name, 
       speed,

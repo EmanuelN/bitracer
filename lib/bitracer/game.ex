@@ -1,6 +1,11 @@
 defmodule Bitracer.Game do
   use GenServer
 
+  def get_json() do
+    with {:ok, body} <- File.read('./horses.json'),
+         {:ok, json} <- Poison.decode(body), do: {:ok, json}
+  end
+
   def horses_list do
     [
       a: %{name: "Speedy", age: 4, speed: 5, posx: 0},
@@ -66,7 +71,7 @@ defmodule Bitracer.Game do
         %{state | :pos => state[:pos] + 1}
     end
 #TODO: remove this, for debugging purposes
-IO.puts inspect state
+#IO.puts inspect state
     schedule_work()
     {:noreply, state}
   end
