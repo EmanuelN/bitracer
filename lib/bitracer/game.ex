@@ -34,13 +34,14 @@ defmodule Bitracer.Game do
   def updatehorse(horse) do
     posx = Map.get(horse, "posx")
     speed = Map.get(horse, "speed")
+    endurance = Map.get(horse, "endurance")
     horse = if posx <= 600 do
       Map.put(horse, "posx", posx + speed)
     else
       Map.put(horse, "posx", 600)
     end
     horse = if speed >= 1.0 do
-      Map.put(horse, "speed", reducespeed(speed))
+      Map.put(horse, "speed", reducespeed(speed, endurance))
     else
       Map.put(horse, "speed", 1.0)
     end
