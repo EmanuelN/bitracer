@@ -1,2 +1,4 @@
-<div id="react-root" data-username=<%= current_user(@conn).username %>>
+<div id="username" data-username=<%= if current_user(@conn), do: current_user(@conn).username %>>
+</div>
+<div id="react-root">
 </div>

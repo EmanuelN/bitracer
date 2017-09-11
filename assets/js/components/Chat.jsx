@@ -7,7 +7,7 @@ class Chat extends Component {
     super(props);
     this.state = {
       numUsers: 0,
-      currUser: document.getElementById('react-root').dataset.username,
+      currUser: document.getElementById('username').dataset.username,
       messages: [],
     };
     this.channel = this.props.channel;
