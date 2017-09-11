@@ -12,6 +12,7 @@ function genHorseList() {
       name, 
       speed,
       endurance,
+      posx: 0,
     });
   }
   fs.writeFile('horses.json', JSON.stringify(list), (err) => {
