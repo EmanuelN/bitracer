@@ -1,5 +1,6 @@
 defmodule Bitracer.Game do
   use GenServer
+  require Logger
 
   def horses_list do
     [
@@ -21,8 +22,12 @@ defmodule Bitracer.Game do
 
   # update horse's location and speed
   def updatehorse(horse) do
-    horse = Map.put(horse, :posx, horse.speed)
-    horse = Map.put(horse, :speed, reducespeed(horse.speed))
+    if horse.posx <= 600 do
+      horse = Map.put(horse, :posx, horse.posx + horse.speed)
+    end
+    if horse.speed >= 1.0 do
+      horse = Map.put(horse, :speed, reducespeed(horse.speed))
+    end
     horse
   end
 
@@ -33,19 +38,22 @@ defmodule Bitracer.Game do
     horses
   end
 
-  def random_list do
-    #for n <- 1..2 do
-    #  if n == 1 do
-    #    horse_positions(horses_list())[:a]
-    #  else
-    #    horse_positions(horses_list())[:b]
-    #  end
-    #end
-    Enum.map(1..10, fn(n) -> random_number() end)
+  def race_frames(horses, framelist) do
+    if length(framelist) >= 1200 do
+      framelist
+    else
+      newframes = framelist ++ horses
+      new_positions = horse_positions(horses)
+      race_frames(new_positions, newframes)
+    end
   end
 
+  # def random_list do
+  #   Enum.map(1..1200, fn(n) -> race_frames(horses_list(), []) end)
+  # end
+
   def start_link do
-    GenServer.start_link(__MODULE__, %{:pos => 0, :list => random_list()})
+    GenServer.start_link(__MODULE__, %{:pos => 0, :list => race_frames(horses_list(), [])})
   end
 
   def init(state) do
@@ -54,12 +62,14 @@ defmodule Bitracer.Game do
   end
 
   def handle_info(:work, state) do
-    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{content: Enum.at(state[:list], state[:pos])}
+    a = elem(Enum.at(state[:list], state[:pos]), 1)
+    b = elem(Enum.at(state[:list], state[:pos]+1), 1)
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{horse_a: a, horse_b: b}
     state = cond do
-      state[:pos] >= 9 ->
-        %{state | :list => random_list(), :pos => 0}
+      state[:pos] >= 1200 ->
+        %{state | :list => race_frames(horses_list(), []), :pos => 0}
       true ->
-        %{state | :pos => state[:pos] + 1}
+        %{state | :pos => state[:pos] + 2}
     end
 #TODO: remove this, for debugging purposes
 IO.puts inspect state
