@@ -17,9 +17,9 @@ class Game extends Component {
     this.channel.on('game_data', (payload) => {
       const horse_a = payload.horse_a;
       const horse_b = payload.horse_b;
-      const horse_c = payload.horse_a;
-      const horse_d = payload.horse_b;
-      const horse_e = payload.horse_b;
+      const horse_c = payload.horse_c;
+      const horse_d = payload.horse_d;
+      const horse_e = payload.horse_e;
       this.setState({ horse_a, horse_b, horse_c, horse_d, horse_e });
     });
   }

@@ -97,7 +97,6 @@ defmodule Bitracer.Game do
         %{state | :list => race_frames(horses_list(), []), :pos => 0}
       true ->
         %{state | :pos => state[:pos] + 5}
-        IO.puts inspect state[:list]
     end
 #TODO: remove this, for debugging purposes
 #IO.puts inspect state
