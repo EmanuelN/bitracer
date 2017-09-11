@@ -18,15 +18,10 @@ defmodule BitracerWeb.UserController do
         conn
         |> put_session(:current_user, user.id)
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: user_path(conn, :show, user))
+        |> redirect(to: "/")
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    render(conn, "show.html", user: user)
   end
 
   def delete(conn, %{"id" => id}) do
