@@ -82,9 +82,9 @@ defmodule Bitracer.Game do
   end
 
   def handle_info(:work, state) do
-    #a = elem(Enum.at(state[:list], state[:pos]), 1)
-    #b = elem(Enum.at(state[:list], state[:pos]+1), 1)
-    #BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{horse_a: a, horse_b: b}
+    a = elem(Enum.at(state[:list], state[:pos]), 1)
+    b = elem(Enum.at(state[:list], state[:pos]+1), 1)
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{horse_a: a, horse_b: b}
     state = cond do
       state[:pos] >= 1200 ->
         %{state | :list => race_frames(horses_list(), []), :pos => 0}
