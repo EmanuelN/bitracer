@@ -58,13 +58,33 @@ defmodule Bitracer.Game do
     horses
   end
 
+  @doc """
+  *Inputs:  horses, a list of 5 horses from the JSON file
+            framelist, a map consisting of;
+                                            frame: the counter representing the current frame
+                                            a: a list of x positions for horse a,
+                                            b: a list of x positions for horse b,
+                                            c: a list of x positions for horse c,
+                                            d: a list of x positions for horse d,
+                                            e: a list of x positions for horse e
+  """
   def race_frames(horses, framelist) do
-    if length(framelist) >= 1200 do
+    if framelist.frame >= 600 do
+      framelist = put_in(framelist, [:a], Enum.reverse(framelist.a))
+      framelist = put_in(framelist, [:b], Enum.reverse(framelist.b))
+      framelist = put_in(framelist, [:c], Enum.reverse(framelist.c))
+      framelist = put_in(framelist, [:d], Enum.reverse(framelist.d))
+      framelist = put_in(framelist, [:e], Enum.reverse(framelist.e))
       framelist
     else
-      newframes = framelist ++ horses
+      framelist = put_in(framelist, [:a], [ Map.get(horses[:a], "posx") | framelist.a ])
+      framelist = put_in(framelist, [:b], [ Map.get(horses[:b], "posx") | framelist.b ])
+      framelist = put_in(framelist, [:c], [ Map.get(horses[:c], "posx") | framelist.c ])
+      framelist = put_in(framelist, [:d], [ Map.get(horses[:d], "posx") | framelist.d ])
+      framelist = put_in(framelist, [:e], [ Map.get(horses[:e], "posx") | framelist.e ])
+      framelist = put_in(framelist, [:frame], framelist.frame + 1)
       new_positions = horse_positions(horses)
-      race_frames(new_positions, newframes)
+      race_frames(new_positions, framelist)
     end
   end
 
@@ -77,7 +97,7 @@ defmodule Bitracer.Game do
   # end
 
   def start_link do
-    GenServer.start_link(__MODULE__, %{:pos => 0, :list => race_frames(horses_list(), [])})
+    GenServer.start_link(__MODULE__, %{:pos => 0, :frames => race_frames(horses_list(), %{frame: 0, a: [0], b: [0], c: [0], d: [0], e: [0]})})
   end
 
   def init(state) do
@@ -86,20 +106,20 @@ defmodule Bitracer.Game do
   end
 
   def handle_info(:work, state) do
-    a = elem(Enum.at(state[:list], state[:pos]), 1)
-    b = elem(Enum.at(state[:list], state[:pos]+1), 1)
-    c = elem(Enum.at(state[:list], state[:pos]+2), 1)
-    d = elem(Enum.at(state[:list], state[:pos]+3), 1)
-    e = elem(Enum.at(state[:list], state[:pos]+4), 1)
-    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{horse_a: a, horse_b: b, horse_c: c, horse_d: d, horse_e: e}
+    game_state = %{
+      a: Enum.at(state.frames.a, state[:pos]),
+      b: Enum.at(state.frames.b, state[:pos]),
+      c: Enum.at(state.frames.c, state[:pos]),
+      d: Enum.at(state.frames.d, state[:pos]),
+      e: Enum.at(state.frames.e, state[:pos])
+    }
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{state: game_state}
     state = cond do
-      state[:pos] >= 3000 ->
-        %{state | :list => race_frames(horses_list(), []), :pos => 0}
+      state[:pos] >= 600 ->
+        %{state | :frames => race_frames(horses_list(), %{frame: 0, a: [0], b: [0], c: [0], d: [0], e: [0]}), :pos => 0}
       true ->
-        %{state | :pos => state[:pos] + 5}
+        %{state | :pos => state[:pos] + 1}
     end
-#TODO: remove this, for debugging purposes
-#IO.puts inspect state
     schedule_work()
     {:noreply, state}
   end
