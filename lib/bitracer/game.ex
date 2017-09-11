@@ -2,11 +2,14 @@ defmodule Bitracer.Game do
   use GenServer
   require Logger
 
+  def get_json() do
+    with {:ok, body} <- File.read('./horses.json'),
+         {:ok, json} <- Poison.decode(body), do: {:ok, json}
+  end
+
   def horses_list do
-    [
-      a: %{name: "Speedy", age: 4, speed: 3, posx: 0, endurance: 9},
-      b: %{name: "Horsey", age: 3, speed: 4, posx: 0, endurance: 5}
-    ]
+    {:ok, json} = get_json()
+    Enum.take_random(json, 5)
   end
 
   # Pseudo-random number between 0 and 1
@@ -48,6 +51,10 @@ defmodule Bitracer.Game do
     end
   end
 
+  #####################################
+  ######## GENSERVER CALLBACKS ########
+  #####################################
+
   # def random_list do
   #   Enum.map(1..1200, fn(n) -> race_frames(horses_list(), []) end)
   # end
@@ -72,7 +79,7 @@ defmodule Bitracer.Game do
         %{state | :pos => state[:pos] + 2}
     end
 #TODO: remove this, for debugging purposes
-IO.puts inspect state
+#IO.puts inspect state
     schedule_work()
     {:noreply, state}
   end
