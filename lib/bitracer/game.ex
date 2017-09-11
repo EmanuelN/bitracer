@@ -9,7 +9,14 @@ defmodule Bitracer.Game do
 
   def horses_list do
     {:ok, json} = get_json()
-    Enum.take_random(json, 5)
+    list = Enum.take_random(json, 5)
+    [
+      a: Enum.at(list, 0), 
+      b: Enum.at(list, 1),
+      c: Enum.at(list, 2),
+      d: Enum.at(list, 3),
+      e: Enum.at(list, 4)
+    ]
   end
 
   # Pseudo-random number between 0 and 1
@@ -25,11 +32,17 @@ defmodule Bitracer.Game do
 
   # update horse's location and speed
   def updatehorse(horse) do
-    if horse.posx <= 600 do
-      horse = Map.put(horse, :posx, horse.posx + horse.speed)
+    posx = Map.get(horse, "posx")
+    speed = Map.get(horse, "speed")
+    horse = if posx <= 600 do
+      Map.put(horse, "posx", posx + speed)
+    else
+      Map.put(horse, "posx", 600)
     end
-    if horse.speed >= 1.0 do
-      horse = Map.put(horse, :speed, reducespeed(horse.speed, horse.endurance))
+    horse = if speed >= 1.0 do
+      Map.put(horse, "speed", reducespeed(speed))
+    else
+      Map.put(horse, "speed", 1.0)
     end
     horse
   end
@@ -69,9 +82,9 @@ defmodule Bitracer.Game do
   end
 
   def handle_info(:work, state) do
-    a = elem(Enum.at(state[:list], state[:pos]), 1)
-    b = elem(Enum.at(state[:list], state[:pos]+1), 1)
-    BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{horse_a: a, horse_b: b}
+    #a = elem(Enum.at(state[:list], state[:pos]), 1)
+    #b = elem(Enum.at(state[:list], state[:pos]+1), 1)
+    #BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{horse_a: a, horse_b: b}
     state = cond do
       state[:pos] >= 1200 ->
         %{state | :list => race_frames(horses_list(), []), :pos => 0}
