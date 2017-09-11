@@ -7,10 +7,8 @@ defmodule Bitracer.Game do
   end
 
   def horses_list do
-    [
-      a: %{name: "Speedy", age: 4, speed: 5, posx: 0},
-      b: %{name: "Horsey", age: 3, speed: 8, posx: 0}
-    ]
+    {:ok, json} = get_json()
+    Enum.take_random(json, 5)
   end
 
   # Pseudo-random number between 0 and 1
