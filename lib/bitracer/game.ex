@@ -4,19 +4,19 @@ defmodule Bitracer.Game do
 
   def horses_list do
     [
-      a: %{name: "Speedy", age: 4, speed: 5, posx: 0},
-      b: %{name: "Horsey", age: 3, speed: 8, posx: 0}
+      a: %{name: "Speedy", age: 4, speed: 3, posx: 0, endurance: 9},
+      b: %{name: "Horsey", age: 3, speed: 4, posx: 0, endurance: 5}
     ]
   end
 
   # Pseudo-random number between 0 and 1
   def random_number do
-    Enum.random(1..10) / 400.0
+    Enum.random(1..10) / 40.0
   end
 
   # Reduces speed by random number
-  def reducespeed(speed) do
-    newspeed = speed * (1 - random_number())
+  def reducespeed(speed, endurance) do
+    newspeed = speed - (1 / endurance) * random_number()
     newspeed
   end
 
@@ -26,7 +26,7 @@ defmodule Bitracer.Game do
       horse = Map.put(horse, :posx, horse.posx + horse.speed)
     end
     if horse.speed >= 1.0 do
-      horse = Map.put(horse, :speed, reducespeed(horse.speed))
+      horse = Map.put(horse, :speed, reducespeed(horse.speed, horse.endurance))
     end
     horse
   end
