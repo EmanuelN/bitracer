@@ -5,17 +5,22 @@ class Game extends Component {
     super(props);
     this.state = {
       horse_a: 0,
-      horse_b: 0
+      horse_b: 0,
+      horse_c: 0,
+      horse_d: 0,
+      horse_e: 0
     }
     this.channel = this.props.channel;
   }
 
   componentDidMount() {
     this.channel.on('game_data', (payload) => {
-      const horseA = payload.horse_a;
-      const horseB = payload.horse_b;
-      this.setState({ horse_a: horseA });
-      this.setState({ horse_b: horseB })
+      const horse_a = payload.horse_a;
+      const horse_b = payload.horse_b;
+      const horse_c = payload.horse_c;
+      const horse_d = payload.horse_d;
+      const horse_e = payload.horse_e;
+      this.setState({ horse_a, horse_b, horse_c, horse_d, horse_e });
     });
   }
 
