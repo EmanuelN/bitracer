@@ -21,12 +21,12 @@ defmodule Bitracer.Game do
 
   # Pseudo-random number between 0 and 1
   def random_number do
-    Enum.random(1..10) / 400.0
+    Enum.random(1..10) / 40.0
   end
 
   # Reduces speed by random number
-  def reducespeed(speed) do
-    newspeed = speed * (1 - random_number())
+  def reducespeed(speed, endurance) do
+    newspeed = speed - (1 / endurance) * random_number()
     newspeed
   end
 
