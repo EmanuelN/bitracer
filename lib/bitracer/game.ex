@@ -44,6 +44,10 @@ defmodule Bitracer.Game do
     Enum.map(1..10, fn(n) -> random_number() end)
   end
 
+  #####################################
+  ######## GENSERVER CALLBACKS ########
+  #####################################
+
   def start_link do
     GenServer.start_link(__MODULE__, %{:pos => 0, :list => random_list()})
   end

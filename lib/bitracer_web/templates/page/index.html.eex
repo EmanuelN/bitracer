@@ -1,2 +1,2 @@
-<div id="react-root">
+<div id="react-root" data-username=<%= current_user(@conn).username %>>
 </div>
