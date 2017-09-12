@@ -34,7 +34,7 @@ class Chat extends Component {
 
   render() {
     return (
-      <div>
+      <div className="sidebar">
         <MessageList messages={this.state.messages} />
         <ChatBar username={this.state.currUser} updateMessages={(...args) => this.sendMessage(...args)} />
       </div>
