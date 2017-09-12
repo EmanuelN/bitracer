@@ -2,11 +2,17 @@ defmodule Bitracer.Game do
   use GenServer
   require Logger
 
+  @doc """
+  reads the file 'horses.json' and returns our list of 100 horses.
+  """
   def get_json() do
     with {:ok, body} <- File.read('./horses.json'),
          {:ok, json} <- Poison.decode(body), do: {:ok, json}
   end
 
+  @doc """
+  returns a key-value list of 5 horses which are randomly chosen from the list of 100
+  """
   def horses_list do
     {:ok, json} = get_json()
     list = Enum.take_random(json, 5)
@@ -19,18 +25,24 @@ defmodule Bitracer.Game do
     ]
   end
 
-  # Pseudo-random number between 0 and 1
+  @doc """
+  Pseudo-random number between 0 and 1
+  """
   def random_number do
     Enum.random(1..10) / 40.0
   end
 
-  # Reduces speed by random number
+  @doc """
+  Reduces speed by random number
+  """
   def reducespeed(speed, endurance) do
     newspeed = speed - (1 / endurance) * random_number()
     newspeed
   end
 
-  # update horse's location and speed
+  @doc """
+  update horse's location and speed
+  """
   def updatehorse(horse) do
     posx = Map.get(horse, "posx")
     speed = Map.get(horse, "speed")
@@ -48,7 +60,10 @@ defmodule Bitracer.Game do
     horse
   end
 
-  # update horses
+  @doc """
+  update horses
+  calls updatehorse on each horse in the list 'horses', and then returns the list of horses
+  """
   def horse_positions(horses) do
     horses = put_in(horses, [:a], updatehorse(horses[:a]))
     horses = put_in(horses, [:b], updatehorse(horses[:b]))
@@ -59,9 +74,15 @@ defmodule Bitracer.Game do
   end
 
   @doc """
+  Calculates the entire list of frames for each horse, at 10 FPS
   *Inputs:  horses, a list of 5 horses from the JSON file
-            framelist, a map consisting of;
-                                            frame: the counter representing the current frame
+            framelist, a map consisting of; frame: the counter representing the current frame
+                                            a: a list of x positions for horse a,
+                                            b: a list of x positions for horse b,
+                                            c: a list of x positions for horse c,
+                                            d: a list of x positions for horse d,
+                                            e: a list of x positions for horse e
+  *Outputs: framelist, a map consisting of; frame: the counter representing the current frame
                                             a: a list of x positions for horse a,
                                             b: a list of x positions for horse b,
                                             c: a list of x positions for horse c,
@@ -92,19 +113,26 @@ defmodule Bitracer.Game do
   ######## GENSERVER CALLBACKS ########
   #####################################
 
-  # def random_list do
-  #   Enum.map(1..1200, fn(n) -> race_frames(horses_list(), []) end)
-  # end
-
+  @doc """
+  starts the GenServer with a state: pos = 0, frames = race_frames
+  """
   def start_link do
     GenServer.start_link(__MODULE__, %{:pos => 0, :frames => race_frames(horses_list(), %{frame: 0, a: [0], b: [0], c: [0], d: [0], e: [0]})})
   end
 
+  @doc """
+  called immediately after GenServer is started, starts the initial stateful loop
+  """
   def init(state) do
     schedule_work()
     {:ok, state}
   end
 
+  @doc """
+  main function responsible for talking to the frontend, sends a game_state map representing the current x positions for a..e
+  then checks if 600 frames have elapsed (1 minute at 10FPS), and if so then it fetches a new framelist from race_frames
+  otherwise increment pos by 1 and schedule itself again
+  """
   def handle_info(:work, state) do
     game_state = %{
       a: Enum.at(state.frames.a, state[:pos]),
