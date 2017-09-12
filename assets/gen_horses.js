@@ -12,6 +12,7 @@ function genHorseList() {
       name, 
       speed,
       endurance,
+      finished: false,
       posx: 0,
     });
   }

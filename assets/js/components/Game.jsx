@@ -9,7 +9,8 @@ class Game extends Component {
       b: 0,
       c: 0,
       d: 0,
-      e: 0
+      e: 0,
+      winner: '',
     }
     this.channel = this.props.channel;
   }
@@ -22,6 +23,10 @@ class Game extends Component {
       const d = payload.state.d;
       const e = payload.state.e;
       this.setState({ a, b, c, d, e });
+    });
+    this.channel.on('winner_data', (payload) => {
+      const winner = payload.winner;
+      this.setState({ winner });
     });
   }
 
