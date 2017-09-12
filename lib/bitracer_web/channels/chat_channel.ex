@@ -18,4 +18,9 @@ defmodule BitracerWeb.ChatChannel do
     broadcast! socket, "incoming_notification", %{content: content}
     {:noreply, socket}
   end
+
+  def handle_in("post_bet", %{"username" => username, "bet" => bet, "horse" => horse}, socket) do
+    broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{horse}."}
+    {:noreply, socket}
+  end
 end
