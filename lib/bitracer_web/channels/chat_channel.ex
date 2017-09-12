@@ -20,6 +20,7 @@ defmodule BitracerWeb.ChatChannel do
   end
 
   def handle_in("post_bet", %{"username" => username, "bet" => bet, "horse" => horse}, socket) do
+    BitracerWeb.UserController.bet(username, bet)
     broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{horse}."}
     {:noreply, socket}
   end
