@@ -51,6 +51,7 @@ defmodule Bitracer.Game do
       Map.put(horse, "posx", posx + speed)
     else
       Map.put(horse, "posx", 600)
+      Map.put(horse, "finished", true)
     end
     horse = if speed >= 1.0 do
       Map.put(horse, "speed", reducespeed(speed, endurance))
@@ -104,6 +105,20 @@ defmodule Bitracer.Game do
       framelist = put_in(framelist, [:d], [ Map.get(horses[:d], "posx") | framelist.d ])
       framelist = put_in(framelist, [:e], [ Map.get(horses[:e], "posx") | framelist.e ])
       framelist = put_in(framelist, [:frame], framelist.frame + 1)
+
+      win = framelist.winner
+      len = String.length(win)
+      framelist = case Enum.any?(horses, fn({_key, horse}) -> Map.get(horse, "finished") end)  do
+        true when win == "" ->
+          winner = Enum.map_join(horses, fn({key, horse}) -> if Map.get(horse, "finished"), do: key end)
+          #require IEx; IEx.pry
+          put_in(framelist, [:winner], winner)
+        true when len > 1 ->
+          put_in(framelist, [:winner], String.slice(win, 0, 1))
+        _ ->
+          framelist
+      end
+
       new_positions = horse_positions(horses)
       race_frames(new_positions, framelist)
     end
@@ -117,7 +132,15 @@ defmodule Bitracer.Game do
   starts the GenServer with a state: pos = 0, frames = race_frames
   """
   def start_link do
-    GenServer.start_link(__MODULE__, %{:pos => 0, :frames => race_frames(horses_list(), %{frame: 0, a: [0], b: [0], c: [0], d: [0], e: [0]})})
+    GenServer.start_link(__MODULE__, %{:pos => 0, :frames => race_frames(horses_list(), %{
+      frame: 0,
+      winner: "",
+      a: [0],
+      b: [0],
+      c: [0],
+      d: [0],
+      e: [0]
+    })})
   end
 
   @doc """
@@ -144,9 +167,31 @@ defmodule Bitracer.Game do
     BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{state: game_state}
     state = cond do
       state[:pos] >= 600 ->
-        %{state | :frames => race_frames(horses_list(), %{frame: 0, a: [0], b: [0], c: [0], d: [0], e: [0]}), :pos => 0}
+        %{state | :frames => race_frames(horses_list(), %{
+          frame: 0,
+          winner: "",
+          a: [0],
+          b: [0],
+          c: [0],
+          d: [0],
+          e: [0]
+        }), :pos => 0}
       true ->
         %{state | :pos => state[:pos] + 1}
+    end
+    cond do  
+      Enum.at(state.frames.a, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.b, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.c, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.d, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.e, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      true ->
+        :no_winner
     end
     schedule_work()
     {:noreply, state}
