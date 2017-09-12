@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import Racer from './Racer.jsx';
 
 class Game extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Game extends Component {
       b: 0,
       c: 0,
       d: 0,
-      e: 0,
+      e: 0
     }
     this.channel = this.props.channel;
   }
@@ -25,10 +26,23 @@ class Game extends Component {
   }
 
   render() {
+
     return (
-      <div className="game">
+      <div className="game" >
+
+
+         <Racer racer= {this.state.a} />
+         <Racer racer= {this.state.b} />
+         <Racer racer= {this.state.c} />
+         <Racer racer= {this.state.d} />
+         <Racer racer= {this.state.e} />
+
+         <img src="images/horse.gif" position={this.state.a} />
+
       </div>
-    )
+    );
+
   }
+
 }
 export default Game;

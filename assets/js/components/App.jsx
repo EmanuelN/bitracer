@@ -4,12 +4,16 @@ import Game from "./Game.jsx"
 
 class App extends Component {
   render() {
+
+    console.log("Rendering <App/>");
+
     return (
+
       <div className="wrapper">
         <article className="content">
           <h4>Main game area</h4>
-          <img src="/images/sprite.gif" />
-          <Game channel={this.props.channel} />
+
+          <Game channel={this.props.channel}/>
         </article>
         <aside className="side">
           <h4>Chat area</h4>
