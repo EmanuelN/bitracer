@@ -26,10 +26,19 @@ class Chat extends Component {
   }
 
   sendMessage(message) {
-    this.channel.push('post_message', {
-      username: message.username,
-      content: message.value,
-    });
+    if (message.value[0] !== "/") {
+      this.channel.push('post_message', {
+        username: message.username,
+        content: message.value,
+      });
+    } else {
+      if (message.username && message.value[1] === "b"){
+        const horse = message.value.split(/[ ,]+/)[1];
+        const bet = message.value.split(/[ ,]+/)[2]
+        console.log(`${message.username} is betting ${bet}$ on ${horse}.`)
+      }
+    }
+
   }
 
   render() {
