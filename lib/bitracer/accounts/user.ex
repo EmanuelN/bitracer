@@ -17,7 +17,7 @@ defmodule Bitracer.Accounts.User do
 
   @doc false
   def changeset(%User{} = user, attrs) do
-    if (user) do
+    if Map.has_key?(attrs, :coins) do
       user
       |> cast(attrs, [:coins])
     else
