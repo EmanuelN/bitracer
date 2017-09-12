@@ -17,7 +17,7 @@ defmodule Bitracer.Accounts.User do
 
   @doc false
   def changeset(%User{} = user, attrs) do
-    if Bitracer.Accounts.get_user!(user.id) do
+    if (user) do
       user
       |> cast(attrs, [:coins])
     else
