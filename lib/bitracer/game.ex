@@ -135,11 +135,11 @@ defmodule Bitracer.Game do
     GenServer.start_link(__MODULE__, %{:pos => 0, :frames => race_frames(horses_list(), %{
       frame: 0,
       winner: "",
-      a: [],
-      b: [],
-      c: [],
-      d: [],
-      e: []
+      a: [0],
+      b: [0],
+      c: [0],
+      d: [0],
+      e: [0]
     })})
   end
 
@@ -170,14 +170,28 @@ defmodule Bitracer.Game do
         %{state | :frames => race_frames(horses_list(), %{
           frame: 0,
           winner: "",
-          a: [],
-          b: [],
-          c: [],
-          d: [],
-          e: []
+          a: [0],
+          b: [0],
+          c: [0],
+          d: [0],
+          e: [0]
         }), :pos => 0}
       true ->
         %{state | :pos => state[:pos] + 1}
+    end
+    cond do  
+      Enum.at(state.frames.a, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.b, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.c, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.d, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      Enum.at(state.frames.e, state[:pos]) >= 600 ->
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
+      true ->
+        :no_winner
     end
     schedule_work()
     {:noreply, state}
