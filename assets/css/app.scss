@@ -54,12 +54,12 @@ nav .logo {
 
 .content {
   grid-area: content;
-  border: 1px solid blue;
+  border: 1px solid gray;
 }
 
 .side {
   grid-area: sidebar;
-  border: 1px solid green;
+  border: 1px solid gray;
   padding: 10px;
 }
 
@@ -67,7 +67,7 @@ nav .logo {
   padding-top: 10px;
   display: grid;
   grid-gap: 10px;
-  background-color: yellow;
+  background-color: #785027;
   grid-template-areas:
     "nav"
     "content"
