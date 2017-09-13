@@ -1,26 +1,39 @@
 defmodule Simulate do
-  #use Bitracer.Game
-  def run do
-    {:ok, json} = Bitracer.Game.get_json()
-    list_of_5 = Enum.take_random(json, 5)
-    horses = run_race([
-      a: Enum.at(list_of_5, 0), 
-      b: Enum.at(list_of_5, 1),
-      c: Enum.at(list_of_5, 2),
-      d: Enum.at(list_of_5, 3),
-      e: Enum.at(list_of_5, 4)
-    ], 0)
+
+  def race do
+    horses_win_loss_record = Enum.map(json(), &calculate_horse_wl/1)
     
-    IO.puts inspect horses, limit: :infinity, pretty: true
-    IO.puts inspect(find_by_name(Map.get(horses[:a], "name"), json), limit: :infinity, pretty: true)
+    IO.puts inspect(horses_win_loss_record, limit: :infinity, pretty: true)
   end
-  defp find_by_name(name, list) do
-    Enum.find(list, fn n -> 
-      Map.get(n, "name") == name
-    end)
+
+  defp json() do
+    {:ok, json} = Bitracer.Game.get_json()
+    json
   end
+
+  defp calculate_horse_wl(horse) do
+    list_of_4 = generate_list_of_4(horse)
+    horses = run_race([
+      a: Enum.at(list_of_4, 0), 
+      b: Enum.at(list_of_4, 1),
+      c: Enum.at(list_of_4, 2),
+      d: Enum.at(list_of_4, 3),
+      e: horse
+    ], 0)
+    IO.puts("finished simulating #{Map.get(horse, "name")}")
+    horses[:e]
+  end
+
+  defp generate_list_of_4(horse) do
+    list_of_4 = Enum.take_random(json(), 5)
+    case Enum.member?(list_of_4, horse) do
+      true -> generate_list_of_4(horse)
+      false -> list_of_4
+    end
+  end
+
   defp run_race(horses, n) do
-    if n >= 100 do
+    if n >= 1000 do
       horses
     else
       result = String.to_atom(Bitracer.Game.race_frames(horses, %{frame: 0, winner: "", a: [], b: [], c: [], d: [], e: []}).winner)
@@ -28,8 +41,8 @@ defmodule Simulate do
       run_race(horses, n + 1)
     end
   end
+
   defp update_horses(horses, result) do
-    #require IEx; IEx.pry
     case result do
       :a ->
         horses = put_in(horses, [:a], put_in(horses[:a], ["wins"], Map.get(horses[:a], "wins") + 1))
@@ -69,4 +82,4 @@ defmodule Simulate do
     end
   end
 end
-Simulate.run
+Simulate.race
