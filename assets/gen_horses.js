@@ -14,6 +14,8 @@ function genHorseList() {
       endurance,
       finished: false,
       posx: 0,
+      wins: 0,
+      losses: 0,
     });
   }
   fs.writeFile('horses.json', JSON.stringify(list), (err) => {
