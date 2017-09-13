@@ -20,7 +20,7 @@ defmodule BitracerWeb.ChatChannel do
   end
 
   def handle_in("post_bet", %{"username" => username, "bet" => bet, "horse" => horse}, socket) do
-    if String.to_integer(bet) > 0 && String.to_integer(bet) <= 10000 do
+    if String.to_integer(bet) > 0 && String.to_integer(bet) <= 100 do
       if BitracerWeb.UserController.balance_check(username, bet) do
         BitracerWeb.UserController.bet(username, bet)
         broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{horse}."}
