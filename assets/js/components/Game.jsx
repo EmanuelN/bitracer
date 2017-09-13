@@ -35,14 +35,15 @@ class Game extends Component {
     return (
       <div className="game" >
 
+        <ul className="start">
+         <li>  <Racer racer= {this.state.a} /> <span>Lane1-----------------------------------------------------------------------------------------------Finish!</span> </li>
+         <li>  <Racer racer= {this.state.b} /> <span>Lane2-----------------------------------------------------------------------------------------------Finish!</span></li>
+         <li>  <Racer racer= {this.state.c} /> <span>Lane3-----------------------------------------------------------------------------------------------Finish!</span></li>
+         <li>  <Racer racer= {this.state.d} /> <span>Lane4-----------------------------------------------------------------------------------------------Finish!</span></li>
+         <li>  <Racer racer= {this.state.e} /> <span>Lane5-----------------------------------------------------------------------------------------------Finish!</span></li>
+        </ul>
 
-         <Racer racer= {this.state.a} />
-         <Racer racer= {this.state.b} />
-         <Racer racer= {this.state.c} />
-         <Racer racer= {this.state.d} />
-         <Racer racer= {this.state.e} />
 
-         <img src="images/horse.gif" position={this.state.a} />
 
       </div>
     );

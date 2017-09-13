@@ -11,14 +11,14 @@ class App extends Component {
 
       <div className="wrapper">
         <article className="content">
-          <h4>Main game area</h4>
-
+          <center><h5>Main game area</h5></center>
           <Game channel={this.props.channel}/>
         </article>
         <aside className="side">
-          <h4>Chat area</h4>
+          <center><h5>Chat area</h5></center>
           <Chat channel={this.props.channel} />
         </aside>
+        <footer className="foot"><center><img src="images/horse.gif" className="footer-pic"/><h6>copyright 2017 JES</h6></center></footer>
       </div>
     )
   }

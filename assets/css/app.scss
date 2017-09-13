@@ -58,15 +58,21 @@ nav .logo {
   padding: 10px;
 }
 
+.foot {
+  grid-area: footer;
+  border: 1px solid gray;
+}
+
 .wrapper {
   padding-top: 10px;
   display: grid;
   grid-gap: 10px;
-  background-color: #785027;
+  background-color: powderblue;
   grid-template-areas:
     "nav"
     "content"
-    "sidebar";
+    "sidebar"
+    "footer";
 }
 
 
@@ -76,8 +82,16 @@ nav .logo {
     grid-template-columns: 3fr 1fr;
     grid-template-areas:
       "nav     nav"
-      "content sidebar";
+      "content sidebar"
+      "footer  footer"
   }
 }
 
+.start {
+  list-style: none;
+}
 
+.footer-pic {
+  height: 100px;
+  width: 100px;
+}
