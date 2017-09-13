@@ -16,6 +16,6 @@ const MessageList = (props) => {
   );
 };
 MessageList.propTypes = {
-  messages: PropTypes.object.isRequired,
+  messages: PropTypes.array.isRequired,
 };
 export default MessageList;
