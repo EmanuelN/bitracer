@@ -1,5 +1,11 @@
 defmodule Simulate do
+  @moduledoc """
+  Simulates each horse participating in 1000 races, and calculates odds based on that horses win/loss record
+  """
 
+  @doc """
+  Kicks off each of the 100 horse's simulations and writes the results to horses.json
+  """
   def race do
     horses_win_loss_record = Enum.map(json(), &calculate_horse_wl/1)
     
@@ -7,11 +13,17 @@ defmodule Simulate do
     IO.puts "horses.json updated successfully"
   end
 
+  @doc """
+  reads horses.json and returns the result
+  """
   defp json() do
     {:ok, json} = Bitracer.Game.get_json()
     json
   end
 
+  @doc """
+  picks the initial 4 to race against and starts the 1000 race loop
+  """
   defp calculate_horse_wl(horse) do
     list_of_4 = generate_list_of_4(horse)
     horses = run_race([
@@ -25,6 +37,9 @@ defmodule Simulate do
     horses[:e]
   end
 
+  @doc """
+  picks 4 random horses from the JSON, uses recursion to ensure that a horse will not race against itself
+  """
   defp generate_list_of_4(horse) do
     list_of_4 = Enum.take_random(json(), 5)
     case Enum.member?(list_of_4, horse) do
@@ -33,6 +48,9 @@ defmodule Simulate do
     end
   end
 
+  @doc """
+  runs 1000 races against a specified horse
+  """
   defp run_race(horses, n) do
     if n >= 1000 do
       horses
@@ -43,6 +61,9 @@ defmodule Simulate do
     end
   end
 
+  @doc """
+  Generates a new horse list and updates our horse based on whether or not it won the last race
+  """
   defp update_horses(horses, result) do
     horse = horses[:e]
     horse = case result do
