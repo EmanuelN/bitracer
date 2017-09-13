@@ -27,14 +27,14 @@ class Chat extends Component {
       this.setState({ messages });
     });
     this.channel.on('incoming_whisper', (payload) => {
-      if (payload.target == this.state.currUser || payload.sender == this.state.currUser ){
-        payload.username = payload.sender
-        payload.font = "italic"
-        const messages = this.state.messages.concat(payload)
-        this.setState({ messages })
-        console.log(this.state.messages)
+      if (payload.target === this.state.currUser || payload.sender === this.state.currUser) {
+        const message = payload;
+        message.username = payload.sender;
+        message.font = 'italic';
+        const messages = this.state.messages.concat(message);
+        this.setState({ messages });
       }
-    })
+    });
   }
 
   sendMessage(message) {
@@ -43,36 +43,34 @@ class Chat extends Component {
         username: message.username,
         content: message.value,
       });
-    } else {
-      if (message.username && message.value[1] === "b"){
-        const horse = message.value.split(/[ ,]+/)[1];
-        const bet = message.value.split(/[ ,]+/)[2]
-        if (isNaN(Number(bet))){
-          this.channel.push("post_whisper", {
-            target: this.state.currUser,
-            content: "Bet amount must be a number",
-            sender: "System"
-          })
-        } else {
-          console.log(`${message.username} is betting ${bet}$ on ${horse}.`)
-          this.channel.push('post_bet', {
-            username: message.username,
-            horse: horse,
-            bet: bet
-          })
-        }
-      } else if (message.value[1] === "w"){
-        const target = message.value.split(/[ ,]+/)[1];
-        let content = ""
-        for (let i = 2; i < message.value.split(/[ ,]+/).length; i++){
-          content += " " + message.value.split(/[ ,]+/)[i];
-        }
+    } else if (message.username && message.value[1] === 'b') {
+      const horse = message.value.split(/[ ,]+/)[1];
+      const bet = message.value.split(/[ ,]+/)[2];
+      if (isNaN(Number(bet))) {
         this.channel.push('post_whisper', {
-          sender: this.state.currUser,
-          target: target,
-          content: content
-        })
+          target: this.state.currUser,
+          content: 'Bet amount must be a number',
+          sender: 'System',
+        });
+      } else {
+        console.log(`${message.username} is betting ${bet}$ on ${horse}.`);
+        this.channel.push('post_bet', {
+          username: message.username,
+          horse,
+          bet,
+        });
       }
+    } else if (message.value[1] === 'w') {
+      const target = message.value.split(/[ ,]+/)[1];
+      let content = '';
+      for (let i = 2; i < message.value.split(/[ ,]+/).length; i += 1) {
+        content += ` ${message.value.split(/[ ,]+/)[i]}`;
+      }
+      this.channel.push('post_whisper', {
+        sender: this.state.currUser,
+        target,
+        content,
+      });
     }
   }
 
