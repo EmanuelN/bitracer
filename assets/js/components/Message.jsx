@@ -1,19 +1,23 @@
-import React, {Component} from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Message extends Component {
-  render() {
-    if (!this.props.message.font) {
-      this.props.message.font = "normal"
-    }
-    let renderMessage = '';
-    renderMessage = (
-      <div className="message">
-        <span className="message-username" style={{ color: `#${this.props.message.color}`, fontStyle: this.props.message.font }}>{this.props.message.username || 'Anonymous'}: </span>
-        <span className="message-content" style={{ fontStyle: this.props.message.font }}>{this.props.message.content}</span>
-      </div>
-    );
+const Message = props => (
+  <div className="message">
+    <span className="message-username" style={{ color: `#${props.color}`, fontStyle: props.font }}>
+      {props.username || 'Anonymous'}: 
+    </span>
+    <span className="message-content" style={{ fontStyle: props.font }}>{props.content}</span>
+  </div>
+);
 
-    return renderMessage;
-  }
-}
+Message.propTypes = {
+  username: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  font: PropTypes.string,
+};
+Message.defaultProps = {
+  color: '000',
+  font: 'normal',
+};
 export default Message;

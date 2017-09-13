@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ChatBar extends Component {
   constructor(props) {
@@ -23,12 +24,22 @@ class ChatBar extends Component {
   }
 
   render() {
-    //uses inline functions to change the context of this
+    // uses inline functions to change the context of this
     return (
       <footer className="chatbar">
-        <input className="chatbar-message" placeholder="Type a message and hit ENTER" value={this.state.value} onChange={(...arg) => this.handleMessChange(...arg)} onKeyPress={(...arg) => this.handleKeyPress(...arg)} />
+        <input
+          className="chatbar-message"
+          placeholder="Type a message and hit ENTER"
+          value={this.state.value}
+          onChange={(...arg) => this.handleMessChange(...arg)}
+          onKeyPress={(...arg) => this.handleKeyPress(...arg)}
+        />
       </footer>
     );
   }
 }
+ChatBar.propTypes = {
+  username: PropTypes.string.isRequired,
+  updateMessages: PropTypes.func.isRequired,
+};
 export default ChatBar;

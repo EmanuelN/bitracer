@@ -191,7 +191,7 @@ defmodule Bitracer.Game do
       Enum.at(state.frames.e, state[:pos]) >= 600 ->
         BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
       true ->
-        :no_winner
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: ""}
     end
     schedule_work()
     {:noreply, state}

@@ -1,5 +1,7 @@
-import React, {Component} from "react"
-import Racer from './Racer.jsx';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Channel } from 'phoenix';
+import Racer from './Racer';
 
 class Game extends Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class Game extends Component {
       d: 0,
       e: 0,
       winner: '',
-    }
+    };
     this.channel = this.props.channel;
   }
 
@@ -31,24 +33,50 @@ class Game extends Component {
   }
 
   render() {
-
     return (
       <div className="game" >
-
         <ul className="start">
-         <li>  <Racer racer= {this.state.a} /> <span>Lane1-----------------------------------------------------------------------------------------------Finish!</span> </li>
-         <li>  <Racer racer= {this.state.b} /> <span>Lane2-----------------------------------------------------------------------------------------------Finish!</span></li>
-         <li>  <Racer racer= {this.state.c} /> <span>Lane3-----------------------------------------------------------------------------------------------Finish!</span></li>
-         <li>  <Racer racer= {this.state.d} /> <span>Lane4-----------------------------------------------------------------------------------------------Finish!</span></li>
-         <li>  <Racer racer= {this.state.e} /> <span>Lane5-----------------------------------------------------------------------------------------------Finish!</span></li>
+          <li>
+            <Racer racer={this.state.a} />
+            <span>
+              Lane1-------------------------------------------------------------------------
+              ----------------------Finish!
+            </span>
+          </li>
+          <li>
+            <Racer racer={this.state.b} />
+            <span>
+              Lane2-------------------------------------------------------------------------
+              ----------------------Finish!
+            </span>
+          </li>
+          <li>
+            <Racer racer={this.state.c} />
+            <span>
+              Lane3-------------------------------------------------------------------------
+              ----------------------Finish!
+            </span>
+          </li>
+          <li>
+            <Racer racer={this.state.d} />
+            <span>
+              Lane4-------------------------------------------------------------------------
+              ----------------------Finish!
+            </span>
+          </li>
+          <li>
+            <Racer racer={this.state.e} />
+            <span>
+              Lane5-------------------------------------------------------------------------
+              ----------------------Finish!
+            </span>
+          </li>
         </ul>
-
-
-
       </div>
     );
-
   }
-
 }
+Game.propTypes = {
+  channel: PropTypes.instanceOf(Channel).isRequired,
+};
 export default Game;
