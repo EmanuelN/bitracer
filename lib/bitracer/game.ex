@@ -179,7 +179,7 @@ defmodule Bitracer.Game do
       true ->
         %{state | :pos => state[:pos] + 1}
     end
-    cond do  
+    cond do
       Enum.at(state.frames.a, state[:pos]) >= 600 ->
         BitracerWeb.Endpoint.broadcast! "chat:chat", "winner_data", %{winner: state.frames.winner}
       Enum.at(state.frames.b, state[:pos]) >= 600 ->
