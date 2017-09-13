@@ -35,12 +35,20 @@ class Chat extends Component {
       if (message.username && message.value[1] === "b"){
         const horse = message.value.split(/[ ,]+/)[1];
         const bet = message.value.split(/[ ,]+/)[2]
-        console.log(`${message.username} is betting ${bet}$ on ${horse}.`)
-        this.channel.push('post_bet', {
-          username: message.username,
-          horse: horse,
-          bet: bet
+        if (isNaN(Number(bet))){
+          this.channel.push("post_notification", {
+            username: "System",
+            content: "Bet amount must be a number"
+          })
+        } else {
+          console.log(`${message.username} is betting ${bet}$ on ${horse}.`)
+          this.channel.push('post_bet', {
+            username: message.username,
+            horse: horse,
+            bet: bet
         })
+        }
+
       }
     }
 
