@@ -1,16 +1,21 @@
-import React, {Component} from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Message extends Component {
-  render() {
-    let renderMessage = '';
-    renderMessage = (
-      <div className="message">
-        <span className="message-username" style={{color: `#${this.props.message.color}`}}>{this.props.message.username || 'Anonymous'}: </span>
-        <span className="message-content">{this.props.message.content}</span>
-      </div>
-    );
+const Message = props => (
+  <div className="message">
+    <span className="message-username" style={{ color: `#${props.color}` }}>
+      {props.username || 'Anonymous'}:
+    </span>
+    <span className="message-content">{props.content}</span>
+  </div>
+);
 
-    return renderMessage;
-  }
-}
+Message.propTypes = {
+  username: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  color: PropTypes.string,
+};
+Message.defaultProps = {
+  color: '000',
+};
 export default Message;

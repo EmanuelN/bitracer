@@ -1,26 +1,29 @@
-import React, {Component} from "react"
-import Chat from "./Chat.jsx"
-import Game from "./Game.jsx"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Channel } from 'phoenix';
+import Chat from './Chat';
+import Game from './Game';
 
-class App extends Component {
-  render() {
+const App = props => (
+  <div className="wrapper">
+    <article className="content">
+      <center><h5>Main game area</h5></center>
+      <Game channel={props.channel} />
+    </article>
+    <aside className="side">
+      <center><h5>Chat area</h5></center>
+      <Chat channel={props.channel} />
+    </aside>
+    <footer className="foot">
+      <center>
+        <img src="images/horse.gif" className="footer-pic" alt="icon" />
+        <h6>copyright 2017 JES</h6>
+      </center>
+    </footer>
+  </div>
+);
 
-    console.log("Rendering <App/>");
-
-    return (
-
-      <div className="wrapper">
-        <article className="content">
-          <center><h5>Main game area</h5></center>
-          <Game channel={this.props.channel}/>
-        </article>
-        <aside className="side">
-          <center><h5>Chat area</h5></center>
-          <Chat channel={this.props.channel} />
-        </aside>
-        <footer className="foot"><center><img src="images/horse.gif" className="footer-pic"/><h6>copyright 2017 JES</h6></center></footer>
-      </div>
-    )
-  }
-}
+App.propTypes = {
+  channel: PropTypes.instanceOf(Channel).isRequired,
+};
 export default App;
