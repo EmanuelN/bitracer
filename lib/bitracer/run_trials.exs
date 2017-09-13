@@ -44,43 +44,21 @@ defmodule Simulate do
   end
 
   defp update_horses(horses, result) do
-    case result do
-      :a ->
-        horses = put_in(horses, [:a], put_in(horses[:a], ["wins"], Map.get(horses[:a], "wins") + 1))
-        horses = put_in(horses, [:b], put_in(horses[:b], ["losses"], Map.get(horses[:b], "losses") + 1))
-        horses = put_in(horses, [:c], put_in(horses[:c], ["losses"], Map.get(horses[:c], "losses") + 1))
-        horses = put_in(horses, [:d], put_in(horses[:d], ["losses"], Map.get(horses[:d], "losses") + 1))
-        horses = put_in(horses, [:e], put_in(horses[:e], ["losses"], Map.get(horses[:e], "losses") + 1))
-        horses
-      :b ->
-        horses = put_in(horses, [:b], put_in(horses[:b], ["wins"], Map.get(horses[:b], "wins") + 1))
-        horses = put_in(horses, [:a], put_in(horses[:a], ["losses"], Map.get(horses[:a], "losses") + 1))
-        horses = put_in(horses, [:c], put_in(horses[:c], ["losses"], Map.get(horses[:c], "losses") + 1))
-        horses = put_in(horses, [:d], put_in(horses[:d], ["losses"], Map.get(horses[:d], "losses") + 1))
-        horses = put_in(horses, [:e], put_in(horses[:e], ["losses"], Map.get(horses[:e], "losses") + 1))
-        horses
-      :c ->
-        horses = put_in(horses, [:c], put_in(horses[:c], ["wins"], Map.get(horses[:c], "wins") + 1))
-        horses = put_in(horses, [:a], put_in(horses[:a], ["losses"], Map.get(horses[:a], "losses") + 1))
-        horses = put_in(horses, [:b], put_in(horses[:b], ["losses"], Map.get(horses[:b], "losses") + 1))
-        horses = put_in(horses, [:d], put_in(horses[:d], ["losses"], Map.get(horses[:d], "losses") + 1))
-        horses = put_in(horses, [:e], put_in(horses[:e], ["losses"], Map.get(horses[:e], "losses") + 1))
-        horses
-      :d ->
-        horses = put_in(horses, [:d], put_in(horses[:d], ["wins"], Map.get(horses[:d], "wins") + 1))
-        horses = put_in(horses, [:a], put_in(horses[:a], ["losses"], Map.get(horses[:a], "losses") + 1))
-        horses = put_in(horses, [:b], put_in(horses[:b], ["losses"], Map.get(horses[:b], "losses") + 1))
-        horses = put_in(horses, [:c], put_in(horses[:c], ["losses"], Map.get(horses[:c], "losses") + 1))
-        horses = put_in(horses, [:e], put_in(horses[:e], ["losses"], Map.get(horses[:e], "losses") + 1))
-        horses
+    horse = horses[:e]
+    horse = case result do
       :e ->
-        horses = put_in(horses, [:e], put_in(horses[:e], ["wins"], Map.get(horses[:e], "wins") + 1))
-        horses = put_in(horses, [:a], put_in(horses[:a], ["losses"], Map.get(horses[:a], "losses") + 1))
-        horses = put_in(horses, [:b], put_in(horses[:b], ["losses"], Map.get(horses[:b], "losses") + 1))
-        horses = put_in(horses, [:c], put_in(horses[:c], ["losses"], Map.get(horses[:c], "losses") + 1))
-        horses = put_in(horses, [:d], put_in(horses[:d], ["losses"], Map.get(horses[:d], "losses") + 1))
-        horses
+        put_in(horse, ["wins"], Map.get(horse, "wins") + 1)
+      _ ->
+        put_in(horse, ["losses"], Map.get(horse, "losses") + 1)
     end
+    list_of_4 = generate_list_of_4(horse)
+    [
+      a: Enum.at(list_of_4, 0), 
+      b: Enum.at(list_of_4, 1),
+      c: Enum.at(list_of_4, 2),
+      d: Enum.at(list_of_4, 3),
+      e: horse
+    ] 
   end
 end
 Simulate.race
