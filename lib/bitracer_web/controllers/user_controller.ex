@@ -32,4 +32,10 @@ defmodule BitracerWeb.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
   end
+
+  def bet(username, coins) do
+    user = Accounts.get_user_by_username!(username)
+    new_coins = user.coins - String.to_integer(coins)
+    Accounts.update_user(user, %{coins: new_coins})
+  end
 end

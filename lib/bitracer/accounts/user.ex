@@ -17,13 +17,18 @@ defmodule Bitracer.Accounts.User do
 
   @doc false
   def changeset(%User{} = user, attrs) do
-    user
-    |> cast(attrs, [:username, :email, :password, :password_confirmation])
-    |> validate_required([:username, :email, :password, :password_confirmation])
-    |> validate_length(:password, min: 6)
-    |> validate_length(:password_confirmation, min: 6)
-    |> unique_constraint(:email)
-    |> unique_constraint(:username)
-    |> validate_confirmation(:password)
+    if Map.has_key?(attrs, :coins) do
+      user
+      |> cast(attrs, [:coins])
+    else
+      user
+      |> cast(attrs, [:username, :email, :password, :password_confirmation])
+      |> validate_required([:username, :email, :password, :password_confirmation])
+      |> validate_length(:password, min: 6)
+      |> validate_length(:password_confirmation, min: 6)
+      |> unique_constraint(:email)
+      |> unique_constraint(:username)
+      |> validate_confirmation(:password)
+    end
   end
 end

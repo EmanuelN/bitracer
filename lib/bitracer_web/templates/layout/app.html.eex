@@ -9,9 +9,13 @@
 
     <title>Bitracer!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
   </head>
 
   <body>
+
+
+
   <nav class="navbar">
   <%= render BitracerWeb.NavbarView, "navbar.html", assigns %>
   </nav>

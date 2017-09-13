@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import Racer from './Racer.jsx';
 
 class Game extends Component {
   constructor(props) {
@@ -30,10 +31,24 @@ class Game extends Component {
   }
 
   render() {
+
     return (
-      <div className="game">
+      <div className="game" >
+
+        <ul className="start">
+         <li>  <Racer racer= {this.state.a} /> <span>Lane1-----------------------------------------------------------------------------------------------Finish!</span> </li>
+         <li>  <Racer racer= {this.state.b} /> <span>Lane2-----------------------------------------------------------------------------------------------Finish!</span></li>
+         <li>  <Racer racer= {this.state.c} /> <span>Lane3-----------------------------------------------------------------------------------------------Finish!</span></li>
+         <li>  <Racer racer= {this.state.d} /> <span>Lane4-----------------------------------------------------------------------------------------------Finish!</span></li>
+         <li>  <Racer racer= {this.state.e} /> <span>Lane5-----------------------------------------------------------------------------------------------Finish!</span></li>
+        </ul>
+
+
+
       </div>
-    )
+    );
+
   }
+
 }
 export default Game;
