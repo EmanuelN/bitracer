@@ -3,7 +3,8 @@ defmodule Simulate do
   def race do
     horses_win_loss_record = Enum.map(json(), &calculate_horse_wl/1)
     
-    IO.puts inspect(horses_win_loss_record, limit: :infinity, pretty: true)
+    File.write!("./horses.json", Poison.encode!(horses_win_loss_record))
+    IO.puts "horses.json updated successfully"
   end
 
   defp json() do
