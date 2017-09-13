@@ -15,7 +15,7 @@ defmodule Bitracer.Application do
       # Start your own worker by calling: Bitracer.Worker.start_link(arg1, arg2, arg3)
       # worker(Bitracer.Worker, [arg1, arg2, arg3]),
       worker(Bitracer.Game, []),
-      worker(Bitracer.Bets, [Bitracerbets])
+      worker(Bitracer.Bets, [:bookie])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

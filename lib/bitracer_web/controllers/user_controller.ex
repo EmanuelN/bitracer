@@ -47,4 +47,10 @@ defmodule BitracerWeb.UserController do
     new_coins = user.coins - String.to_integer(coins)
     Accounts.update_user(user, %{coins: new_coins})
   end
+
+  def win(username, coins) do
+    user = Accounts.get_user_by_username!(username)
+    new_coins = user.coins + String.to_integer(coins)
+    Accounts.update_user(user, %{coins: new_coins})
+  end
 end
