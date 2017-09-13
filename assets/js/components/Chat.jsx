@@ -24,9 +24,9 @@ class Chat extends Component {
       this.setState({ messages });
     });
     this.channel.on('incoming_whisper', (payload) => {
-      if (payload.target == this.state.currUser){
-        console.log(payload)
+      if (payload.target == this.state.currUser || payload.sender == this.state.currUser ){
         payload.username = payload.sender
+        payload.font = "italic"
         const messages = this.state.messages.concat(payload)
         this.setState({ messages })
         console.log(this.state.messages)
