@@ -37,6 +37,7 @@ defmodule Bitracer.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_user_by_username!(name), do: Repo.get_by!(User, username: name)
   @doc """
   Creates a user.
 
@@ -68,6 +69,8 @@ defmodule Bitracer.Accounts do
 
   """
   def update_user(%User{} = user, attrs) do
+    IO.puts user.username
+    IO.puts attrs.coins
     user
     |> User.changeset(attrs)
     |> Repo.update()
