@@ -25,7 +25,7 @@ defmodule BitracerWeb.ChatChannel do
       broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{horse}."}
       {:noreply, socket}
     else
-      broadcast! socket, "incoming_notification", %{content: "You must enter a bet between 1 and 100"}
+      broadcast! socket, "incoming_whisper", %{content: "You must enter a bet between 1 and 100", target: username, sender: "System"}
       {:noreply, socket}
     end
   end

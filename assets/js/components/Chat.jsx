@@ -45,9 +45,10 @@ class Chat extends Component {
         const horse = message.value.split(/[ ,]+/)[1];
         const bet = message.value.split(/[ ,]+/)[2]
         if (isNaN(Number(bet))){
-          this.channel.push("post_notification", {
-            username: "System",
-            content: "Bet amount must be a number"
+          this.channel.push("post_whisper", {
+            target: this.state.currUser,
+            content: "Bet amount must be a number",
+            sender: "System"
           })
         } else {
           console.log(`${message.username} is betting ${bet}$ on ${horse}.`)
