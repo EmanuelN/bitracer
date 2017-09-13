@@ -23,6 +23,15 @@ class Chat extends Component {
       const messages = this.state.messages.concat(payload);
       this.setState({ messages });
     });
+    this.channel.on('incoming_whisper', (payload) => {
+      if (payload.target == this.state.currUser){
+        console.log(payload)
+        payload.username = payload.sender
+        const messages = this.state.messages.concat(payload)
+        this.setState({ messages })
+        console.log(this.state.messages)
+      }
+    })
   }
 
   sendMessage(message) {
@@ -46,12 +55,21 @@ class Chat extends Component {
             username: message.username,
             horse: horse,
             bet: bet
-        })
+          })
         }
-
+      } else if (message.value[1] === "w"){
+        const target = message.value.split(/[ ,]+/)[1];
+        let content = ""
+        for (let i = 2; i < message.value.split(/[ ,]+/).length; i++){
+          content += " " + message.value.split(/[ ,]+/)[i];
+        }
+        this.channel.push('post_whisper', {
+          sender: this.state.currUser,
+          target: target,
+          content: content
+        })
       }
     }
-
   }
 
   render() {

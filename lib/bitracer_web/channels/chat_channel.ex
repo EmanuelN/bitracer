@@ -29,4 +29,9 @@ defmodule BitracerWeb.ChatChannel do
       {:noreply, socket}
     end
   end
+
+  def handle_in("post_whisper", %{"target" => target, "content" => content, "sender" => sender}, socket) do
+    broadcast! socket, "incoming_whisper", %{content: content, target: target, sender: sender}
+    {:noreply, socket}
+  end
 end
