@@ -33,6 +33,15 @@ defmodule BitracerWeb.UserController do
     |> redirect(to: user_path(conn, :index))
   end
 
+  def balance_check(username, coins) do
+    user = Accounts.get_user_by_username!(username)
+    if user.coins >= String.to_integer(coins) do
+      true
+    else
+      false
+    end
+  end
+
   def bet(username, coins) do
     user = Accounts.get_user_by_username!(username)
     new_coins = user.coins - String.to_integer(coins)
