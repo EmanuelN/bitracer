@@ -59,6 +59,7 @@ nav .logo {
 }
 
 .foot {
+  height: 100px;
   grid-area: footer;
   border: 1px solid gray;
 }
@@ -101,12 +102,22 @@ nav .logo {
   background-color: blue;
 }
 
+.payouts {
+  color: green;
+  padding: 10px;
+}
+
+.show-odds {
+  color: red;
+  padding: 10px;
+}
+
 .finish-pic {
   height: 100px;
   width: 100px;
 }
 
 .footer-pic {
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
 }
