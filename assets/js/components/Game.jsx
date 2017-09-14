@@ -46,13 +46,13 @@ class Game extends Component {
 
       <div className="someDiv" >
 
-        <div className="ticker" style={{textAlign: "center"}}>
+        <div className="ticker" style={{ textAlign: 'center' }}>
           <span className="payouts">*payouts*</span>
-          <span className="show-odds"><span style={{color: 'black'}}>Horse A </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
-          <span className="show-odds"><span style={{color: 'black'}}>Horse B </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
-          <span className="show-odds"><span style={{color: 'black'}}>Horse C </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
-          <span className="show-odds"><span style={{color: 'black'}}>Horse D </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
-          <span className="show-odds"><span style={{color: 'black'}}>Horse E </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{ color: 'black' }}>Horse A </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10) / 10}:1`} /></span>
+          <span className="show-odds"><span style={{ color: 'black' }}>Horse B </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10) / 10}:1`} /></span>
+          <span className="show-odds"><span style={{ color: 'black' }}>Horse C </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10) / 10}:1`} /></span>
+          <span className="show-odds"><span style={{ color: 'black' }}>Horse D </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10) / 10}:1`} /></span>
+          <span className="show-odds"><span style={{ color: 'black' }}>Horse E </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10) / 10}:1`} /></span>
           <span className="payouts">*payouts*</span>
         </div>
 
