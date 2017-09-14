@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Racer = props => (
-  <div className="racer" style={{ position: 'relative', height: '40px', margin: '50px' }}>
+  <div className="racer" >
     <img
       src="images/sprite.gif"
       className="sprite"
       style={{
         position: 'absolute',
-        left: `${props.racer}%`,
+        left: `${props.racer - 8}%`,
       }}
       alt="run, boy, run!"
     />
