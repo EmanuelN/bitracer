@@ -69,8 +69,6 @@ defmodule Bitracer.Accounts do
 
   """
   def update_user(%User{} = user, attrs) do
-    IO.puts user.username
-    IO.puts attrs.coins
     user
     |> User.changeset(attrs)
     |> Repo.update()
