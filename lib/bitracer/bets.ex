@@ -23,9 +23,11 @@ defmodule Bitracer.Bets do
         bet_amount = String.to_integer(x.bet)
         payout = round(bet_amount + (bet_amount * odds))
         IO.puts "You won #{payout} coins"
+        BitracerWeb.Endpoint.broadcast! "chat:chat", "incoming_whisper", %{target: x.user, sender: "System", "content": "You won #{payout} coins!"}
         BitracerWeb.UserController.win(x.user, payout)
       end
     end)
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "incoming_message", %{username: "System", content: "Bunny #{String.capitalize(winner)} won!"}
     GenServer.cast(pid, {:reset})
   end
 
