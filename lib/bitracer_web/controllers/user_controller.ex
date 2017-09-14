@@ -49,8 +49,11 @@ defmodule BitracerWeb.UserController do
   end
 
   def win(username, coins) do
+    IO.puts "adding some coins"
     user = Accounts.get_user_by_username!(username)
     new_coins = user.coins + coins
+    IO.puts "You used to have #{user.coins} coins"
+    IO.puts "Your new coins are #{new_coins}"
     Accounts.update_user(user, %{coins: new_coins})
   end
 end

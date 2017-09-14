@@ -86,7 +86,7 @@ class Chat extends Component {
           content: 'Bet amount must be a number',
           sender: 'System',
         });
-      } else if (this.state.pos >= 150) {
+      } else if (this.state.pos >= 600) {
         this.channel.push('post_whisper', {
           target: this.state.currUser,
           content: 'It\'s too late to bet now.',
