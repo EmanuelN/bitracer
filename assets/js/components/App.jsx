@@ -6,8 +6,12 @@ import Game from './Game';
 
 const App = props => (
   <div className="wrapper">
+    <marquee behavior="scroll" direction="right">
+      <span>LET'S GO!!!</span>
+      <img src="images/horse.gif" className="footer-pic" alt="icon" />
+      <span>LET'S GO!!!</span>
+    </marquee>
     <article className="content">
-      <center><h5>Main game area</h5></center>
       <Game channel={props.channel} />
     </article>
     <aside className="side">
