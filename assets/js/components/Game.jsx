@@ -13,6 +13,7 @@ class Game extends Component {
       d: 0,
       e: 0,
       winner: '',
+      odds: {},
     };
     this.channel = this.props.channel;
   }
@@ -29,6 +30,9 @@ class Game extends Component {
     this.channel.on('winner_data', (payload) => {
       const winner = payload.winner;
       this.setState({ winner });
+    });
+    this.channel.on('odds', (payload) => {
+      this.setState({ odds: payload });
     });
   }
 
