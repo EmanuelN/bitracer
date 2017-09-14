@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Channel } from 'phoenix';
 import Racer from './Racer';
+import Odds from './Odds';
 
 class Game extends Component {
   constructor(props) {
@@ -43,10 +44,22 @@ class Game extends Component {
   render() {
     return (
 
+      <div className="someDiv" >
+
+        <div className="ticker" style={{textAlign: "center"}}>
+          <span className="payouts">*payouts*</span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse A </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse B </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse C </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse D </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse E </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
+          <span className="payouts">*payouts*</span>
+        </div>
+
+
         <ul className="start">
           <li>
             <Racer racer={this.state.a} />
-            <img className="finish-pic" src="images/finish.gif" />
           </li>
           <li>
             <Racer racer={this.state.b} />
@@ -62,6 +75,7 @@ class Game extends Component {
           </li>
         </ul>
 
+      </div>
     );
   }
 }

@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import { Channel } from 'phoenix';
 import Chat from './Chat';
 import Game from './Game';
+import Odds from './Odds';
 
 const App = props => (
   <div className="wrapper">
-    <marquee behavior="scroll" direction="right">
-      <span>LET'S GO!!!</span>
-      <img src="images/horse.gif" className="footer-pic" alt="icon" />
-      <span>LET'S GO!!!</span>
-    </marquee>
+
     <article className="content">
       <Game channel={props.channel} />
     </article>
@@ -21,8 +18,8 @@ const App = props => (
     <footer className="foot">
       <center>
         <img src="images/horse.gif" className="footer-pic" alt="icon" />
-        <h6>copyright 2017 JES</h6>
       </center>
+      <center><span>copyright 2017 JES</span></center>
     </footer>
   </div>
 );
