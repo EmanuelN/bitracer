@@ -11,6 +11,7 @@ class Chat extends Component {
       numUsers: 0,
       currUser: document.getElementById('username').dataset.username,
       messages: [],
+      pos: 0
     };
     this.channel = this.props.channel;
   }
@@ -19,6 +20,10 @@ class Chat extends Component {
     this.channel.on('incoming_message', (payload) => {
       const messages = this.state.messages.concat(payload);
       this.setState({ messages });
+    });
+    this.channel.on('pos', (payload) => {
+      const pos = payload.pos
+      this.setState({ pos })
     });
     this.channel.on('incoming_notification', (payload) => {
       const message = payload;
@@ -53,12 +58,20 @@ class Chat extends Component {
           sender: 'System',
         });
       } else {
-        console.log(`${message.username} is betting ${bet}$ on ${horse}.`);
-        this.channel.push('post_bet', {
-          username: message.username,
-          horse,
-          bet,
+        if (this.state.pos >= 150){
+          this.channel.push('post_whisper', {
+          target: this.state.currUser,
+          content: 'It\'s too late to bet now.',
+          sender: 'System',
         });
+        } else {
+          console.log(`${message.username} is betting ${bet}$ on ${horse}.`);
+          this.channel.push('post_bet', {
+            username: message.username,
+            horse,
+            bet,
+          });
+        }
       }
     } else if (message.value[1] === 'w') {
       const target = message.value.split(/[ ,]+/)[1];
