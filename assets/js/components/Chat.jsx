@@ -11,7 +11,8 @@ class Chat extends Component {
       numUsers: 0,
       currUser: document.getElementById('username').dataset.username,
       messages: [],
-      pos: 0
+      pos: 0,
+      horses: ['andy','bobby','charlie','david','ernie']
     };
     this.channel = this.props.channel;
   }
@@ -43,29 +44,60 @@ class Chat extends Component {
   }
 
   sendMessage(message) {
+    const parseHorse = (horse) => {
+      horse = horse.toLowerCase()
+      const arr = ['a','b','c','d','e'];
+      const horsenames = this.state.horses
+      if (isNaN(horse)){
+        for (let i = 0; i < 5; i++){
+          if (horse == arr[i]){
+            return horse
+          }
+          if (horse == horsenames[i]){
+            return arr[i]
+          }
+        }
+        return "error"
+      } else {
+        horse = parseInt(horse)
+        console.log(horse)
+        if (horse > 0 && horse <= 5){
+          return arr[horse-1]
+        }
+        return "error"
+      }
+
+    }
+
     if (message.value[0] !== '/') {
       this.channel.push('post_message', {
         username: message.username,
         content: message.value,
       });
     } else if (message.username && message.value[1] === 'b') {
-      const horse = message.value.split(/[ ,]+/)[1];
+      const horse = parseHorse(message.value.split(/[ ,]+/)[1]);
       const bet = message.value.split(/[ ,]+/)[2];
-      if (isNaN(Number(bet))) {
+      if (horse === "error"){
+        this.channel.push('post_whisper', {
+          target: this.state.currUser,
+          content: 'Invalid horse, use horse name, number or assigned letter',
+          sender: 'System'
+        });
+      }
+      else if (isNaN(Number(bet))) {
         this.channel.push('post_whisper', {
           target: this.state.currUser,
           content: 'Bet amount must be a number',
           sender: 'System',
         });
       } else {
-        if (this.state.pos >= 150){
+        if (this.state.pos >= 600){
           this.channel.push('post_whisper', {
           target: this.state.currUser,
           content: 'It\'s too late to bet now.',
           sender: 'System',
         });
         } else {
-          console.log(`${message.username} is betting ${bet}$ on ${horse}.`);
           this.channel.push('post_bet', {
             username: message.username,
             horse,
