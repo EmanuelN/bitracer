@@ -118,6 +118,17 @@ defmodule Bitracer.Game do
       framelist = put_in(framelist, [:e], Enum.reverse(framelist.e))
       framelist
     else
+      framelist = if framelist.frame == 0 do 
+        put_in(framelist, [:odds], %{
+          a: Map.get(horses[:a], "losses") / Map.get(horses[:a], "wins"),
+          b: Map.get(horses[:b], "losses") / Map.get(horses[:b], "wins"),
+          c: Map.get(horses[:c], "losses") / Map.get(horses[:c], "wins"),
+          d: Map.get(horses[:d], "losses") / Map.get(horses[:d], "wins"),
+          e: Map.get(horses[:e], "losses") / Map.get(horses[:e], "wins")
+        })
+      else
+        framelist
+      end
       framelist = put_in(framelist, [:a], [ Map.get(horses[:a], "posx") | framelist.a ])
       framelist = put_in(framelist, [:b], [ Map.get(horses[:b], "posx") | framelist.b ])
       framelist = put_in(framelist, [:c], [ Map.get(horses[:c], "posx") | framelist.c ])
@@ -130,8 +141,9 @@ defmodule Bitracer.Game do
       framelist = case Enum.any?(horses, fn({_key, horse}) -> Map.get(horse, "finished") end)  do
         true when win == "" ->
           winner = Enum.map_join(horses, fn({key, horse}) -> if Map.get(horse, "finished"), do: key end)
-          #require IEx; IEx.pry
-          put_in(framelist, [:winner], winner)
+          framelist = put_in(framelist, [:winner], winner)
+          framelist = put_in(framelist, [:winner_odds], framelist[:odds][String.to_atom(winner)])
+          framelist
         true when len > 1 ->
           put_in(framelist, [:winner], String.slice(win, 0, 1))
         _ ->
@@ -156,6 +168,8 @@ defmodule Bitracer.Game do
       :frames => race_frames(horses_list(), %{
         frame: 0,
         winner: "",
+        winner_odds: 0,
+        odds: %{},
         a: [0],
         b: [0],
         c: [0],
@@ -187,12 +201,14 @@ defmodule Bitracer.Game do
       e: Enum.at(state.frames.e, state[:pos])
     }
     BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{state: game_state}
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "odds", state.frames.odds
     state = cond do
       state[:pos] >= 600 ->
-        Bitracer.Bets.win(:bookie, state.frames.winner, 5)
+        Bitracer.Bets.win(:bookie, state.frames.winner, state.frames.winner_odds)
         %{state | :frames => race_frames(horses_list(), %{
           frame: 0,
           winner: "",
+          winner_odds: 0,
           a: [0],
           b: [0],
           c: [0],
