@@ -202,6 +202,7 @@ defmodule Bitracer.Game do
     }
     BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{state: game_state}
     BitracerWeb.Endpoint.broadcast! "chat:chat", "odds", state.frames.odds
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "pos", %{pos: state[:pos]}
     state = cond do
       state[:pos] >= 600 ->
         Bitracer.Bets.win(:bookie, state.frames.winner, state.frames.winner_odds)
