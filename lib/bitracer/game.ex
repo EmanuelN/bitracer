@@ -151,15 +151,18 @@ defmodule Bitracer.Game do
   starts the GenServer with a state: pos = 0, frames = race_frames
   """
   def start_link do
-    GenServer.start_link(__MODULE__, %{:pos => 0, :frames => race_frames(horses_list(), %{
-      frame: 0,
-      winner: "",
-      a: [0],
-      b: [0],
-      c: [0],
-      d: [0],
-      e: [0]
-    })})
+    GenServer.start_link(__MODULE__, %{
+      :pos => 0,
+      :frames => race_frames(horses_list(), %{
+        frame: 0,
+        winner: "",
+        a: [0],
+        b: [0],
+        c: [0],
+        d: [0],
+        e: [0]
+      })
+    })
   end
 
   @doc """

@@ -42,5 +42,4 @@ defmodule Bitracer.Bets do
   def handle_cast({:reset}, list) do
     {:noreply, list = []}
   end
-
 end
