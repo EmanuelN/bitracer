@@ -265,12 +265,14 @@ function genHorseList() {
   const list = [];
   for (let i = 0; i < 100; i += 1) {
     const name = nm1[Math.floor(Math.random() * nm1.length)];
-    const speed = (Math.random() * ((4 - 2) + 1)) + 2;
-    const endurance = (Math.random() * ((10 - 5) + 1)) + 5;
+    const speed = getRandomInt(3, 4);
+    const endurance = getRandomInt(5, 6);
+    const chance = getRandomInt(1, 10);
     list.push({
       name,
       speed,
       endurance,
+      chance,
       finished: false,
       posx: 0,
       wins: 0,
@@ -284,5 +286,13 @@ function genHorseList() {
     }
     console.log('horses.json written successfully');
   });
+}
+// lifted from
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  //The maximum is exclusive and the minimum is inclusive
+  return (Math.random() * (max - min)) + min;
 }
 genHorseList();

@@ -20,20 +20,3 @@ Racer.propTypes = {
 };
 
 export default Racer;
-// var style = {
-//   height: "100px",
-//   width: "100px",
-//   top: this.state.x,
-//   position: "absolute",
-//   src: "/images/sprite.gif",
-//   backgroundColor: "red"
-// }
-// componentDidMount() {
-//   Loop(function(tick) {
-//     // animation code here
-//     this.setState({
-//       x: this.state.x + (this.props.racer * tick)
-//     })
-//   }.bind(this))
-
-// }
