@@ -19,11 +19,11 @@ class Game extends Component {
 
   componentDidMount() {
     this.channel.on('game_data', (payload) => {
-      const a = payload.state.a;
-      const b = payload.state.b;
-      const c = payload.state.c;
-      const d = payload.state.d;
-      const e = payload.state.e;
+      const a = payload.state.a / 6;
+      const b = payload.state.b / 6;
+      const c = payload.state.c / 6;
+      const d = payload.state.d / 6;
+      const e = payload.state.e / 6;
       this.setState({ a, b, c, d, e });
     });
     this.channel.on('winner_data', (payload) => {

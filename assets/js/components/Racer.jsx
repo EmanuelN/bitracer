@@ -8,7 +8,7 @@ const Racer = props => (
       className="sprite"
       style={{
         position: 'absolute',
-        left: `${props.racer}px`,
+        left: `${props.racer}%`,
       }}
       alt="run, boy, run!"
     />
