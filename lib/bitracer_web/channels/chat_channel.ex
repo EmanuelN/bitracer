@@ -23,8 +23,6 @@ defmodule BitracerWeb.ChatChannel do
     if String.to_integer(bet) > 0 && String.to_integer(bet) <= 100 do
       if BitracerWeb.UserController.balance_check(username, bet) do
         Bitracer.Bets.add(:bookie, %{user: username, horse: horse, bet: bet})
-        IO.puts List.first(Bitracer.Bets.read(:bookie)).bet
-        IO.puts List.last(Bitracer.Bets.read(:bookie)).bet
         BitracerWeb.UserController.bet(username, bet)
         broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{horse}."}
         {:noreply, socket}
