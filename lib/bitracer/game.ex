@@ -118,7 +118,7 @@ defmodule Bitracer.Game do
       framelist = put_in(framelist, [:e], Enum.reverse(framelist.e))
       framelist
     else
-      framelist = if framelist.frame == 0 do 
+      framelist = if framelist.frame == 0 do
         put_in(framelist, [:odds], %{
           a: Map.get(horses[:a], "losses") / Map.get(horses[:a], "wins"),
           b: Map.get(horses[:b], "losses") / Map.get(horses[:b], "wins"),
