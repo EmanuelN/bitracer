@@ -29,14 +29,32 @@ defmodule Bitracer.Game do
   Pseudo-random number between 0 and 1
   """
   def random_number do
-    Enum.random(1..10) / 40.0
+    #Enum.random(1..10) / 25.0
+    :rand.uniform()
   end
 
   @doc """
   Reduces speed by random number
+  has a one in ten chance to drop speed to 1
   """
   def reducespeed(speed, endurance) do
-    newspeed = speed - (1 / endurance) * random_number()
+    newspeed = case Float.round(random_number(), 1) do
+      0.1 -> 1
+      _ -> speed - (1 / endurance) * random_number()
+    end
+    newspeed
+  end
+
+  @doc """
+  redemption! has a one in ten chance of boosting to 5, one in ten chance of doing nothing,
+  and four fifths of the time it increases speed by between 1 and 0.1
+  """
+  def redemption(speed, chance) do
+    newspeed = case Float.round(random_number(), 1) do
+      0.1 -> 1
+      0.5 -> 5
+      _ -> speed + (1 / chance)
+    end
     newspeed
   end
 
@@ -47,6 +65,7 @@ defmodule Bitracer.Game do
     posx = Map.get(horse, "posx")
     speed = Map.get(horse, "speed")
     endurance = Map.get(horse, "endurance")
+    chance = Map.get(horse, "chance")
     horse = if posx <= 600 do
       Map.put(horse, "posx", posx + speed)
     else
@@ -56,7 +75,7 @@ defmodule Bitracer.Game do
     horse = if speed >= 1.0 do
       Map.put(horse, "speed", reducespeed(speed, endurance))
     else
-      Map.put(horse, "speed", 1.0)
+      Map.put(horse, "speed", redemption(speed, chance))
     end
     horse
   end
