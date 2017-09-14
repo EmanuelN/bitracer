@@ -292,7 +292,7 @@ function genHorseList() {
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  //The maximum is exclusive and the minimum is inclusive
+  // The maximum is exclusive and the minimum is inclusive
   return (Math.random() * (max - min)) + min;
 }
 genHorseList();
