@@ -1,4 +1,5 @@
 import React from 'react';
+import 'normalize.css';
 import PropTypes from 'prop-types';
 import { Channel } from 'phoenix';
 import Chat from './Chat';
