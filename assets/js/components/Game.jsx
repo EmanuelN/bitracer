@@ -42,15 +42,15 @@ class Game extends Component {
 
       <div className="someDiv" >
 
-        <marquee className="ticker" behavior="scroll" direction="right" >
+        <div className="ticker" style={{textAlign: "center"}}>
           <span className="payouts">*payouts*</span>
-          <span className="show-odds">Horse A:<Odds odds={`${Math.round(this.state.odds.a * 10)}%`} /></span>
-          <span className="show-odds">Horse B:<Odds odds={`${Math.round(this.state.odds.b * 10)}%`} /></span>
-          <span className="show-odds">Horse C:<Odds odds={`${Math.round(this.state.odds.c * 10)}%`} /></span>
-          <span className="show-odds">Horse D:<Odds odds={`${Math.round(this.state.odds.d * 10)}%`} /></span>
-          <span className="show-odds">Horse E:<Odds odds={`${Math.round(this.state.odds.e * 10)}%`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse A </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse B </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse C </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse D </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
+          <span className="show-odds"><span style={{color: 'black'}}>Horse E </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
           <span className="payouts">*payouts*</span>
-        </marquee>
+        </div>
 
 
         <ul className="start">
