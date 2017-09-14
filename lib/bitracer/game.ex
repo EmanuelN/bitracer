@@ -119,13 +119,21 @@ defmodule Bitracer.Game do
       framelist
     else
       framelist = if framelist.frame == 0 do
-        put_in(framelist, [:odds], %{
+        framelist = put_in(framelist, [:odds], %{
           a: Map.get(horses[:a], "losses") / Map.get(horses[:a], "wins"),
           b: Map.get(horses[:b], "losses") / Map.get(horses[:b], "wins"),
           c: Map.get(horses[:c], "losses") / Map.get(horses[:c], "wins"),
           d: Map.get(horses[:d], "losses") / Map.get(horses[:d], "wins"),
           e: Map.get(horses[:e], "losses") / Map.get(horses[:e], "wins")
         })
+        framelist = put_in(framelist, [:names], %{
+          a: Map.get(horses[:a], "name"),
+          b: Map.get(horses[:b], "name"),
+          c: Map.get(horses[:c], "name"),
+          d: Map.get(horses[:d], "name"),
+          e: Map.get(horses[:e], "name")
+        })
+        framelist
       else
         framelist
       end
@@ -170,6 +178,7 @@ defmodule Bitracer.Game do
         winner: "",
         winner_odds: 0,
         odds: %{},
+        names: %{},
         a: [0],
         b: [0],
         c: [0],
@@ -202,6 +211,7 @@ defmodule Bitracer.Game do
     }
     BitracerWeb.Endpoint.broadcast! "chat:chat", "game_data", %{state: game_state}
     BitracerWeb.Endpoint.broadcast! "chat:chat", "odds", state.frames.odds
+    BitracerWeb.Endpoint.broadcast! "chat:chat", "names", state.frames.names
     BitracerWeb.Endpoint.broadcast! "chat:chat", "pos", %{pos: state[:pos]}
     state = cond do
       state[:pos] >= 600 ->
@@ -210,6 +220,8 @@ defmodule Bitracer.Game do
           frame: 0,
           winner: "",
           winner_odds: 0,
+          odds: %{},
+          names: %{},
           a: [0],
           b: [0],
           c: [0],
