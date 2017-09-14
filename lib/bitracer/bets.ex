@@ -15,11 +15,11 @@ defmodule Bitracer.Bets do
     GenServer.cast(pid, {:add, item})
   end
 
-  def win(pid, winner) do
+  def win(pid, winner, odds) do
     IO.puts "Winner: #{winner}"
     Enum.map((GenServer.call(pid, {:read})), fn(x) ->
       if x.horse == winner do
-        BitracerWeb.UserController.win(x.user, x.bet)
+        BitracerWeb.UserController.win(x.user, (String.to_integer(x.bet) * odds))
       end
     end)
     GenServer.cast(pid, {:reset})
