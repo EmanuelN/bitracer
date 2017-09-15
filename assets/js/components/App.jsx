@@ -12,7 +12,7 @@ const App = props => (
       <Game channel={props.channel} />
     </article>
     <aside className="side">
-      <center><h5>Chat area</h5></center>
+      <center><h3>Please place your bets</h3></center>
       <Chat channel={props.channel} />
     </aside>
     <footer className="foot">

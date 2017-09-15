@@ -42,6 +42,22 @@ class Game extends Component {
     });
   }
 
+
+
+  getWinner = (names) => {
+
+    console.log(names);
+
+    var getWinnerName = '';
+
+    for (var i = 0; i < 5; i++) {
+      if (names[i] == this.state.winner) {
+        getWinnerName = names[i]
+      }
+    }
+    return getWinnerName;
+  }
+
   render() {
 
     if (!this.state.winner) {
@@ -62,15 +78,15 @@ class Game extends Component {
         </marquee>
 
 
-            <Racer racer={this.state.a} image="images/modernHorse.gif"/>
+            <Racer racer={this.state.a}  name={this.state.names.a}   image="images/crossfox.gif"/>
 
-            <Racer racer={this.state.b} image="images/sonic.gif"/>
+            <Racer racer={this.state.b}  name={this.state.names.b}   image="images/flareon.gif"/>
 
-            <Racer racer={this.state.c} image="images/pinky.gif"/>
+            <Racer racer={this.state.c}   name={this.state.names.c}  image="images/pikachu.gif"/>
 
-            <Racer racer={this.state.c} image="images/dino.gif"/>
+            <Racer racer={this.state.c}   name={this.state.names.d}  image="images/zoroark.gif"/>
 
-            <Racer racer={this.state.c} image="images/homer.gif" />
+            <Racer racer={this.state.c}   name={this.state.names.e}  image="images/homer.gif" />
 
 
 
@@ -95,18 +111,18 @@ class Game extends Component {
             </marquee>
 
             <center>
-              <div className="winner"><h1>{this.state.winner} Won the Race!</h1></div>
+              <div className="winner"><h1>{this.getWinner} Won the Race!</h1></div>
             </center>
 
             <center>
 
-              <img className="sprite" src="images/horse.gif"/>
+              <img className="sprite" src="images/crossfox.gif"/>
 
-              <img className="sprite" src="images/sonic.gif"/>
+              <img className="sprite" src="images/flareon.gif"/>
 
-              <img className="sprite" src="images/pinky.gif"/>
+              <img className="sprite" src="images/pikachu.gif"/>
 
-              <img className="sprite" src="images/dino.gif"/>
+              <img className="sprite" src="images/zoroark.gif"/>
 
               <img className="sprite" src="images/homer.gif"/>
 
