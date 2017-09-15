@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Racer = props => (
-  <div className="racer" >
+
+  <div className="racer">
+
     <img
-      src="images/sprite.gif"
       className="sprite"
+      src={props.image}
       style={{
         position: 'absolute',
-        left: `${props.racer - 8}%`,
+        left: `${props.racer + 5}%`,
       }}
       alt="run, boy, run!"
     />
+
   </div>
+
 );
 
 Racer.propTypes = {
