@@ -37,7 +37,10 @@ defmodule Bitracer.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_user_by_username(name), do: Repo.get_by(User, username: name)
+
   def get_user_by_username!(name), do: Repo.get_by!(User, username: name)
+
   @doc """
   Creates a user.
 

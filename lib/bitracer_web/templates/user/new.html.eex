@@ -1,3 +1,6 @@
+<nav class="navbar">
+  <%= render BitracerWeb.NavbarView, "navbar.html", assigns %>
+</nav>
 <h2>New User</h2>
 
 <%= render "form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>

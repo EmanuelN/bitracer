@@ -5,8 +5,15 @@ defmodule BitracerWeb.ChatChannel do
     {:ok, socket}
   end
 
-  def join("chat:" <> _private, _params, _socket) do
-    {:error, %{reason: "unauthorized"}}
+  def join("chat:" <> username, _params, socket) do
+    send(self(), {:user_join, username})
+    {:ok, socket}
+  end
+
+  def handle_info({:user_join, username}, socket) do
+    user = Bitracer.Accounts.get_user_by_username(username)
+    if user, do: broadcast! socket, "new_coins", %{coins: user.coins}
+    {:noreply, socket}
   end
 
   def handle_in("post_message", %{"username" => username, "content" => content}, socket) do

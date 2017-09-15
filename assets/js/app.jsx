@@ -24,8 +24,12 @@ import socket from './socket';
 import App from './components/App';
 
 const channel = socket.channel('chat:chat', {});
+const user_chan = socket.channel(`chat:${document.getElementById('username').dataset.username}`, {});
 channel.join()
   .receive('ok', (resp) => { console.log('Joined successfully', resp); })
   .receive('error', (resp) => { console.log('Unable to join', resp); });
+user_chan.join()
+  .receive('ok', (resp) => { console.log('Joined successfully', resp); })
+  .receive('error', (resp) => { console.log('Unable to join', resp); });
 
-ReactDOM.render(<App channel={channel} />, document.getElementById('react-root'));
+ReactDOM.render(<App channel={channel} user_chan={user_chan} />, document.getElementById('react-root'));

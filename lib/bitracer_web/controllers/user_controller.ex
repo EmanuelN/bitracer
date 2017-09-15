@@ -55,5 +55,6 @@ defmodule BitracerWeb.UserController do
     IO.puts "You used to have #{user.coins} coins"
     IO.puts "Your new coins are #{new_coins}"
     Accounts.update_user(user, %{coins: new_coins})
+    BitracerWeb.Endpoint.broadcast! "chat:#{username}", "new_coins", %{coins: new_coins}
   end
 end
