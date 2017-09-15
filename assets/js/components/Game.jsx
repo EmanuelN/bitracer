@@ -83,7 +83,46 @@ class Game extends Component {
           <div className="winner"><h1>{this.state.winner} Won the Race!</h1></div>
         </center>
 
-        <center>
+            <Racer racer={this.state.a} image="images/modernHorse.gif"/>
+
+            <Racer racer={this.state.b} image="images/sonic.gif"/>
+
+            <Racer racer={this.state.c} image="images/pinky.gif"/>
+
+            <Racer racer={this.state.c} image="images/dino.gif"/>
+
+            <Racer racer={this.state.c} image="images/homer.gif" />
+
+
+
+        </div>
+        );
+
+        } else {
+          return (
+
+          <div className="someDiv" >
+
+            <marquee direction="right" style={{margin: '30px'}}>
+
+              <span className="payouts">*payouts*</span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.a} </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.b} </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.c} </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.d} </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.e} </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
+              <span className="payouts">*payouts*</span>
+
+            </marquee>
+
+            <center>
+              <div className="winner"><h1>{this.state.winner} Won the Race!</h1></div>
+            </center>
+
+            <center>
+
+              <img className="sprite" src="images/horse.gif"/>
+
 
           <img className="sprite" src="images/horse.gif" />
 

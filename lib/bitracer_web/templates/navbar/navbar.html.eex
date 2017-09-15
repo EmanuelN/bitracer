@@ -1,10 +1,30 @@
 <div>
-  <center><span class="logo"><h2>BitRacer!</h2></span></center>
-  <span><%= link "About Us",    to: "/root" %></span>
-  <span><%= link "Game Rules",    to: "/root" %></span>
+        <center><span class="logo"></span></center>
 
-  <span class="user">
-    <span class="login"><%= link "Login",    to: "/login" %></span>
-    <span class="register"><%= link "Register", to: user_path(@conn, :new) %></span>
-  </span>
+        <span class="center">
+        <span class="about">
+        <span><%= link "About Us",    to: "/root" %> </span>
+        <span><%= link "Game Rules",    to: "/root" %> </span>
+        </span>
+        <span class="header">BitRacer!</span>
+        <span class="user">
+
+      <%= if logged_in?(@conn) do %>
+
+        <span class="currentuser">Currently Logged in as: <%= current_user(@conn).username %></span>
+
+        <span>Remaining balance: <%= current_user(@conn).coins %></span>
+
+        <span class="logout"><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></span>
+
+      <% else %>
+
+        <span><%= link "Login",    to: "/login" %></span>
+
+        <span><%= link "Register", to: user_path(@conn, :new) %></span>
+
+      <% end %>
+
+       </span>
+       </span>
 </div>
