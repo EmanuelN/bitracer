@@ -18,18 +18,34 @@ class Navbar extends Component {
   }
 
   render() {
-    return (
-      <nav className="navbar">
-        <center><span className="logo"><h2>BitRacer!</h2></span></center>
-        <span><a href="/root">About Us</a></span>
-        <span><a href="/root">Game Rules</a></span>
-        <span className="user">
-          <span className="currentuser">Currently Logged in as: {this.state.username}</span>
-          <span>Remaining balance: {this.state.coins}</span>
-          <span className="logout" onClick={handleLogout}><a href="#">Logout</a></span>
-        </span>
-      </nav>
-    );
+    let navbar;
+    if (this.state.username === "") {
+      navbar = (
+        <nav className="navbar">
+          <center><span className="logo"><h2>BitRacer!</h2></span></center>
+          <span><a href="/root">About Us</a></span>
+          <span><a href="/root">Game Rules</a></span>
+          <span className="user">
+            <span className="login"><a href="/login">Login</a></span>
+            <span className="register"><a href="/users/new">Register</a></span>
+          </span>
+        </nav>
+      );
+    } else {
+      navbar = (
+        <nav className="navbar">
+          <center><span className="logo"><h2>BitRacer!</h2></span></center>
+          <span><a href="/root">About Us</a></span>
+          <span><a href="/root">Game Rules</a></span>
+          <span className="user">
+            <span className="currentuser">Currently Logged in as: {this.state.username}</span>
+            <span>Remaining balance: {this.state.coins}</span>
+            <span className="logout" onClick={handleLogout}><a href="#">Logout</a></span>
+          </span>
+        </nav>
+      );
+    }
+    return navbar;
   }
 }
 
