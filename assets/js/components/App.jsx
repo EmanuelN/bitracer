@@ -17,7 +17,7 @@ const App = props => (
     </aside>
     <footer className="foot">
       <center>
-        <img src="images/horse.gif" className="footer-pic" alt="icon" />
+        <img src="images/sprite.gif" className="footer-pic" alt="icon" />
       </center>
       <center><span>copyright 2017 JES</span></center>
     </footer>
