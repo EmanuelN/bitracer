@@ -59,9 +59,9 @@ class Game extends Component {
   }
 
   render() {
-
     if (!this.state.winner) {
       return (
+
 
       <div className="someDiv" >
 

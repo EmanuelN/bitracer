@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Channel } from 'phoenix';
 import Chat from './Chat';
+import Navbar from './Navbar';
 import Game from './Game';
 import Odds from './Odds';
 
 const App = props => (
   <div className="wrapper">
+
+    <Navbar user_chan={props.user_chan} />
 
     <article className="content">
       <Game channel={props.channel} />

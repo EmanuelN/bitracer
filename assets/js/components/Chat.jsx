@@ -10,7 +10,7 @@ class Chat extends Component {
     this.state = {
       numUsers: 0,
       currUser: document.getElementById('username').dataset.username,
-      messages: [],
+      messages: [{content: "Welcome to the game, place bets using \"/b id amount\". Just make sure you're logged in first!", username: "Admin"}],
       pos: 0,
       horses: ['andy', 'bobby', 'charlie', 'david', 'ernie'],
     };
@@ -86,7 +86,7 @@ class Chat extends Component {
           content: 'Bet amount must be a number',
           sender: 'System',
         });
-      } else if (this.state.pos >= 600) {
+      } else if (this.state.pos >= 300) {
         this.channel.push('post_whisper', {
           target: this.state.currUser,
           content: 'It\'s too late to bet now.',

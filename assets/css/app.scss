@@ -125,7 +125,6 @@ nav .logo {
 .wrapper {
   background-color: white;
   font-family: 'Dosis', sans-serif;
-  padding-top: 10px;
   display: grid;
   grid-gap: 10px;
   grid-template-areas:
@@ -134,8 +133,6 @@ nav .logo {
     "sidebar"
     "footer";
 }
-
-
 
 @media (min-width: 500px) {
   .wrapper {
