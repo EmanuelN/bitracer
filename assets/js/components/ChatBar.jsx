@@ -26,15 +26,15 @@ class ChatBar extends Component {
   render() {
     // uses inline functions to change the context of this
     return (
-      <footer className="chatbar">
+
         <input
           className="chatbar-message"
-          placeholder="Type a message and hit ENTER"
+          placeholder="Message"
           value={this.state.value}
           onChange={(...arg) => this.handleMessChange(...arg)}
           onKeyPress={(...arg) => this.handleKeyPress(...arg)}
         />
-      </footer>
+
     );
   }
 }

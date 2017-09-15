@@ -12,6 +12,10 @@ height:100px;
 width:100px;
 }
 
+.sprite-name {
+  color: red;
+}
+
 .navbar {
   font-family: 'Dosis', sans-serif;
   grid-area: nav;
@@ -75,6 +79,31 @@ nav .logo {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.chatbar-message {
+  margin: 0 auto;
+}
+
+.messages {
+  padding: 10px;
+  border: 5px solid #91C61E;
+  border-radius: 10px;
+}
+
+.chatbar-message {
+  padding: 10px;
+  border: 5px solid #91C61E;
+  border-radius: 10px;
+}
+
+.talk-area {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-rows: 10fr 1fr;
+  grid-template-areas:
+    "messages"
+    "input-field";
 }
 
 .side {
@@ -149,8 +178,8 @@ nav .logo {
   -o-text-overflow: clip;
   text-overflow: clip;
   background: -webkit-linear-gradient(0deg, rgba(0,0,0,0) 79px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 81px), -webkit-linear-gradient(90deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
-  background: -moz-linear-gradient(90deg, rgba(0,0,0,0) 79px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 81px), -moz-linear-gradient(0deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
-  background: linear-gradient(90deg, rgba(0,0,0,0) 79px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 81px), linear-gradient(0deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
+  background: -moz-linear-gradient(1200deg, rgba(0,0,0,0) 9px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 101px), -moz-linear-gradient(0deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
+  background: linear-gradient(120deg, rgba(0,0,0,0) 9px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 101px), linear-gradient(0deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
   background-position: auto auto;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;
@@ -181,9 +210,7 @@ nav .logo {
   padding: 10px;
 }
 
-.chatbar {
-  margin: 0 auto;
-}
+
 
 .winner {
     animation-name: winner;

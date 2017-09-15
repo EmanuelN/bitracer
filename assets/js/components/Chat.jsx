@@ -115,9 +115,9 @@ class Chat extends Component {
 
   render() {
     return (
-      <div className="sidebar">
+      <div className="talk-area">
         <MessageList messages={this.state.messages} />
-        <ChatBar
+        <ChatBar className="input-field"
           username={this.state.currUser}
           updateMessages={(...args) => this.sendMessage(...args)}
         />
