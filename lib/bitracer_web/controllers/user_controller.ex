@@ -17,7 +17,6 @@ defmodule BitracerWeb.UserController do
       {:ok, user} ->
         conn
         |> put_session(:current_user, user.id)
-        |> put_flash(:info, "User created successfully.")
         |> redirect(to: "/")
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -29,7 +28,6 @@ defmodule BitracerWeb.UserController do
     {:ok, _user} = Accounts.delete_user(user)
 
     conn
-    |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
   end
 
