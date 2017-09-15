@@ -24,5 +24,4 @@ defmodule Bitracer.Session do
   end
 
   def logged_in?(conn), do: !!current_user(conn)
-
 end
