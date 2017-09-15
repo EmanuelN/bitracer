@@ -1,9 +1,12 @@
 <div>
-      <center><span class="logo"><h2>BitRacer!</h2></span></center>
+        <center><span class="logo"></span></center>
 
+        <span class="center">
+        <span class="about">
         <span><%= link "About Us",    to: "/root" %> </span>
         <span><%= link "Game Rules",    to: "/root" %> </span>
-
+        </span>
+        <span class="header">BitRacer!</span>
         <span class="user">
 
       <%= if logged_in?(@conn) do %>
@@ -16,11 +19,12 @@
 
       <% else %>
 
-        <span class="login"><%= link "Login",    to: "/login" %></span>
+        <span><%= link "Login",    to: "/login" %></span>
 
-        <span class="register"><%= link "Register", to: user_path(@conn, :new) %></span>
+        <span><%= link "Register", to: user_path(@conn, :new) %></span>
 
       <% end %>
 
+       </span>
        </span>
 </div>

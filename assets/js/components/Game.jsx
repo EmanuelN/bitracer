@@ -52,17 +52,17 @@ class Game extends Component {
         <marquee direction="right" style={{margin: '20px'}}>
 
               <span className="payouts">*payouts*</span>
-              <span className="show-odds"><span style={{color: 'black'}}>Horsie </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Sonic </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Pinky </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Yoshi </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Homer </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.a} </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.b} </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.c} </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.d} </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.e} </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
               <span className="payouts">*payouts*</span>
 
         </marquee>
 
 
-            <Racer racer={this.state.a} image="images/horse.gif"/>
+            <Racer racer={this.state.a} image="images/modernHorse.gif"/>
 
             <Racer racer={this.state.b} image="images/sonic.gif"/>
 
@@ -82,14 +82,14 @@ class Game extends Component {
 
           <div className="someDiv" >
 
-            <marquee direction="right" style={{margin: '20px'}}>
+            <marquee direction="right" style={{margin: '30px'}}>
 
               <span className="payouts">*payouts*</span>
-              <span className="show-odds"><span style={{color: 'black'}}>Horsie </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Sonic </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Pinky </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Yoshi </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>Homer </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.a} </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.b} </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.c} </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.d} </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.e} </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
               <span className="payouts">*payouts*</span>
 
             </marquee>
