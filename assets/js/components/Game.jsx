@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Channel } from 'phoenix';
 import Racer from './Racer';
 import Odds from './Odds';
-//
+
 
 class Game extends Component {
   constructor(props) {
@@ -44,19 +44,6 @@ class Game extends Component {
 
   render() {
 
-    // function getClass(type) {
-
-    //   var myClass;
-
-
-    //     myClass="winner";
-    //   } else {
-    //     myClass="payouts";
-    //   }
-
-    //   return myClass;
-
-    // }
     if (!this.state.winner) {
       return (
 
@@ -130,9 +117,9 @@ class Game extends Component {
           );
         }
 
-
   }
 }
+
 Game.propTypes = {
   channel: PropTypes.instanceOf(Channel).isRequired,
 };

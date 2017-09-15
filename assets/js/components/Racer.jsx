@@ -15,6 +15,11 @@ const Racer = props => (
       alt="run, boy, run!"
     />
 
+    <img className="sprite" src="images/lighthouse.gif" style={{
+      float: 'right',
+      transform: 'translateX(100px)',
+    }} />
+
   </div>
 
 );
