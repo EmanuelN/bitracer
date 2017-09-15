@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf" content=<%= Plug.CSRFProtection.get_csrf_token %>>
 
     <title>Bitracer!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
@@ -14,12 +15,6 @@
   </head>
 
   <body>
-
-
-
-  <nav class="navbar">
-  <%= render BitracerWeb.NavbarView, "navbar.html", assigns %>
-  </nav>
     <div class="container">
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
