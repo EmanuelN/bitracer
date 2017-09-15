@@ -4,6 +4,7 @@ import { Channel } from 'phoenix';
 import Racer from './Racer';
 import Odds from './Odds';
 
+
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -42,43 +43,69 @@ class Game extends Component {
   }
 
   render() {
-    return (
 
+    if (!this.state.winner) {
+      return (
       <div className="someDiv" >
-
-        <div className="ticker" style={{ textAlign: 'center' }}>
-          <span className="payouts">*payouts*</span>
-          <span className="show-odds"><span style={{ color: 'black' }}>Horse A </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10) / 10}:1`} /></span>
-          <span className="show-odds"><span style={{ color: 'black' }}>Horse B </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10) / 10}:1`} /></span>
-          <span className="show-odds"><span style={{ color: 'black' }}>Horse C </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10) / 10}:1`} /></span>
-          <span className="show-odds"><span style={{ color: 'black' }}>Horse D </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10) / 10}:1`} /></span>
-          <span className="show-odds"><span style={{ color: 'black' }}>Horse E </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10) / 10}:1`} /></span>
-          <span className="payouts">*payouts*</span>
+        <marquee direction="right" style={{margin: '20px'}}>
+              <span className="payouts">*payouts*</span>
+              <span className="show-odds"><span style={{color: 'black'}}>Horsie </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Sonic </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Pinky </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Yoshi </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Homer </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
+              <span className="payouts">*payouts*</span>
+        </marquee>
+            <Racer racer={this.state.a} image="images/horse.gif"/>
+            <Racer racer={this.state.b} image="images/sonic.gif"/>
+            <Racer racer={this.state.c} image="images/pinky.gif"/>
+            <Racer racer={this.state.c} image="images/dino.gif"/>
+            <Racer racer={this.state.c} image="images/homer.gif" />
         </div>
+        );
+        } else {
+          return (
 
+          <div className="someDiv" >
 
-        <ul className="start">
-          <li>
-            <Racer racer={this.state.a} />
-          </li>
-          <li>
-            <Racer racer={this.state.b} />
-          </li>
-          <li>
-            <Racer racer={this.state.c} />
-          </li>
-          <li>
-            <Racer racer={this.state.d} />
-          </li>
-          <li>
-            <Racer racer={this.state.e} />
-          </li>
-        </ul>
+            <marquee direction="right" style={{margin: '20px'}}>
 
-      </div>
-    );
+              <span className="payouts">*payouts*</span>
+              <span className="show-odds"><span style={{color: 'black'}}>Horsie </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Sonic </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Pinky </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Yoshi </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
+              <span className="show-odds"><span style={{color: 'black'}}>Homer </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
+              <span className="payouts">*payouts*</span>
+
+            </marquee>
+
+            <center>
+              <div className="winner"><h1>{this.state.winner} Won the Race!</h1></div>
+            </center>
+
+            <center>
+
+              <img className="sprite" src="images/horse.gif"/>
+
+              <img className="sprite" src="images/sonic.gif"/>
+
+              <img className="sprite" src="images/pinky.gif"/>
+
+              <img className="sprite" src="images/dino.gif"/>
+
+              <img className="sprite" src="images/homer.gif"/>
+
+            </center>
+
+          </div>
+
+          );
+        }
+
   }
 }
+
 Game.propTypes = {
   channel: PropTypes.instanceOf(Channel).isRequired,
 };
