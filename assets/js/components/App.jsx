@@ -4,11 +4,9 @@ import { Channel } from 'phoenix';
 import Chat from './Chat';
 import Navbar from './Navbar';
 import Game from './Game';
-import Odds from './Odds';
 
 const App = props => (
   <div className="wrapper">
-
     <Navbar user_chan={props.user_chan} />
 
     <article className="content">
@@ -29,5 +27,6 @@ const App = props => (
 
 App.propTypes = {
   channel: PropTypes.instanceOf(Channel).isRequired,
+  user_chan: PropTypes.instanceOf(Channel).isRequired,
 };
 export default App;

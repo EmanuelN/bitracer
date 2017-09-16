@@ -43,16 +43,11 @@ class Game extends Component {
   }
 
 
-
-  getWinner = (names) => {
-
-    console.log(names);
-
-    var getWinnerName = '';
-
-    for (var i = 0; i < 5; i++) {
-      if (names[i] == this.state.winner) {
-        getWinnerName = names[i]
+  getWinner(names) {
+    let getWinnerName = '';
+    for (let i = 0; i < 5; i += 1) {
+      if (names[i] === this.state.winner) {
+        getWinnerName = names[i];
       }
     }
     return getWinnerName;
@@ -61,78 +56,47 @@ class Game extends Component {
   render() {
     if (!this.state.winner) {
       return (
-
-
-      <div className="someDiv" >
-
-        <marquee direction="right" style={{margin: '20px'}}>
-
-              <span className="payouts">*payouts*</span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.a} </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.b} </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.c} </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.d} </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.e} </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
-              <span className="payouts">*payouts*</span>
-
-        </marquee>
-
-
-            <Racer racer={this.state.a}  name={this.state.names.a}   image="images/crossfox.gif"/>
-
-            <Racer racer={this.state.b}  name={this.state.names.b}   image="images/flareon.gif"/>
-
-            <Racer racer={this.state.c}   name={this.state.names.c}  image="images/pikachu.gif"/>
-
-            <Racer racer={this.state.c}   name={this.state.names.d}  image="images/zoroark.gif"/>
-
-            <Racer racer={this.state.c}   name={this.state.names.e}  image="images/homer.gif" />
-
-
-
+        <div className="someDiv" >
+          <Odds
+            names={this.state.names}
+            odds_a={`${Math.trunc(this.state.odds.a * 10) / 10}:1`}
+            odds_b={`${Math.trunc(this.state.odds.b * 10) / 10}:1`}
+            odds_c={`${Math.trunc(this.state.odds.c * 10) / 10}:1`}
+            odds_d={`${Math.trunc(this.state.odds.d * 10) / 10}:1`}
+            odds_e={`${Math.trunc(this.state.odds.e * 10) / 10}:1`}
+          />
+          <Racer racer={this.state.a} name={this.state.names.a} image="images/crossfox.gif" />
+          <Racer racer={this.state.b} name={this.state.names.b} image="images/flareon.gif" />
+          <Racer racer={this.state.c} name={this.state.names.c} image="images/pikachu.gif" />
+          <Racer racer={this.state.c} name={this.state.names.d} image="images/zoroark.gif" />
+          <Racer racer={this.state.c} name={this.state.names.e} image="images/homer.gif" />
         </div>
-        );
+      );
+    }
+    return (
+      <div className="someDiv" >
+        <Odds
+          names={this.state.names}
+          odds_a={`${Math.trunc(this.state.odds.a * 10) / 10}:1`}
+          odds_b={`${Math.trunc(this.state.odds.b * 10) / 10}:1`}
+          odds_c={`${Math.trunc(this.state.odds.c * 10) / 10}:1`}
+          odds_d={`${Math.trunc(this.state.odds.d * 10) / 10}:1`}
+          odds_e={`${Math.trunc(this.state.odds.e * 10) / 10}:1`}
+        />
 
-        } else {
-          return (
+        <center>
+          <div className="winner"><h1>{this.getWinner} Won the Race!</h1></div>
+        </center>
 
-          <div className="someDiv" >
-
-            <marquee direction="right" style={{margin: '30px'}}>
-
-              <span className="payouts">*payouts*</span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.a} </span> <Odds odds={`${Math.trunc(this.state.odds.a * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.b} </span> <Odds odds={`${Math.trunc(this.state.odds.b * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.c} </span> <Odds odds={`${Math.trunc(this.state.odds.c * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.d} </span> <Odds odds={`${Math.trunc(this.state.odds.d * 10)/10}:1`} /></span>
-              <span className="show-odds"><span style={{color: 'black'}}>{this.state.names.e} </span> <Odds odds={`${Math.trunc(this.state.odds.e * 10)/10}:1`} /></span>
-              <span className="payouts">*payouts*</span>
-
-            </marquee>
-
-            <center>
-              <div className="winner"><h1>{this.getWinner} Won the Race!</h1></div>
-            </center>
-
-            <center>
-
-              <img className="sprite" src="images/crossfox.gif"/>
-
-              <img className="sprite" src="images/flareon.gif"/>
-
-              <img className="sprite" src="images/pikachu.gif"/>
-
-              <img className="sprite" src="images/zoroark.gif"/>
-
-              <img className="sprite" src="images/homer.gif"/>
-
-            </center>
-
-          </div>
-
-          );
-        }
-
+        <center>
+          <img className="sprite" alt="racer1" src="images/crossfox.gif" />
+          <img className="sprite" alt="racer2" src="images/flareon.gif" />
+          <img className="sprite" alt="racer3" src="images/pikachu.gif" />
+          <img className="sprite" alt="racer4" src="images/zoroark.gif" />
+          <img className="sprite" alt="racer5" src="images/homer.gif" />
+        </center>
+      </div>
+    );
   }
 }
 

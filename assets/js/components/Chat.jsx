@@ -10,7 +10,10 @@ class Chat extends Component {
     this.state = {
       numUsers: 0,
       currUser: document.getElementById('username').dataset.username,
-      messages: [{content: "Welcome to the game, place bets using \"/b id amount\". Just make sure you're logged in first!", username: "Admin"}],
+      messages: [{
+        content: 'Welcome to the game, place bets using "/b id amount". Just make sure you\'re logged in first!',
+        username: 'Admin',
+      }],
       pos: 0,
       horses: ['andy', 'bobby', 'charlie', 'david', 'ernie'],
     };
@@ -117,7 +120,8 @@ class Chat extends Component {
     return (
       <div className="talk-area">
         <MessageList messages={this.state.messages} />
-        <ChatBar className="input-field"
+        <ChatBar
+          className="input-field"
           username={this.state.currUser}
           updateMessages={(...args) => this.sendMessage(...args)}
         />
