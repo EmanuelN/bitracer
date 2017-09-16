@@ -21,6 +21,7 @@ defmodule BitracerWeb.Router do
     resources "/users", UserController, only: [:new, :delete, :create]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
+    get "/logout", SessionController, :show
     delete "/logout", SessionController, :delete
 
   end

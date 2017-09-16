@@ -49,7 +49,7 @@ class Navbar extends Component {
           <span className="user">
             <span className="currentuser">Currently Logged in as: {this.state.username}</span>
             <span>Remaining balance: {this.state.coins}</span>
-            <span className="logout" onClick={handleLogout}><a href="#">Logout</a></span>
+            <span className="logout" onClick={handleLogout}><a href="/logout">Logout</a></span>
           </span>
         </nav>
       );

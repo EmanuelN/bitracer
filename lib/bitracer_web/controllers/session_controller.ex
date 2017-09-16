@@ -18,6 +18,10 @@ defmodule BitracerWeb.SessionController do
     end
   end
 
+  def show(conn, _) do
+    render conn, "show.html"
+  end
+
   def delete(conn, _) do
     conn
     |> delete_session(:current_user)
