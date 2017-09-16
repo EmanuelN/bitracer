@@ -15,7 +15,7 @@ class Chat extends Component {
         username: 'Admin',
       }],
       pos: 0,
-      horses: ['andy', 'bobby', 'charlie', 'david', 'ernie'],
+      names: {}
     };
     this.channel = this.props.channel;
   }
@@ -44,13 +44,25 @@ class Chat extends Component {
         this.setState({ messages });
       }
     });
+    this.channel.on('names', (payload) => {
+      this.setState({ names: payload });
+    });
   }
 
   sendMessage(message) {
     const parseHorse = (horse) => {
       let lCaseHorse = horse.toLowerCase();
       const arr = ['a', 'b', 'c', 'd', 'e'];
-      const horsenames = this.state.horses;
+      const horsenames = [
+        this.state.names.a,
+        this.state.names.b,
+        this.state.names.c,
+        this.state.names.d,
+        this.state.names.e,
+      ];
+      for (let i = 0; i < horsenames.length; i++) {
+        horsenames[i] = horsenames[i].toLowerCase();
+      }
       if (isNaN(lCaseHorse)) {
         for (let i = 0; i < 5; i += 1) {
           if (lCaseHorse === arr[i]) {
