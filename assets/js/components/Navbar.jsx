@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Channel } from 'phoenix';
+
+function handleLogout() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('DELETE', '/logout', true);
+  xhr.setRequestHeader('X-CSRF-Token', document.head.querySelector('[name=csrf]').content);
+  xhr.send(null);
+}
 
 class Navbar extends Component {
   constructor(props) {
@@ -19,7 +28,7 @@ class Navbar extends Component {
 
   render() {
     let navbar;
-    if (this.state.username === "") {
+    if (this.state.username === '') {
       navbar = (
         <nav className="navbar">
           <center><span className="logo"><h2>BitRacer!</h2></span></center>
@@ -49,19 +58,7 @@ class Navbar extends Component {
   }
 }
 
-function handleLogout() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('DELETE', '/logout', true);
-  xhr.onload = function () {
-    const users = JSON.parse(xhr.responseText);
-    if (xhr.readyState === 4 && xhr.status === '200') {
-      console.table(users);
-    } else {
-      console.error(users);
-    }
-  };
-  xhr.setRequestHeader('X-CSRF-Token', document.head.querySelector('[name=csrf]').content);
-  xhr.send(null);
-}
-
+Navbar.propTypes = {
+  user_chan: PropTypes.instanceOf(Channel).isRequired,
+};
 export default Navbar;
