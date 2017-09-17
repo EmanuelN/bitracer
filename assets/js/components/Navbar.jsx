@@ -4,7 +4,7 @@ import { Channel } from 'phoenix';
 
 function handleLogout() {
   const xhr = new XMLHttpRequest();
-  xhr.open('DELETE', '/logout', true);
+  xhr.open('DELETE', '/logout', false);
   xhr.setRequestHeader('X-CSRF-Token', document.head.querySelector('[name=csrf]').content);
   xhr.send(null);
 }
