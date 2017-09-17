@@ -120,11 +120,11 @@ defmodule Bitracer.Game do
     else
       framelist = if framelist.frame == 0 do
         framelist = put_in(framelist, [:odds], %{
-          a: Map.get(horses[:a], "losses") / Map.get(horses[:a], "wins"),
-          b: Map.get(horses[:b], "losses") / Map.get(horses[:b], "wins"),
-          c: Map.get(horses[:c], "losses") / Map.get(horses[:c], "wins"),
-          d: Map.get(horses[:d], "losses") / Map.get(horses[:d], "wins"),
-          e: Map.get(horses[:e], "losses") / Map.get(horses[:e], "wins")
+          a: 1, #Map.get(horses[:a], "losses") / Map.get(horses[:a], "wins"),
+          b: 1, #Map.get(horses[:b], "losses") / Map.get(horses[:b], "wins"),
+          c: 1, #Map.get(horses[:c], "losses") / Map.get(horses[:c], "wins"),
+          d: 1, #Map.get(horses[:d], "losses") / Map.get(horses[:d], "wins"),
+          e: 1  #Map.get(horses[:e], "losses") / Map.get(horses[:e], "wins")
         })
         framelist = put_in(framelist, [:names], %{
           a: Map.get(horses[:a], "name"),

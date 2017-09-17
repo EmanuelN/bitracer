@@ -2,15 +2,20 @@ defmodule Simulate do
   @moduledoc """
   Simulates each horse participating in 1000 races, and calculates odds based on that horses win/loss record
   """
+  alias Bitracer.Records
 
   @doc """
   Kicks off each of the 100 horse's simulations and writes the results to horses.json
   """
   def race do
+    Enum.each(json(), fn(horse) -> Records.create_horse(%{
+      name: Map.get(horse, "name"),
+      wins: 0,
+      losses: 0
+    }) end)
     horses_win_loss_record = Enum.map(json(), &calculate_horse_wl/1)
     
-    File.write!("./horses.json", Poison.encode!(horses_win_loss_record))
-    IO.puts "horses.json updated successfully"
+    IO.puts "horses database updated successfully"
   end
 
   @doc """
@@ -56,11 +61,12 @@ defmodule Simulate do
   Generates a new horse list and updates our horse based on whether or not it won the last race
   """
   def update_horse(horse, result) do
-    horse = case result do
+    horse_db = Records.get_horse_by_name!(Map.get(horse, "name"))
+    case result do
       :e ->
-        put_in(horse, ["wins"], Map.get(horse, "wins") + 1)
+        Records.update_horse(horse_db, %{wins: horse_db.wins + 1})
       _ ->
-        put_in(horse, ["losses"], Map.get(horse, "losses") + 1)
+        Records.update_horse(horse_db, %{losses: horse_db.losses + 1})
     end
     list_of_4 = generate_list_of_4(horse)
     new_horses(horse, list_of_4)
@@ -90,4 +96,4 @@ defmodule Simulate do
     ]
   end
 end
-Simulate.race
+#Simulate.race

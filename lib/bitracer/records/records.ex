@@ -37,6 +37,10 @@ defmodule Bitracer.Records do
   """
   def get_horse!(id), do: Repo.get!(Horse, id)
 
+  def get_horse_by_name(name), do: Repo.get_by(Horse, name: name)
+
+  def get_horse_by_name!(name), do: Repo.get_by!(Horse, name: name)
+
   @doc """
   Creates a horse.
 
