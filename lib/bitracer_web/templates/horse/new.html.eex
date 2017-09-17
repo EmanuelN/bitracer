@@ -1,0 +1,5 @@
+<h2>New Horse</h2>
+
+<%= render "form.html", Map.put(assigns, :action, horse_path(@conn, :create)) %>
+
+<span><%= link "Back", to: horse_path(@conn, :index) %></span>
