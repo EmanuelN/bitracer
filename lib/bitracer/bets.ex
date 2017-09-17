@@ -16,13 +16,10 @@ defmodule Bitracer.Bets do
   end
 
   def win(pid, winner, odds) do
-    IO.puts "Winner: #{winner}"
-    IO.puts "Odds: #{odds}"
     Enum.map((GenServer.call(pid, {:read})), fn(x) ->
       if x.horse == winner do
         bet_amount = String.to_integer(x.bet)
         payout = round(bet_amount + (bet_amount * odds))
-        IO.puts "You won #{payout} coins"
         BitracerWeb.Endpoint.broadcast! "chat:chat", "incoming_whisper", %{target: x.user, sender: "System", "content": "You won #{payout} coins!"}
         BitracerWeb.UserController.win(x.user, payout)
       end

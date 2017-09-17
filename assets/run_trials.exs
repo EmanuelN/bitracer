@@ -8,13 +8,26 @@ defmodule Simulate do
   Kicks off each of the 100 horse's simulations and writes the results to horses.json
   """
   def race do
-    Enum.each(json(), fn(horse) -> Records.create_horse(%{
-      name: Map.get(horse, "name"),
-      wins: 0,
-      losses: 0
-    }) end)
-    horses_win_loss_record = Enum.map(json(), &calculate_horse_wl/1)
+    horses_complete = Enum.map(json(), fn(horse) ->
+      #creates database record for each horse
+      Records.create_horse(%{
+        name: Map.get(horse, "name"),
+        wins: 0,
+        losses: 0
+      })
+      #adds wins and losses to map that are not present in json
+      horse = put_in(horse, [:wins], 0)
+      horse = put_in(horse, [:losses], 0)
+      horse
+    end)
+    #adds to the win/loss column for each horse
+    horses_win_loss_record = Enum.map(horses_complete, &calculate_horse_wl/1)
     
+    #writes final result to database
+    Enum.each(horses_win_loss_record, fn(horse) ->
+      horse_db = Records.get_horse_by_name!(Map.get(horse, "name"))
+      Records.update_horse(horse_db, %{wins: horse.wins, losses: horse.losses})
+    end)
     IO.puts "horses database updated successfully"
   end
 
@@ -61,12 +74,11 @@ defmodule Simulate do
   Generates a new horse list and updates our horse based on whether or not it won the last race
   """
   def update_horse(horse, result) do
-    horse_db = Records.get_horse_by_name!(Map.get(horse, "name"))
-    case result do
+    horse = case result do
       :e ->
-        Records.update_horse(horse_db, %{wins: horse_db.wins + 1})
+        put_in(horse, [:wins], horse.wins + 1)
       _ ->
-        Records.update_horse(horse_db, %{losses: horse_db.losses + 1})
+        put_in(horse, [:losses], horse.losses + 1)
     end
     list_of_4 = generate_list_of_4(horse)
     new_horses(horse, list_of_4)
