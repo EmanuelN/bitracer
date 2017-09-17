@@ -108,4 +108,4 @@ defmodule Simulate do
     ]
   end
 end
-#Simulate.race
+Simulate.race
