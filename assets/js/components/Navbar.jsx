@@ -31,9 +31,12 @@ class Navbar extends Component {
     if (this.state.username === '') {
       navbar = (
         <nav className="navbar">
-          <center><span className="logo"><h2>BitRacer!</h2></span></center>
+          <center><span className="logo"></span></center>
+          <span className="about">
           <span><a href="/root">About Us</a></span>
           <span><a href="/root">Game Rules</a></span>
+          </span>
+          <span class="header">BitRacer!</span>
           <span className="user">
             <span className="login"><a href="/login">Login</a></span>
             <span className="register"><a href="/users/new">Register</a></span>
@@ -43,9 +46,12 @@ class Navbar extends Component {
     } else {
       navbar = (
         <nav className="navbar">
-          <center><span className="logo"><h2>BitRacer!</h2></span></center>
+          <center><span className="logo"></span></center>
+          <span className="about">
           <span><a href="/root">About Us</a></span>
           <span><a href="/root">Game Rules</a></span>
+          </span>
+          <span class="header">BitRacer!</span>
           <span className="user">
             <span className="currentuser">Currently Logged in as: {this.state.username}</span>
             <span>Remaining balance: {this.state.coins}</span>
