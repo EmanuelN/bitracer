@@ -35,8 +35,7 @@ class Navbar extends Component {
           <span><a href="/root">About Us</a></span>
           <span><a href="/root">Game Rules</a></span>
           <span className="user">
-            <span className="login"><a href="/login">Login</a></span>
-            <span className="register"><a href="/users/new">Register</a></span>
+            <span className="login"><a href="/login">Login/Register</a></span>
           </span>
         </nav>
       );
