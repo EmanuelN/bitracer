@@ -139,14 +139,13 @@ defmodule Bitracer.Game do
             e: odds_e
           })
         end
-        framelist = put_in(framelist, [:names], %{
+        put_in(framelist, [:names], %{
           a: Map.get(horses[:a], "name"),
           b: Map.get(horses[:b], "name"),
           c: Map.get(horses[:c], "name"),
           d: Map.get(horses[:d], "name"),
           e: Map.get(horses[:e], "name")
         })
-        framelist
       else
         framelist
       end
@@ -174,6 +173,17 @@ defmodule Bitracer.Game do
       new_positions = horse_positions(horses)
       race_frames(new_positions, framelist)
     end
+  end
+
+  def update_database(names, winner) do
+    Enum.each(names, fn({key, value}) ->
+      horse_db = Records.get_horse_by_name!(value)
+      if key == String.to_atom(winner) do
+        Records.update_horse(horse_db, %{wins: horse_db.wins + 1})
+      else
+        Records.update_horse(horse_db, %{losses: horse_db.losses + 1})
+      end
+    end)
   end
 
   #####################################
@@ -229,6 +239,7 @@ defmodule Bitracer.Game do
     state = cond do
       state[:pos] >= 600 ->
         Bitracer.Bets.win(:bookie, state.frames.winner, state.frames.winner_odds)
+        update_database(state.frames.names, state.frames.winner)
         %{state | :frames => race_frames(horses_list(), %{
           frame: 0,
           winner: "",
