@@ -24,7 +24,6 @@ defmodule Bitracer.Bets do
         BitracerWeb.UserController.win(x.user, payout)
       end
     end)
-    BitracerWeb.Endpoint.broadcast! "chat:chat", "incoming_message", %{username: "System", content: "Racer #{String.capitalize(winner)} won!"}
     GenServer.cast(pid, {:reset})
   end
 
