@@ -89,6 +89,8 @@ nav .logo {
   padding: 10px;
   border: 5px solid #91C61E;
   border-radius: 10px;
+  max-height: 95%;
+  overflow: scroll;
 }
 
 .chatbar-message {
