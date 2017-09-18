@@ -10,17 +10,14 @@ const Racer = props => (
       src={props.image}
       style={{
         position: 'absolute',
-        left: `${props.racer + 5}%`,
+        left: `${props.racer - 5}%`,
       }}
       alt="run, boy, run!"
     />
 
     <span className="sprite-name">{props.name}</span>
 
-    <img className="sprite" src="images/lighthouse.gif" style={{
-      float: 'right',
-      transform: 'translateX(100px)',
-    }} />
+    <img className="lighthouse" src="images/lighthouse.gif"  />
 
   </div>
 
