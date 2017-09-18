@@ -88,7 +88,7 @@ defmodule Simulate do
   picks 4 random horses from the JSON, uses recursion to ensure that a horse will not race against itself
   """
   def generate_list_of_4(horse) do
-    list_of_4 = Enum.take_random(json(), 5)
+    list_of_4 = Enum.take_random(json(), 4)
     case Enum.member?(list_of_4, horse) do
       true -> generate_list_of_4(horse)
       false -> list_of_4

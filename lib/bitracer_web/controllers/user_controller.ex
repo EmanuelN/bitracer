@@ -10,7 +10,6 @@ defmodule BitracerWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-
     changeset = User.changeset(%User{}, user_params)
 
     case Bitracer.Registration.create(changeset, Bitracer.Repo) do
