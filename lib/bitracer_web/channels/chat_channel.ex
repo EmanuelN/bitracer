@@ -32,6 +32,8 @@ defmodule BitracerWeb.ChatChannel do
         Bitracer.Bets.add(:bookie, %{user: username, horse: horse, bet: bet})
         BitracerWeb.UserController.bet(username, bet)
         broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{horse}."}
+        user = Bitracer.Accounts.get_user_by_username!(username)
+        BitracerWeb.Endpoint.broadcast! "chat:#{username}", "new_coins", %{coins: user.coins}
         {:noreply, socket}
       else
         broadcast! socket, "incoming_whisper", %{content: "You lack sufficient funds for this bet", target: username, sender: "System"}
