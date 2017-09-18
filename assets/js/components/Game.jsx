@@ -43,16 +43,14 @@ class Game extends Component {
   }
 
 
-
   getWinner = (names) => {
-
-    console.log(names);
 
     var getWinnerName = '';
 
-    for (var i = 0; i < 5; i++) {
-      if (names[i] == this.state.winner) {
-        getWinnerName = names[i]
+    for (var key in names) {
+      if (key == this.state.winner) {
+        getWinnerName = names[key];
+
       }
     }
     return getWinnerName;
@@ -64,6 +62,11 @@ class Game extends Component {
 
 
       <div className="someDiv" >
+
+        <audio controls>
+          <source src="audio/pim.wav" type="audio/wav" />
+          <p>Your browser doesn't support HTML5 audio. Here is a <a href="viper.mp3">link to the audio</a> instead.</p>
+        </audio>
 
         <marquee direction="right" style={{margin: '20px'}}>
 
@@ -111,7 +114,7 @@ class Game extends Component {
             </marquee>
 
             <center>
-              <div className="winner"><h1>{this.getWinner} Won the Race!</h1></div>
+              <div className="winner"><h1>{this.getWinner(this.state.names)} Won the Race!</h1></div>
             </center>
 
             <center>
@@ -125,6 +128,8 @@ class Game extends Component {
               <img className="sprite" src="images/zoroark.gif"/>
 
               <img className="sprite" src="images/homer.gif"/>
+
+              <img className="sprite" src="images/lighthouse.gif"  />
 
             </center>
 

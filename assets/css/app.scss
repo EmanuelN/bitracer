@@ -12,6 +12,15 @@ height:100px;
 width:100px;
 }
 
+.lighthouse {
+  height:100px;
+  width:100px;
+  float: right;
+  margin-right: 4px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 9px, rgb(171,206,212) 79px, rgb(171,206,212) 81px, rgba(0,0,0,0) 101px), linear-gradient(0deg, rgb(238,238,238) 0.1em, rgba(0,0,0,0) 0.1em), rgb(255, 255, 255);
+  transform: translateX(4px);
+}
+
 .sprite-name {
   color: red;
 }
@@ -162,10 +171,10 @@ nav .logo {
 .racer {
   border: 1px solid black;
   border-left: none;
-  border-right: 10px solid #91C61E;
-  border-radius: 0 4px 4px 0;
+  border-right: none;
   position: relative;
   height: 100px;
+  width: 100%;
   margin: 20px 100px 10px 0;
   display: block;
   -webkit-box-sizing: content-box;
