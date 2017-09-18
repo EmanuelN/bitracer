@@ -263,8 +263,9 @@ const nm1 = [
 
 function genHorseList() {
   const list = [];
+  const names = generate100Names();
   for (let i = 0; i < 100; i += 1) {
-    const name = nm1[Math.floor(Math.random() * nm1.length)];
+    const name = names[i];
     const speed = getRandomInt(3, 4);
     const endurance = getRandomInt(5, 6);
     const chance = getRandomInt(1, 10);
@@ -275,8 +276,6 @@ function genHorseList() {
       chance,
       finished: false,
       posx: 0,
-      wins: 0,
-      losses: 0,
     });
   }
   fs.writeFile('horses.json', JSON.stringify(list), (err) => {
@@ -287,6 +286,19 @@ function genHorseList() {
     console.log('horses.json written successfully');
   });
 }
+
+function generate100Names() {
+  let list = [];
+  for (let n = 0; n < 100; n += 1) {
+    let name = nm1[Math.floor(Math.random() * nm1.length)];
+    while (list.includes(name))
+      name = nm1[Math.floor(Math.random() * nm1.length)];
+    list.push(name);
+  }
+  return list;
+}
+
+
 // lifted from
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandomInt(min, max) {

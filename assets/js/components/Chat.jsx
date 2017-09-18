@@ -10,9 +10,12 @@ class Chat extends Component {
     this.state = {
       numUsers: 0,
       currUser: document.getElementById('username').dataset.username,
-      messages: [{content: "Welcome to the game, place bets using \"/b id amount\". Just make sure you're logged in first!", username: "Admin"}],
+      messages: [{
+        content: 'Welcome to the game, place bets using "/b id amount". Just make sure you\'re logged in first!',
+        username: 'Admin',
+      }],
       pos: 0,
-      horses: ['andy', 'bobby', 'charlie', 'david', 'ernie'],
+      names: {}
     };
     this.channel = this.props.channel;
   }
@@ -41,13 +44,25 @@ class Chat extends Component {
         this.setState({ messages });
       }
     });
+    this.channel.on('names', (payload) => {
+      this.setState({ names: payload });
+    });
   }
 
   sendMessage(message) {
     const parseHorse = (horse) => {
       let lCaseHorse = horse.toLowerCase();
       const arr = ['a', 'b', 'c', 'd', 'e'];
-      const horsenames = this.state.horses;
+      const horsenames = [
+        this.state.names.a,
+        this.state.names.b,
+        this.state.names.c,
+        this.state.names.d,
+        this.state.names.e,
+      ];
+      for (let i = 0; i < horsenames.length; i++) {
+        horsenames[i] = horsenames[i].toLowerCase();
+      }
       if (isNaN(lCaseHorse)) {
         for (let i = 0; i < 5; i += 1) {
           if (lCaseHorse === arr[i]) {
@@ -117,7 +132,8 @@ class Chat extends Component {
     return (
       <div className="talk-area">
         <MessageList messages={this.state.messages} />
-        <ChatBar className="input-field"
+        <ChatBar
+          className="input-field"
           username={this.state.currUser}
           updateMessages={(...args) => this.sendMessage(...args)}
         />

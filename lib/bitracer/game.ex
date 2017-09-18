@@ -1,6 +1,7 @@
 defmodule Bitracer.Game do
   use GenServer
   require Logger
+  alias Bitracer.Records
 
   @doc """
   reads the file 'horses.json' and returns our list of 100 horses.
@@ -119,13 +120,25 @@ defmodule Bitracer.Game do
       framelist
     else
       framelist = if framelist.frame == 0 do
-        framelist = put_in(framelist, [:odds], %{
-          a: Map.get(horses[:a], "losses") / Map.get(horses[:a], "wins"),
-          b: Map.get(horses[:b], "losses") / Map.get(horses[:b], "wins"),
-          c: Map.get(horses[:c], "losses") / Map.get(horses[:c], "wins"),
-          d: Map.get(horses[:d], "losses") / Map.get(horses[:d], "wins"),
-          e: Map.get(horses[:e], "losses") / Map.get(horses[:e], "wins")
-        })
+        horse_a = Records.get_horse_by_name(Map.get(horses[:a], "name"))
+        horse_b = Records.get_horse_by_name(Map.get(horses[:b], "name"))
+        horse_c = Records.get_horse_by_name(Map.get(horses[:c], "name"))
+        horse_d = Records.get_horse_by_name(Map.get(horses[:d], "name"))
+        horse_e = Records.get_horse_by_name(Map.get(horses[:e], "name"))
+        if horse_a && horse_b && horse_c && horse_d && horse_e do
+          odds_a = horse_a.losses / if horse_a.wins != 0, do: horse_a.wins, else: 1
+          odds_b = horse_b.losses / if horse_b.wins != 0, do: horse_b.wins, else: 1
+          odds_c = horse_c.losses / if horse_c.wins != 0, do: horse_c.wins, else: 1
+          odds_d = horse_d.losses / if horse_d.wins != 0, do: horse_d.wins, else: 1
+          odds_e = horse_e.losses / if horse_e.wins != 0, do: horse_e.wins, else: 1
+          framelist = put_in(framelist, [:odds], %{
+            a: odds_a,
+            b: odds_b,
+            c: odds_c,
+            d: odds_d,
+            e: odds_e
+          })
+        end
         framelist = put_in(framelist, [:names], %{
           a: Map.get(horses[:a], "name"),
           b: Map.get(horses[:b], "name"),

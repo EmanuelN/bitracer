@@ -2,15 +2,33 @@ defmodule Simulate do
   @moduledoc """
   Simulates each horse participating in 1000 races, and calculates odds based on that horses win/loss record
   """
+  alias Bitracer.Records
 
   @doc """
   Kicks off each of the 100 horse's simulations and writes the results to horses.json
   """
   def race do
-    horses_win_loss_record = Enum.map(json(), &calculate_horse_wl/1)
+    horses_complete = Enum.map(json(), fn(horse) ->
+      #creates database record for each horse
+      Records.create_horse(%{
+        name: Map.get(horse, "name"),
+        wins: 0,
+        losses: 0
+      })
+      #adds wins and losses to map that are not present in json
+      horse = put_in(horse, [:wins], 0)
+      horse = put_in(horse, [:losses], 0)
+      horse
+    end)
+    #adds to the win/loss column for each horse
+    horses_win_loss_record = Enum.map(horses_complete, &calculate_horse_wl/1)
     
-    File.write!("./horses.json", Poison.encode!(horses_win_loss_record))
-    IO.puts "horses.json updated successfully"
+    #writes final result to database
+    Enum.each(horses_win_loss_record, fn(horse) ->
+      horse_db = Records.get_horse_by_name!(Map.get(horse, "name"))
+      Records.update_horse(horse_db, %{wins: horse.wins, losses: horse.losses})
+    end)
+    IO.puts "horses database updated successfully"
   end
 
   @doc """
@@ -58,9 +76,9 @@ defmodule Simulate do
   def update_horse(horse, result) do
     horse = case result do
       :e ->
-        put_in(horse, ["wins"], Map.get(horse, "wins") + 1)
+        put_in(horse, [:wins], horse.wins + 1)
       _ ->
-        put_in(horse, ["losses"], Map.get(horse, "losses") + 1)
+        put_in(horse, [:losses], horse.losses + 1)
     end
     list_of_4 = generate_list_of_4(horse)
     new_horses(horse, list_of_4)
@@ -70,7 +88,7 @@ defmodule Simulate do
   picks 4 random horses from the JSON, uses recursion to ensure that a horse will not race against itself
   """
   def generate_list_of_4(horse) do
-    list_of_4 = Enum.take_random(json(), 5)
+    list_of_4 = Enum.take_random(json(), 4)
     case Enum.member?(list_of_4, horse) do
       true -> generate_list_of_4(horse)
       false -> list_of_4
