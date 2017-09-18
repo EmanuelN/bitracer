@@ -42,22 +42,6 @@ class Game extends Component {
     });
   }
 
-
-
-  getWinner = (names) => {
-
-    var getWinnerName = '';
-
-    for (var key in names) {
-      if (key == this.state.winner) {
-        getWinnerName = names[key];
-
-
-      }
-    }
-    return getWinnerName;
-  }
-
   render() {
     if (!this.state.winner) {
       return (
@@ -91,7 +75,7 @@ class Game extends Component {
         />
 
         <center>
-          <div className="winner"><h1>{this.getWinner} Won the Race!</h1></div>
+          <div className="winner"><h1>{this.state.names[this.state.winner]} Won the Race!</h1></div>
         </center>
 
         <center>
