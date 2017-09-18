@@ -12,6 +12,7 @@ defmodule Bitracer.Accounts.User do
     field :coins, :integer, default: 1000
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+    has_many :bets, Bitracer.Records.Bet
     timestamps()
   end
 
