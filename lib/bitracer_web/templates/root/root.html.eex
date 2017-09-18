@@ -59,3 +59,7 @@
   In the case of withdrawals in reformed markets, the total deduction over the two or more horses (i.e. one in the original and one in the reformed market) will be calculated on the prices applicable in the original market.
   For bets placed in reformed markets, deductions applied to withdrawn horses in these markets will be calculated on the prices applicable in these markets.
 </div>
+
+<footer class="foot">
+  <%= render BitracerWeb.FooterView, "footer.html", assigns %>
+</footer>

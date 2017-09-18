@@ -28,27 +28,32 @@ class Navbar extends Component {
 
   render() {
     let navbar;
+
     if (this.state.username === '') {
       navbar = (
         <nav className="navbar">
-          <center><span className="logo"><h2>BitRacer!</h2></span></center>
-          <span><a href="/root">About Us</a></span>
-          <span><a href="/root">Game Rules</a></span>
-          <span className="user">
-            <span className="login"><a href="/login">Login/Register</a></span>
+          <div className="logo"></div>
+          <span className="center">
+            <span className="regular"><a href="/">Home</a></span>
+            <span className="header">BitRacer!</span>
+            <span className="regular"><a href="/login">Login/Register</a></span>
           </span>
+
         </nav>
       );
     } else {
       navbar = (
         <nav className="navbar">
-          <center><span className="logo"><h2>BitRacer!</h2></span></center>
-          <span><a href="/root">About Us</a></span>
-          <span><a href="/root">Game Rules</a></span>
+          <center><span className="logo"></span></center>
+          <span className="center">
+              <span className="about"><a href="/">Home</a></span>
+          <span className="header">BitRacer!</span>
+
           <span className="user">
             <span className="currentuser">Currently Logged in as: {this.state.username}</span>
             <span>Remaining balance: {this.state.coins}</span>
             <span className="logout" onClick={handleLogout}><a href="/logout">Logout</a></span>
+          </span>
           </span>
         </nav>
       );

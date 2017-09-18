@@ -1,0 +1,11 @@
+
+<div>
+
+    <span class="about"><a href="/root">About Us</a></span>
+    <span class="about"><a href="/root">Game Rules</a></span>
+    <center>
+      <img src="images/sprite.gif" class="footer-pic" alt="icon" />
+    </center>
+      <center><span>copyright 2017 JES</span></center>
+
+</div>
