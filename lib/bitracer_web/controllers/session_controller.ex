@@ -1,8 +1,11 @@
 defmodule BitracerWeb.SessionController do
   use BitracerWeb, :controller
+  alias Bitracer.Accounts
+  alias Bitracer.Accounts.User
 
   def new(conn, _params) do
-    render conn, "new.html"
+    changeset = Accounts.change_user(%User{})
+    render conn, "new.html", changeset: changeset
   end
 
   def create(conn, %{"session" => session_params}) do

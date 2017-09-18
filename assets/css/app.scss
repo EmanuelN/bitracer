@@ -77,6 +77,41 @@ nav .logo {
   background-size: 100px 71px;
 }
 
+#login-forms {
+  display: grid;
+  grid-template-areas:  "login register";
+  grid-gap: 5px;
+
+  .login {
+    grid-area: "login";
+    margin: 10px;
+  }
+  
+  .register {
+    grid-area: "register";
+    margin: 10px;
+  }
+  
+  .form-group {
+    input {
+      width: 100%;
+      margin: 10;
+      border: 2px solid #91C61E;
+      border-radius: 5px;
+    }
+    button, input[type=button], input[type=submit], input[type=reset] {
+      background-color: #91C61E;
+      border: 1px solid black;
+      border-radius: 5px;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  }
+}
+
 .container {
   margin: 0 50px 0 60px;
   padding: 0;
