@@ -43,11 +43,16 @@ class Game extends Component {
   }
 
 
-  getWinner(names) {
-    let getWinnerName = '';
-    for (let i = 0; i < 5; i += 1) {
-      if (names[i] === this.state.winner) {
-        getWinnerName = names[i];
+
+  getWinner = (names) => {
+
+    var getWinnerName = '';
+
+    for (var key in names) {
+      if (key == this.state.winner) {
+        getWinnerName = names[key];
+
+
       }
     }
     return getWinnerName;
@@ -56,6 +61,7 @@ class Game extends Component {
   render() {
     if (!this.state.winner) {
       return (
+
         <div className="someDiv" >
           <Odds
             names={this.state.names}
@@ -97,6 +103,7 @@ class Game extends Component {
         </center>
       </div>
     );
+
   }
 }
 
