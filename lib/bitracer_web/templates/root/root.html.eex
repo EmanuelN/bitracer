@@ -1,10 +1,9 @@
 <nav class="navbar">
   <%= render BitracerWeb.NavbarView, "navbar.html", assigns %>
 </nav>
-<div>
-  <h2> About Us </h2>
+<div class="root">
 
-  <h4> About BitRacer </h4>
+  <h4 class="header" style="color: #91C61E"> About BitRacer </h4>
 
   It matters more when there's money on it and that's a fact. Sport becomes even
   more exciting. There's more passion, more pleasure and more pain. Football,
@@ -20,8 +19,9 @@
 
   For great value betting, choose BitRacer.
 </div>
-<div>
-  <h4> Game Rules </h4>
+
+<div class="root">
+  <h4 class="header" style="color: #91C61E"> Game Rules </h4>
 
   Horse Racing - Rule 4 Rules
 
