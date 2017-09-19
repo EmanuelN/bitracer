@@ -8,6 +8,7 @@ import Footer from './Footer';
 
 const App = props => (
   <div className="wrapper">
+
     <Navbar user_chan={props.user_chan} />
 
     <article className="content">

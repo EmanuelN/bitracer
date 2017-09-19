@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Channel } from 'phoenix';
 import Racer from './Racer';
 import Odds from './Odds';
-
+import AudioPlayer from './AudioPlayer';
 
 class Game extends Component {
   constructor(props) {
@@ -49,6 +49,9 @@ class Game extends Component {
       return (
 
         <div className="someDiv" >
+
+          <AudioPlayer />
+
           <Odds
             names={this.state.names}
             odds_a={`${Math.trunc(this.state.odds.a * 10) / 10}:1`}
