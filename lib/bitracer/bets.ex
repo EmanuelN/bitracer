@@ -15,13 +15,18 @@ defmodule Bitracer.Bets do
     GenServer.cast(pid, {:add, item})
   end
 
-  def win(pid, winner, odds) do
-    Enum.map((GenServer.call(pid, {:read})), fn(x) ->
+  def win(pid, winner, odds, names) do
+    Enum.each((GenServer.call(pid, {:read})), fn(x) ->
+      bet_amount = String.to_integer(x.bet)
+      user = Bitracer.Accounts.get_user_by_username!(x.user)
+      horse = Bitracer.Records.get_horse_by_name!(names[String.to_atom(x.horse)])
+      {:ok, bet} = Bitracer.Records.create_bet(user, horse, %{amount: bet_amount, paid_out: false})
       if x.horse == winner do
-        bet_amount = String.to_integer(x.bet)
         payout = round(bet_amount + (bet_amount * odds))
         BitracerWeb.Endpoint.broadcast! "chat:chat", "incoming_whisper", %{target: x.user, sender: "System", "content": "You won #{payout} coins!"}
         BitracerWeb.UserController.win(x.user, payout)
+        require IEx; IEx.pry
+        Bitracer.Records.update_bet(bet, %{paid_out: true})
       end
     end)
     GenServer.cast(pid, {:reset})

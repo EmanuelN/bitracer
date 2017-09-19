@@ -128,6 +128,36 @@ navbar span {
   }
 }
 
+#bets-table {
+  width: 100%;
+  border: 5px solid #91C61E;
+  border-spacing: 0px;
+  border-radius: 10px;
+  //* {border-radius: 5px;}
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+  }
+  
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+  }
+  th {
+    border-bottom: 5px solid #91C61E;
+    border-right: 5px solid #91C61E;
+  }
+  th:last-of-type {
+    border-right: 0px solid #91C61E;
+  }
+  th, td {
+    padding: 15px;
+    //border: 5px solid #91C61E;
+  }
+  tr {
+    width: 100%;
+  }
+  tr:nth-child(even) {background-color: #f2f2f2}
+}
+
 .root {
   padding: 20px 0;
 }

@@ -69,6 +69,7 @@ class Navbar extends Component {
               <i className="fa fa-usd" aria-hidden="true" />
               Remaining balance: {this.state.coins}
             </span>
+            <span><a href="/bets">Bet History</a></span>
             <span className="regular" onClick={handleLogout}>
               <a href="/logout">
                 <i className="fa fa-check-square-o" aria-hidden="true" />
