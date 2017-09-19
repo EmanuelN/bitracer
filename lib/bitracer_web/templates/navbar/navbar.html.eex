@@ -2,9 +2,8 @@
   <center><span class="logo"></span></center>
 
   <span class="center">
-  <span class="about">
-  <span><%= link "About Us",    to: "/root" %> </span>
-  <span><%= link "Game Rules",    to: "/root" %> </span>
+  <span class="regular">
+  <span><%= link "Home",    to: "/" %> </span>
   </span>
   <span class="header">BitRacer!</span>
   <span class="user">
@@ -14,7 +13,7 @@
     <span>Remaining balance: <%= current_user(@conn).coins %></span>
     <span class="logout"><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></span>
   <% else %>
-    <span><%= link "Login/Register",    to: "/login" %></span>
+    <span class="regular"><%= link "Login/Register",    to: "/login" %></span>
   <% end %>
  </span>
  </span>

@@ -30,7 +30,7 @@ width:100px;
   grid-area: nav;
   background-color: white;
   margin: 0;
-  padding: 10px 60px 10px 50px;
+  padding: 10px 0;
   color: #91C61E;
 }
 
@@ -45,30 +45,39 @@ width:100px;
   font-variant: small-caps;
 }
 
-nav .about {
-  float: left;
-}
-
-nav .about a {
+.regular a {
   text-decoration: none;
   color: black;
 }
 
-nav .user {
+
+.about {
+  float: left;
+  padding: 5px;
+}
+
+.about a {
+  text-decoration: none;
+  color: black;
+}
+
+/*
+.user {
   float: right;
 }
 
-nav .user a {
+.user a {
   text-decoration: none;
   color: black;
 }
 
-nav span {
+navbar span {
   text-decoration: none;
   margin: 0 5px;
 }
+*/
 
-nav .logo {
+.logo {
   width: 100%;
   height: 72px;
   display: inline-block;
@@ -86,12 +95,12 @@ nav .logo {
     grid-area: "login";
     margin: 10px;
   }
-  
+
   .register {
     grid-area: "register";
     margin: 10px;
   }
-  
+
   .form-group {
     input {
       width: 100%;
