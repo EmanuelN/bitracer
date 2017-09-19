@@ -8,7 +8,7 @@ defmodule Bitracer.Records.Horse do
     field :losses, :integer
     field :name, :string
     field :wins, :integer
-
+    has_many :bets, Bitracer.Records.Bet
     timestamps()
   end
 

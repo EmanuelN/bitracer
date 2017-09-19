@@ -1,24 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class AudioPlayer extends Component {
+const mute = (e) => {
+  const players = document.getElementsByClassName('audioPlayer')
+  for (let i = 0; i < players.length; i += 1) {
+    players[i].muted = !players[i].muted;
+  }
+  if (e.currentTarget.className === 'mute') {
+    e.currentTarget.className = 'unmute';
+  } else {
+    e.currentTarget.className = 'mute';
+  }
+}
 
-    render() {
-
-        return (
-
-
-            <audio className="audioPlayer" src={this.props.src} autoPlay={this.props.autoPlay} loop={this.props.loop}>
-
-            </audio>
-        );
-    }
-};
+const AudioPlayer = props => (
+  <div className="audio-player">
+    <audio
+      className="audioPlayer"
+      src={props.src}
+      autoPlay={props.autoPlay}
+      loop={props.loop}
+    />
+    <button className="mute" onClick={mute} />
+    <label for="un-mute"></label>
+  </div>
+);
 
 AudioPlayer.propTypes = {
-  autoPlay: PropTypes.bool,
-  loop: PropTypes.bool,
-  src: PropTypes.string,
+  autoPlay: PropTypes.bool.isRequired,
+  loop: PropTypes.bool.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 export default AudioPlayer;

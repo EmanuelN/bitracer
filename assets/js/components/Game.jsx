@@ -4,6 +4,7 @@ import { Channel } from 'phoenix';
 import Racer from './Racer';
 import Odds from './Odds';
 import AudioPlayer from './AudioPlayer';
+import Winner from './Winner';
 
 class Game extends Component {
   constructor(props) {
@@ -51,15 +52,10 @@ class Game extends Component {
   }
 
 
-
   render() {
     if (!this.state.winner) {
       return (
-
         <div className="someDiv" >
-
-          <AudioPlayer src="https://www.dl-sounds.com/wp-content/uploads/edd/2017/04/Pim-Poy.mp3" autoPlay loop/>
-
           <Odds
             names={this.state.names}
             odds_a={`${Math.trunc(this.state.odds.a * 10) / 10}:1`}
@@ -68,6 +64,7 @@ class Game extends Component {
             odds_d={`${Math.trunc(this.state.odds.d * 10) / 10}:1`}
             odds_e={`${Math.trunc(this.state.odds.e * 10) / 10}:1`}
           />
+          <AudioPlayer src="https://www.dl-sounds.com/wp-content/uploads/edd/2017/04/Pim-Poy.mp3" autoPlay loop />
           <Racer racer={this.state.a} name={this.state.names.a} image="images/pikachu.gif" />
           <Racer racer={this.state.b} name={this.state.names.b} image="images/flareon.gif" />
           <Racer racer={this.state.c} name={this.state.names.c} image="images/crossfox.gif" />
@@ -78,9 +75,6 @@ class Game extends Component {
     }
     return (
       <div className="someDiv" >
-
-        <AudioPlayer src="https://www.dl-sounds.com/wp-content/uploads/edd/2017/02/8-bit-Dancer2.mp3" autoPlay loop/>
-
         <Odds
           names={this.state.names}
           odds_a={`${Math.trunc(this.state.odds.a * 10) / 10}:1`}
@@ -89,17 +83,12 @@ class Game extends Component {
           odds_d={`${Math.trunc(this.state.odds.d * 10) / 10}:1`}
           odds_e={`${Math.trunc(this.state.odds.e * 10) / 10}:1`}
         />
-
+        <AudioPlayer src="https://www.dl-sounds.com/wp-content/uploads/edd/2017/02/8-bit-Dancer2.mp3" autoPlay loop />
         <center>
           <div className="winner"><h1>{this.state.names[this.state.winner]} Won the Race!</h1></div>
         </center>
-
         <center>
-          <img className="sprite" alt="racer1" src="images/pikachu.gif" />
-          <img className="sprite" alt="racer2" src="images/flareon.gif" />
-          <img className="sprite" alt="racer3" src="images/crossfox.gif" />
-          <img className="sprite" alt="racer4" src="images/zoroark.gif" />
-          <img className="sprite" alt="racer5" src="images/homer.gif" />
+          <Winner winner={this.state.winner} />
         </center>
       </div>
     );

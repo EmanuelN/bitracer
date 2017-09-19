@@ -33,27 +33,49 @@ class Navbar extends Component {
       navbar = (
         <nav className="navbar">
 
-          <div className="logo"></div>
+          <div className="logo" />
           <span className="center">
-            <span className="regular"><a href="/"><i className="fa fa-home" aria-hidden="true"></i> Home</a></span>
+            <span className="regular">
+              <a href="/">
+                <i className="fa fa-home" aria-hidden="true" />
+                Home
+              </a>
+            </span>
             <span className="header">BitRacer!</span>
-            <span className="regular"><a href="/login"><i className="fa fa-check-square-o" aria-hidden="true"></i> Login/Register</a></span>
-
+            <span className="regular">
+              <a href="/login">
+                <i className="fa fa-check-square-o" aria-hidden="true" />
+                Login/Register
+              </a>
+            </span>
           </span>
-
         </nav>
       );
     } else {
       navbar = (
         <nav className="navbar">
-
-          <span className="logo"><center><span className="newheader">BitRacer!</span></center></span>
+          <span className="logo">
+            <center><span className="newheader">BitRacer!</span></center>
+          </span>
           <span className="center">
-            <span className="regular"><a href="/"><i className="fa fa-home" aria-hidden="true"></i> Home</a></span>
-            <span className="regular"><i className="fa fa-user-circle" aria-hidden="true"></i> Currently Logged in as: {this.state.username}</span>
-            <span className="regular"><i className="fa fa-usd" aria-hidden="true"></i> Remaining balance: {this.state.coins}</span>
-            <span className="regular" onClick={handleLogout}><a href="/logout"><i className="fa fa-check-square-o" aria-hidden="true"></i> Logout</a></span>
-
+            <span className="regular">
+              <a href="/"><i className="fa fa-home" aria-hidden="true" />Home</a>
+            </span>
+            <span className="regular">
+              <i className="fa fa-user-circle" aria-hidden="true" />
+              Currently Logged in as: {this.state.username}
+            </span>
+            <span className="regular">
+              <i className="fa fa-usd" aria-hidden="true" />
+              Remaining balance: {this.state.coins}
+            </span>
+            <span><a href="/bets">Bet History</a></span>
+            <span className="regular" onClick={handleLogout}>
+              <a href="/logout">
+                <i className="fa fa-check-square-o" aria-hidden="true" />
+                Logout
+              </a>
+            </span>
           </span>
         </nav>
       );

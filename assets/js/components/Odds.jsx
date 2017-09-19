@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Odds = props => (
-  <marquee direction="right" style={{ margin: '20px' }}>
+  <marquee direction="right" style={{ margin: '20px', width: '87%' }}>
     <span className="payouts">*payouts*</span>
     <span className="show-odds">
       <span style={{ color: 'black' }}>{props.names.a}</span>

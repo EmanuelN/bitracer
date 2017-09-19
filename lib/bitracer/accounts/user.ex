@@ -12,6 +12,7 @@ defmodule Bitracer.Accounts.User do
     field :coins, :integer, default: 1000
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+    has_many :bets, Bitracer.Records.Bet
     timestamps()
   end
 
@@ -29,6 +30,17 @@ defmodule Bitracer.Accounts.User do
       |> unique_constraint(:email)
       |> unique_constraint(:username)
       |> validate_confirmation(:password)
+      |> validate_no_spaces(:username)
+    end
+  end
+
+  def validate_no_spaces(changeset, username, options \\ []) do
+    validate_change changeset, :username, fn :username, username ->
+      if Regex.match?(~r/\s/, username) do
+        [username: "cannot have spaces"]
+      else
+        []
+      end
     end
   end
 end
