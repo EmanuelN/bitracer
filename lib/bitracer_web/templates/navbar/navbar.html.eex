@@ -12,6 +12,7 @@
   <%= if logged_in?(@conn) do %>
     <span class="currentuser">Currently Logged in as: <%= current_user(@conn).username %></span>
     <span>Remaining balance: <%= current_user(@conn).coins %></span>
+    <span><%= link "Bet History", to: bet_path(@conn, :index), method: :get %></span>
     <span class="logout"><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></span>
   <% else %>
     <span><%= link "Login/Register",    to: "/login" %></span>
