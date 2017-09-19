@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AudioPlayer extends Component {
-
-  // componentDidMount() {
-  //       console.info('[AudioPlayer] componentDidMount...');
-  //       this.props.el = React.findDOMNode(this.refs.audio_tag);
-  //       console.info('audio prop set', this.props.el);
-  //   }
 
     render() {
 
         return (
 
 
-            <audio className="audioPlayer" src="https://www.dl-sounds.com/wp-content/uploads/edd/2017/04/Pim-Poy.mp3" autoPlay loop>
+            <audio className="audioPlayer" src={this.props.src} autoPlay={this.props.autoPlay} loop={this.props.loop}>
 
             </audio>
         );
     }
+};
+
+AudioPlayer.propTypes = {
+  autoPlay: PropTypes.bool,
+  loop: PropTypes.bool,
+  src: PropTypes.string,
 };
 
 export default AudioPlayer;
