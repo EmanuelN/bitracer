@@ -32,11 +32,13 @@ class Navbar extends Component {
     if (this.state.username === '') {
       navbar = (
         <nav className="navbar">
+
           <div className="logo"></div>
           <span className="center">
             <span className="regular"><a href="/"><i className="fa fa-home" aria-hidden="true"></i> Home</a></span>
             <span className="header">BitRacer!</span>
             <span className="regular"><a href="/login"><i className="fa fa-check-square-o" aria-hidden="true"></i> Login/Register</a></span>
+
           </span>
 
         </nav>
@@ -44,12 +46,14 @@ class Navbar extends Component {
     } else {
       navbar = (
         <nav className="navbar">
+
           <span className="logo"><center><span className="newheader">BitRacer!</span></center></span>
           <span className="center">
             <span className="regular"><a href="/"><i className="fa fa-home" aria-hidden="true"></i> Home</a></span>
             <span className="regular"><i className="fa fa-user-circle" aria-hidden="true"></i> Currently Logged in as: {this.state.username}</span>
             <span className="regular"><i className="fa fa-usd" aria-hidden="true"></i> Remaining balance: {this.state.coins}</span>
             <span className="regular" onClick={handleLogout}><a href="/logout"><i className="fa fa-check-square-o" aria-hidden="true"></i> Logout</a></span>
+
           </span>
         </nav>
       );
