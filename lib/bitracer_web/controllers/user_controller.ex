@@ -18,7 +18,7 @@ defmodule BitracerWeb.UserController do
         |> put_session(:current_user, user.id)
         |> redirect(to: "/")
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        redirect(conn, to: "/login")
     end
   end
 

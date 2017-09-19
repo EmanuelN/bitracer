@@ -30,7 +30,7 @@ width:100px;
   grid-area: nav;
   background-color: white;
   margin: 0;
-  padding: 10px 60px 10px 50px;
+  padding: 10px 0;
   color: #91C61E;
 }
 
@@ -45,36 +45,90 @@ width:100px;
   font-variant: small-caps;
 }
 
-nav .about {
-  float: left;
+.newheader {
+  font-size: 40px;
+  font-weight: bold;
+  font-variant: small-caps;
 }
 
-nav .about a {
+.regular {
+  padding: 5px;
+  color: black;
+}
+
+.regular a {
   text-decoration: none;
   color: black;
 }
 
-nav .user {
+.regular i, .regular a i {
+  color: #91C61E;
+}
+
+
+
+/*
+.user {
   float: right;
 }
 
-nav .user a {
+.user a {
   text-decoration: none;
   color: black;
 }
 
-nav span {
+navbar span {
   text-decoration: none;
   margin: 0 5px;
 }
+*/
 
-nav .logo {
+.logo {
   width: 100%;
   height: 72px;
   display: inline-block;
   margin-bottom: 1em;
   background-image: url("/images/horse.png");
   background-size: 100px 71px;
+}
+
+#login-forms {
+  display: grid;
+  grid-template-areas:  "login register";
+  grid-gap: 5px;
+
+  .login {
+    grid-area: "login";
+    margin: 10px;
+  }
+
+  .register {
+    grid-area: "register";
+    margin: 10px;
+  }
+
+  .form-group {
+    input {
+      width: 100%;
+      margin: 10;
+      border: 2px solid #91C61E;
+      border-radius: 5px;
+    }
+    button, input[type=button], input[type=submit], input[type=reset] {
+      background-color: #91C61E;
+      border: 1px solid black;
+      border-radius: 5px;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  }
+}
+
+.root {
+  padding: 20px 0;
 }
 
 .container {
@@ -131,6 +185,7 @@ nav .logo {
   grid-area: footer;
   border: 5px solid #91C61E;
   border-radius: 10px;
+  color: #91C61E;
 }
 
 .wrapper {
