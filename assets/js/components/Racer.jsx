@@ -16,8 +16,7 @@ const Racer = props => (
     <span className="sprite-name">{props.name}</span>
 
 
-    <img className="lighthouse" src="images/lighthouse.gif"  />
-
+    <img className="lighthouse" src="images/lighthouse.gif" />
 
 
   </div>

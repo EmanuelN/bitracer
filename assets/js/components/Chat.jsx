@@ -11,11 +11,11 @@ class Chat extends Component {
       numUsers: 0,
       currUser: document.getElementById('username').dataset.username,
       messages: [{
-        content: 'Welcome to the game, place bets using "/b id amount". Just make sure you\'re logged in first!',
+        content: 'Welcome to BitRacer - place bets using "/b id amount". Just make sure you\'re logged in first!',
         username: 'Admin',
       }],
       pos: 0,
-      names: {}
+      names: {},
     };
     this.channel = this.props.channel;
   }
@@ -60,7 +60,7 @@ class Chat extends Component {
         this.state.names.d,
         this.state.names.e,
       ];
-      for (let i = 0; i < horsenames.length; i++) {
+      for (let i = 0; i < horsenames.length; i += 1) {
         horsenames[i] = horsenames[i].toLowerCase();
       }
       if (isNaN(lCaseHorse)) {

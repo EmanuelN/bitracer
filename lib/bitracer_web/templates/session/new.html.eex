@@ -61,3 +61,7 @@
 <% end %>
 </div>
 </div>
+
+<footer class="foot">
+  <%= render BitracerWeb.FooterView, "footer.html", assigns %>
+</footer>

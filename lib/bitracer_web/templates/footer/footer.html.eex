@@ -1,0 +1,11 @@
+
+<div class="center">
+
+    <span class="regular"><a href="/root"><i class="fa fa-info" aria-hidden="true"></i> About Us</a></span>
+    <span class="regular"><a href="/root"><i class="fa fa-question" aria-hidden="true"></i> Game Rules</a></span>
+    <span class="regular"><a href="mailto:greatlakesracing@gmail.com?subject=Business%20Proposal"><i class="fa fa-envelope" aria-hidden="true"></i> Contact Us</a></span>
+
+</div>
+
+<center><img src="images/sprite.gif" class="footer-pic" alt="icon" /></center>
+
