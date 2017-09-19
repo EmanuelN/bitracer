@@ -19,6 +19,7 @@ defmodule BitracerWeb.Router do
     get "/", PageController, :index
     get "/root", RootController, :new
     resources "/users", UserController, only: [:new, :delete, :create]
+    resources "/bets", BetController, only: [:index, :show]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     get "/logout", SessionController, :show

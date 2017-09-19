@@ -1,0 +1,20 @@
+<h2>Show Bet</h2>
+
+<ul>
+
+  <li>
+    <strong>Bet Amount:</strong>
+    <%= @bet.amount %>
+  </li>
+  <li>
+    <strong>Winning Bet:</strong>
+    <%= @bet.paid_out %>
+  </li>
+  <li>
+    <strong>Horse Name:</strong>
+    <%= Bitracer.Records.get_horse!(@bet.horse_id).name %>
+  </li>
+
+</ul>
+
+<span><%= link "Back", to: bet_path(@conn, :index) %></span>

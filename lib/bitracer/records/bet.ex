@@ -6,6 +6,7 @@ defmodule Bitracer.Records.Bet do
 
   schema "bets" do
     field :amount, :integer
+    field :paid_out, :boolean
     belongs_to :user, Bitracer.Accounts.User
     belongs_to :horse, Bitracer.Records.Horse
     timestamps()
@@ -14,7 +15,7 @@ defmodule Bitracer.Records.Bet do
   @doc false
   def changeset(%Bet{} = bet, attrs) do
     bet
-    |> cast(attrs, [:amount])
-    |> validate_required([:amount])
+    |> cast(attrs, [:amount, :paid_out])
+    |> validate_required([:amount, :paid_out])
   end
 end

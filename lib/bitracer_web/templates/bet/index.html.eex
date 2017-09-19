@@ -1,0 +1,26 @@
+<nav class="navbar">
+  <%= render BitracerWeb.NavbarView, "navbar.html", assigns %>
+</nav>
+<h2>Listing Bets</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Bet Amount</th>
+      <th>Winning Bet</th>
+      <th>Horse Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for bet <- @bets do %>
+  <%= if Bitracer.Accounts.get_user!(bet.user_id).username == current_user(@conn).username do %>
+    <tr>
+      <td><%= bet.amount %></td>
+      <td><%= bet.paid_out %></td>
+      <td><%= Bitracer.Records.get_horse!(bet.horse_id).name %></td>
+    </tr>
+  <% end %>
+<% end %>
+  </tbody>
+</table>
