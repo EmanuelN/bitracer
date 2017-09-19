@@ -34,9 +34,9 @@ class Navbar extends Component {
         <nav className="navbar">
           <div className="logo"></div>
           <span className="center">
-            <span className="regular"><a href="/">Home</a></span>
+            <span className="regular"><a href="/"><i className="fa fa-home" aria-hidden="true"></i> Home</a></span>
             <span className="header">BitRacer!</span>
-            <span className="regular"><a href="/login">Login/Register</a></span>
+            <span className="regular"><a href="/login"><i className="fa fa-check-square-o" aria-hidden="true"></i> Login/Register</a></span>
           </span>
 
         </nav>
@@ -44,16 +44,12 @@ class Navbar extends Component {
     } else {
       navbar = (
         <nav className="navbar">
-          <center><span className="logo"></span></center>
+          <span className="logo"><center><span className="newheader">BitRacer!</span></center></span>
           <span className="center">
-              <span className="about"><a href="/">Home</a></span>
-          <span className="header">BitRacer!</span>
-
-          <span className="user">
-            <span className="currentuser">Currently Logged in as: {this.state.username}</span>
-            <span>Remaining balance: {this.state.coins}</span>
-            <span className="logout" onClick={handleLogout}><a href="/logout">Logout</a></span>
-          </span>
+            <span className="regular"><a href="/"><i className="fa fa-home" aria-hidden="true"></i> Home</a></span>
+            <span className="regular"><i className="fa fa-user-circle" aria-hidden="true"></i> Currently Logged in as: {this.state.username}</span>
+            <span className="regular"><i className="fa fa-usd" aria-hidden="true"></i> Remaining balance: {this.state.coins}</span>
+            <span className="regular" onClick={handleLogout}><a href="/logout"><i className="fa fa-check-square-o" aria-hidden="true"></i> Logout</a></span>
           </span>
         </nav>
       );

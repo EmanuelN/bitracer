@@ -45,21 +45,27 @@ width:100px;
   font-variant: small-caps;
 }
 
+.newheader {
+  font-size: 40px;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.regular {
+  padding: 5px;
+  color: black;
+}
+
 .regular a {
   text-decoration: none;
   color: black;
 }
 
-
-.about {
-  float: left;
-  padding: 5px;
+.regular i, .regular a i {
+  color: #91C61E;
 }
 
-.about a {
-  text-decoration: none;
-  color: black;
-}
+
 
 /*
 .user {
@@ -121,6 +127,10 @@ navbar span {
   }
 }
 
+.root {
+  padding: 20px 0;
+}
+
 .container {
   margin: 0 50px 0 60px;
   padding: 0;
@@ -175,6 +185,7 @@ navbar span {
   grid-area: footer;
   border: 5px solid #91C61E;
   border-radius: 10px;
+  color: #91C61E;
 }
 
 .wrapper {

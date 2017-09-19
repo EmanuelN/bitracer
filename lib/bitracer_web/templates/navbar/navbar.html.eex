@@ -1,20 +1,30 @@
 <div>
-  <center><span class="logo"></span></center>
-
-  <span class="center">
-  <span class="regular">
-  <span><%= link "Home",    to: "/" %> </span>
-  </span>
-  <span class="header">BitRacer!</span>
-  <span class="user">
 
   <%= if logged_in?(@conn) do %>
-    <span class="currentuser">Currently Logged in as: <%= current_user(@conn).username %></span>
-    <span>Remaining balance: <%= current_user(@conn).coins %></span>
-    <span class="logout"><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></span>
+
+  <span class="logo"><center><span class="newheader">BitRacer!</span></center></span>
+
+    <span class="center">
+      <span class="regular"><i class="fa fa-home" aria-hidden="true"></i><%= link " Home",    to: "/" %></span>
+      <span class="regular"><i class="fa fa-user-circle" aria-hidden="true"></i> Currently Logged in as: <%= current_user(@conn).username %></span>
+      <span class="regular"><i class="fa fa-usd" aria-hidden="true"></i> Remaining balance: <%= current_user(@conn).coins %></span>
+      <span class="logout"><i class="fa fa-check-square-o" aria-hidden="true"></i><%= link " Logout", to: session_path(@conn, :delete), method: :delete %></span>
+    </span>
+
   <% else %>
-    <span class="regular"><%= link "Login/Register",    to: "/login" %></span>
+
+   <div class="logo"></div>
+
+    <span class="center">
+      <span class="regular"><i class="fa fa-home" aria-hidden="true"></i><%= link " Home",    to: "/" %></span>
+      <span class="header">BitRacer!</span>
+      <span class="regular"><i class="fa fa-check-square-o" aria-hidden="true"></i><%= link " Login/Register",    to: "/login" %></span>
+    </span>
+
   <% end %>
- </span>
- </span>
+
 </div>
+
+
+
+
