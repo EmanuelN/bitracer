@@ -60,7 +60,7 @@ class Chat extends Component {
         this.state.names.d,
         this.state.names.e,
       ];
-      for (let i = 0; i < horsenames.length; i++) {
+      for (let i = 0; i < horsenames.length; i += 1) {
         horsenames[i] = horsenames[i].toLowerCase();
       }
       if (isNaN(lCaseHorse)) {

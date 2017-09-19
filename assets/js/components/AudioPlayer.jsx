@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class AudioPlayer extends Component {
-  render() {
-    return (
-
-
-      <audio className="audioPlayer" src={this.props.src} autoPlay={this.props.autoPlay} loop={this.props.loop} />
-    );
-  }
-}
+const AudioPlayer = props => (
+  <audio
+    className="audioPlayer"
+    src={props.src}
+    autoPlay={props.autoPlay}
+    loop={props.loop}
+  />
+);
 
 AudioPlayer.propTypes = {
-  autoPlay: PropTypes.bool,
-  loop: PropTypes.bool,
-  src: PropTypes.string,
+  autoPlay: PropTypes.bool.isRequired,
+  loop: PropTypes.bool.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 export default AudioPlayer;
