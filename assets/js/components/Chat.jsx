@@ -15,7 +15,7 @@ class Chat extends Component {
         username: 'Admin',
       }],
       pos: 0,
-      names: {}
+      names: {},
     };
     this.channel = this.props.channel;
   }

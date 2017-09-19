@@ -16,7 +16,7 @@ class Game extends Component {
       e: 0,
       winner: '',
       odds: {},
-      names: {}
+      names: {},
     };
     this.channel = this.props.channel;
   }
@@ -33,11 +33,11 @@ class Game extends Component {
     });
     this.channel.on('winner_data', (payload) => {
       const winner = payload.winner;
-      if (payload.winner !== "" && winnerSent !== true) {
+      if (payload.winner !== '' && winnerSent !== true) {
         this.channel.push('post_message', {
-          username: "System",
-          content: `${this.state.names[winner]} won!`
-        })
+          username: 'System',
+          content: `${this.state.names[winner]} won!`,
+        });
         winnerSent = true;
       }
       this.setState({ winner });
@@ -95,7 +95,6 @@ class Game extends Component {
         </center>
       </div>
     );
-
   }
 }
 
