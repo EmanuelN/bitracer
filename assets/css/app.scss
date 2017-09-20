@@ -203,12 +203,15 @@ navbar span {
 
   .payouts {
     color: green;
-    padding: 10px;
   }
 }
 @keyframes marquee {
   0% { left: 100%; }
   100% { left: -120%; }
+}
+
+@media (min-width: 1200px) {
+  .marquee div { animation: none; }
 }
 
 .root {
