@@ -203,6 +203,40 @@ navbar span {
     text-indent:-999px;
   }
 }
+.marquee {
+  display: inline-block;
+  height: 25px;
+  width: 85%;
+  margin: 15px;
+
+  overflow: hidden;
+  position: relative;
+
+  div {
+    position: absolute;
+  
+    animation: marquee 10s linear infinite;
+  }
+  
+  span {
+    display: inline;
+  }
+  .black {
+    color: black;
+  }
+
+  .payouts {
+    color: green;
+  }
+}
+@keyframes marquee {
+  0% { left: 100%; }
+  100% { left: -120%; }
+}
+
+@media (min-width: 1200px) {
+  .marquee div { animation: none; }
+}
 
 .root {
   padding: 20px 0;
@@ -341,11 +375,6 @@ navbar span {
   transform: none;
   -webkit-transform-origin: 50% 50% 0;
   transform-origin: 50% 50% 0;
-}
-
-.payouts {
-  color: green;
-  padding: 10px;
 }
 
 .show-odds {
