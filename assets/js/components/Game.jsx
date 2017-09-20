@@ -65,6 +65,7 @@ class Game extends Component {
             odds_e={`${Math.trunc(this.state.odds.e * 10) / 10}:1`}
           />
           <AudioPlayer src="https://www.dl-sounds.com/wp-content/uploads/edd/2017/04/Pim-Poy.mp3" autoPlay loop />
+
           <Racer racer={this.state.a} name={this.state.names.a} image="images/pikachu.gif" />
           <Racer racer={this.state.b} name={this.state.names.b} image="images/flareon.gif" />
           <Racer racer={this.state.c} name={this.state.names.c} image="images/crossfox.gif" />
@@ -84,12 +85,11 @@ class Game extends Component {
           odds_e={`${Math.trunc(this.state.odds.e * 10) / 10}:1`}
         />
         <AudioPlayer src="https://www.dl-sounds.com/wp-content/uploads/edd/2017/02/8-bit-Dancer2.mp3" autoPlay loop />
-        <center>
-          <div className="winner"><h1>{this.state.names[this.state.winner]} Won the Race!</h1></div>
-        </center>
-        <center>
+
+        <div className="winner">
+          <h1>{this.state.names[this.state.winner]} Won the Race!</h1>
           <Winner winner={this.state.winner} />
-        </center>
+        </div>
       </div>
     );
   }

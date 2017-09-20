@@ -59,17 +59,23 @@ class Navbar extends Component {
           </span>
           <span className="center">
             <span className="regular">
-              <a href="/"><i className="fa fa-home" aria-hidden="true" />Home</a>
+              <a href="/">
+                <i className="fa fa-home" aria-hidden="true" />
+                Home
+              </a>
             </span>
             <span className="regular">
-              <i className="fa fa-user-circle" aria-hidden="true" />
-              Currently Logged in as: {this.state.username}
+              <a href="/bets">
+                <i className="fa fa-user-circle" aria-hidden="true" />
+                Username: {this.state.username}
+              </a>
             </span>
             <span className="regular">
-              <i className="fa fa-usd" aria-hidden="true" />
-              Remaining balance: {this.state.coins}
+              <a href="/store">
+                <i className="fa fa-usd" aria-hidden="true" />
+                Balance: {this.state.coins}
+              </a>
             </span>
-            <span><a href="/bets">Bet History</a></span>
             <span className="regular" onClick={handleLogout}>
               <a href="/logout">
                 <i className="fa fa-check-square-o" aria-hidden="true" />
