@@ -2,30 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Odds = props => (
-  <marquee direction="right" style={{ margin: '20px', width: '87%' }}>
-    <span className="payouts">*payouts*</span>
-    <span className="show-odds">
-      <span style={{ color: 'black' }}>{props.names.a}</span>
-      <span className="odds" >{props.odds_a}</span>
-    </span>
-    <span className="show-odds">
-      <span style={{ color: 'black' }}>{props.names.b}</span>
-      <span className="odds" >{props.odds_b}</span>
-    </span>
-    <span className="show-odds">
-      <span style={{ color: 'black' }}>{props.names.c}</span>
-      <span className="odds" >{props.odds_c}</span>
-    </span>
-    <span className="show-odds">
-      <span style={{ color: 'black' }}>{props.names.d}</span>
-      <span className="odds" >{props.odds_d}</span>
-    </span>
-    <span className="show-odds">
-      <span style={{ color: 'black' }}>{props.names.e}</span>
-      <span className="odds" >{props.odds_e}</span>
-    </span>
-    <span className="payouts">*payouts*</span>
-  </marquee>
+  <div className="marquee">
+    <div>
+      <span className="payouts">*payouts*</span>
+      <span className="show-odds">
+        <span className="black">{props.names.a}:&nbsp;</span>
+        {props.odds_a}
+      </span>
+      <span className="show-odds">
+        <span className="black">{props.names.b}:&nbsp;</span>
+        {props.odds_b}
+      </span>
+      <span className="show-odds">
+        <span className="black">{props.names.c}:&nbsp;</span>
+        {props.odds_c}
+      </span>
+      <span className="show-odds">
+        <span className="black">{props.names.d}:&nbsp;</span>
+        {props.odds_d}
+      </span>
+      <span className="show-odds">
+        <span className="black">{props.names.e}:&nbsp;</span>
+        {props.odds_e}
+      </span>
+      <span className="payouts">*payouts*</span>
+    </div>
+  </div>
 );
 
 Odds.propTypes = {
