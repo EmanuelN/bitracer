@@ -2,23 +2,38 @@
   <%= render BitracerWeb.NavbarView, "navbar.html", assigns %>
 </nav>
 
+<center class="profile"><span> Profile page for <%= current_user(@conn).username %> </span></center>
+
+<div class="betting">
+
+<span>Username: <%= current_user(@conn).username %> </span> <br>
+<span>E-mail: <%= current_user(@conn).email %> </span>
+
 <%= if current_user(@conn) do %>
-  <h2>Listing Bets For <%= current_user(@conn).username %></h2>
+  <h4>Listing Bets For <%= current_user(@conn).username %></h4>
   <table id="bets-table">
     <thead>
       <tr>
         <th>Bet Amount</th>
         <th>Winning Bet</th>
-        <th>Horse Name</th>
+        <th>Racer Name</th>
       </tr>
     </thead>
     <tbody>
       <%= for bet <- @bets do %>
         <%= if Bitracer.Accounts.get_user!(bet.user_id).username == current_user(@conn).username do %>
           <tr>
-            <td><%= bet.amount %></td>
-            <td><%= bet.paid_out %></td>
-            <td><%= Bitracer.Records.get_horse!(bet.horse_id).name %></td>
+            <td><center><%= bet.amount %></center></td>
+            <td>
+              <center>
+                <%= if bet.paid_out do %>
+                  <strong>YES!</strong>
+                <% else %>
+                  No :(
+                <% end %>
+              </center>
+            </td>
+            <td><center><%= Bitracer.Records.get_horse!(bet.horse_id).name %></center></td>
           </tr>
         <% end %>
       <% end %>
@@ -27,3 +42,9 @@
 <%= else %>
   <p>Please log in to view your bet history!</p>
 <% end %>
+
+</div>
+
+<footer class="foot">
+  <%= render BitracerWeb.FooterView, "footer.html", assigns %>
+</footer>

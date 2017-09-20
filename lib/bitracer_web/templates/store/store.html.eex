@@ -1,0 +1,104 @@
+<nav class="navbar">
+  <%= render BitracerWeb.NavbarView, "navbar.html", assigns %>
+</nav>
+
+<center class="profile"><span> Welcome to our store <%= current_user(@conn).username %>! </span></center>
+
+<div class="betting">
+
+<table id="bets-table">
+    <thead>
+      <tr>
+        <th>Cost</th>
+        <th>Description</th>
+        <th>Item</th>
+        <%# <th>Purchase</th> %>
+      </tr>
+    </thead>
+    <tbody>
+
+          <tr>
+            <td><center>10</center></td>
+            <td><center>My Little Pony Racer</center></td>
+            <td><center><img src="images/pinky.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>100</center></td>
+            <td><center>Kitty Racer</center></td>
+            <td><center><img src="images/cat.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>777</center></td>
+            <td><center>Horse Racer</center></td>
+            <td><center><img src="images/horse.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>800</center></td>
+            <td><center>Dino Racer</center></td>
+            <td><center><img src="images/dino.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>888</center></td>
+            <td><center>Stallion Racer</center></td>
+            <td><center><img src="images/modernHorse.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>5000</center></td>
+            <td><center>Dog Racer</center></td>
+            <td><center><img src="images/dog.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>9999</center></td>
+            <td><center>Dragon Racer</center></td>
+            <td><center><img src="images/dragon.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>20000</center></td>
+            <td><center>Cloud Racer</center></td>
+            <td><center><img src="images/puff.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>50000</center></td>
+            <td><center>Sonic Racer</center></td>
+            <td><center><img src="images/sonic.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>100000</center></td>
+            <td><center>Bunny Racer</center></td>
+            <td><center><img src="images/sprite.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+          <tr>
+            <td><center>1000000</center></td>
+            <td><center>Lighthouse</center></td>
+            <td><center><img src="images/lighthouse.gif" class="store" alt="icon" /></center></td>
+            <%# <td><center><button> <%= current_user(@conn).coins </button></center></td> %>
+          </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<footer class="foot">
+  <%= render BitracerWeb.FooterView, "footer.html", assigns %>
+</footer>

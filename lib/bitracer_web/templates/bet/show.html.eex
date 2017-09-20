@@ -2,15 +2,23 @@
 <ul>
   <li>
     <strong>Bet Amount:</strong>
-    <%= @bet.amount %>
+    <center><%= @bet.amount %></center>
   </li>
   <li>
     <strong>Winning Bet:</strong>
-    <%= @bet.paid_out %>
+      <center>
+        <%= if @bet.paid_out do %>
+          <strong>YES!</strong>
+        <% else %>
+          No :(
+        <% end %>
+      </center>
   </li>
   <li>
-    <strong>Horse Name:</strong>
-    <%= Bitracer.Records.get_horse!(@bet.horse_id).name %>
+    <strong>Racer Name:</strong>
+    <center>
+      <%= Bitracer.Records.get_horse!(@bet.horse_id).name %>
+    </center>
   </li>
 </ul>
 <span><%= link "Back", to: bet_path(@conn, :index) %></span>

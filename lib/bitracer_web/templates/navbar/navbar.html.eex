@@ -3,10 +3,9 @@
   <%= if logged_in?(@conn) do %>
     <span class="center">
       <span class="regular"><i class="fa fa-home" aria-hidden="true"></i><%= link " Home",    to: "/" %></span>
-      <span class="regular"><i class="fa fa-user-circle" aria-hidden="true"></i> Currently Logged in as: <%= current_user(@conn).username %></span>
-      <span class="regular"><i class="fa fa-usd" aria-hidden="true"></i> Remaining balance: <%= current_user(@conn).coins %></span>
-      <span><%= link "Bet History", to: bet_path(@conn, :index), method: :get %></span>
-      <span class="logout"><i class="fa fa-check-square-o" aria-hidden="true"></i><%= link " Logout", to: session_path(@conn, :delete), method: :delete %></span>
+      <span class="regular"><i class="fa fa-user-circle" aria-hidden="true"></i> <%= link " Username: ", to: bet_path(@conn, :index), method: :get %> <%= current_user(@conn).username %> </span>
+      <span class="regular"><i class="fa fa-usd" aria-hidden="true"></i> <%= link " Balance: ", to: "/store" %> <%= current_user(@conn).coins %> </span>
+      <span class="regular"><i class="fa fa-check-square-o" aria-hidden="true"></i><%= link " Logout", to: session_path(@conn, :delete), method: :delete %></span>
     </span>
   <% else %>
     <span class="center">

@@ -9,8 +9,8 @@
 
 
 .sprite {
-height:100px;
-width:100px;
+  height:100px;
+  width:100px;
 }
 
 .lighthouse {
@@ -62,11 +62,14 @@ width:100px;
   color: black;
 }
 
+.regular a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
 .regular i, .regular a i {
   color: #91C61E;
 }
-
-
 
 /*
 .user {
@@ -128,6 +131,18 @@ navbar span {
   }
 }
 
+.profile {
+  margin: 20px 0 0 0;
+  font-size: 26px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: #91C61E;
+}
+
+.betting {
+  margin: 20px 0 40px 0;
+}
+
 #bets-table {
   width: 100%;
   border: 5px solid #91C61E;
@@ -137,7 +152,7 @@ navbar span {
   tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
   }
-  
+
   tr:last-child td:last-child {
     border-bottom-right-radius: 5px;
   }
@@ -158,8 +173,13 @@ navbar span {
   tr:nth-child(even) {background-color: #f2f2f2}
 }
 
+.store {
+  height:100px;
+  width:100px;
+  transform: translateX(4px);
+}
+
 .audio-player {
-  float: right;
   display: inline;
   margin: 10px;
   .mute {
@@ -329,8 +349,6 @@ navbar span {
   padding: 10px;
 }
 
-
-
 .winner {
     animation-name: winner;
     animation-duration: 0.2s;
@@ -343,6 +361,11 @@ navbar span {
 @keyframes winner {
     from {color: red;}
     to {color: blue;}
+}
+
+.won {
+  height: 300px;
+  width: 300px;
 }
 
 .finish {

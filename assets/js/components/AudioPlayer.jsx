@@ -14,7 +14,7 @@ const mute = (e) => {
 }
 
 const AudioPlayer = props => (
-  <div className="audio-player">
+  <span className="audio-player">
     <audio
       className="audioPlayer"
       src={props.src}
@@ -23,7 +23,7 @@ const AudioPlayer = props => (
     />
     <button className="mute" onClick={mute} />
     <label for="un-mute"></label>
-  </div>
+  </span>
 );
 
 AudioPlayer.propTypes = {
