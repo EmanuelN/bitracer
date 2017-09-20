@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const mute = (e) => {
-  const players = document.getElementsByClassName('audioPlayer')
+  const players = document.getElementsByClassName('audioPlayer');
   for (let i = 0; i < players.length; i += 1) {
     players[i].muted = !players[i].muted;
   }
@@ -11,10 +11,10 @@ const mute = (e) => {
   } else {
     e.currentTarget.className = 'mute';
   }
-}
+};
 
 const AudioPlayer = props => (
-  <span className="audio-player">
+  <div className="audio-player">
     <audio
       className="audioPlayer"
       src={props.src}
@@ -22,8 +22,8 @@ const AudioPlayer = props => (
       loop={props.loop}
     />
     <button className="mute" onClick={mute} />
-    <label for="un-mute"></label>
-  </span>
+    <label htmlFor="un-mute" />
+  </div>
 );
 
 AudioPlayer.propTypes = {

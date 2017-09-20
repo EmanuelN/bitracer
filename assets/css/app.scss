@@ -132,10 +132,13 @@ navbar span {
 }
 
 .profile {
-  margin: 20px 0 0 0;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  font-family: "Arial Black", Gadget, sans-serif;
   font-size: 26px;
   font-weight: bold;
-  font-variant: small-caps;
+  //font-variant: small-caps;
   color: #91C61E;
 }
 
@@ -148,7 +151,6 @@ navbar span {
   border: 5px solid #91C61E;
   border-spacing: 0px;
   border-radius: 10px;
-  //* {border-radius: 5px;}
   tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
   }
@@ -169,6 +171,7 @@ navbar span {
   }
   tr {
     width: 100%;
+    text-align: center;
   }
   tr:nth-child(even) {background-color: #f2f2f2}
 }
@@ -181,6 +184,7 @@ navbar span {
 
 .audio-player {
   display: inline;
+  float: right;
   margin: 10px;
   .mute {
     background:url(http://cdn.flaticon.com/png/64/60750.png) no-repeat center;
@@ -350,17 +354,19 @@ navbar span {
 }
 
 .winner {
-    animation-name: winner;
-    animation-duration: 0.2s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-play-state: running;
+  animation-name: winner;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: running;
+  margin: auto;
+  width: 50%;
 }
 
 @keyframes winner {
-    from {color: red;}
-    to {color: blue;}
+  from {color: red;}
+  to {color: blue;}
 }
 
 .won {
