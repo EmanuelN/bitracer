@@ -6,7 +6,7 @@
 
 <div class="buying">
 
-<table class="bets-table">
+  <table class="bets-table">
     <thead>
       <tr>
         <th>Cost</th>
@@ -16,87 +16,84 @@
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td>10</td>
+        <td>My Little Pony Racer</td>
+        <td><img src="images/pinky.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>10</td>
-            <td>My Little Pony Racer</td>
-            <td><img src="images/pinky.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>100</td>
+        <td>Kitty Racer</td>
+        <td><img src="images/cat.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>100</td>
-            <td>Kitty Racer</td>
-            <td><img src="images/cat.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>777</td>
+        <td>Horse Racer</td>
+        <td><img src="images/horse.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>777</td>
-            <td>Horse Racer</td>
-            <td><img src="images/horse.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>800</td>
+        <td>Dino Racer</td>
+        <td><img src="images/dino.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>800</td>
-            <td>Dino Racer</td>
-            <td><img src="images/dino.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>888</td>
+        <td>Stallion Racer</td>
+        <td><img src="images/modernHorse.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>888</td>
-            <td>Stallion Racer</td>
-            <td><img src="images/modernHorse.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>5000</td>
+        <td>Dog Racer</td>
+        <td><img src="images/dog.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>5000</td>
-            <td>Dog Racer</td>
-            <td><img src="images/dog.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>9999</td>
+        <td>Dragon Racer</td>
+        <td><img src="images/dragon.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>9999</td>
-            <td>Dragon Racer</td>
-            <td><img src="images/dragon.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>20000</td>
+        <td>Cloud Racer</td>
+        <td><img src="images/puff.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>20000</td>
-            <td>Cloud Racer</td>
-            <td><img src="images/puff.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>50000</td>
+        <td>Sonic Racer</td>
+        <td><img src="images/sonic.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>50000</td>
-            <td>Sonic Racer</td>
-            <td><img src="images/sonic.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
+      <tr>
+        <td>100000</td>
+        <td>Bunny Racer</td>
+        <td><img src="images/sprite.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
 
-          <tr>
-            <td>100000</td>
-            <td>Bunny Racer</td>
-            <td><img src="images/sprite.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
-
-          <tr>
-            <td>1000000</td>
-            <td>Lighthouse</td>
-            <td><img src="images/lighthouse.gif" class="store" alt="icon" /></td>
-            <%# <td><button> <%= current_user(@conn).coins </button></td> %>
-          </tr>
-
+      <tr>
+        <td>1000000</td>
+        <td>Lighthouse</td>
+        <td><img src="images/lighthouse.gif" class="store" alt="icon" /></td>
+        <%# <td><button> <%= current_user(@conn).coins </button></td> %>
+      </tr>
     </tbody>
   </table>
-
 </div>
 
 <footer class="foot">

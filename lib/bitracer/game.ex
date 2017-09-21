@@ -111,15 +111,16 @@ defmodule Bitracer.Game do
                                             e: a list of x positions for horse e
   """
   def race_frames(horses, framelist) do
-    if framelist.frame >= 600 do
-      framelist = put_in(framelist, [:a], Enum.reverse(framelist.a))
-      framelist = put_in(framelist, [:b], Enum.reverse(framelist.b))
-      framelist = put_in(framelist, [:c], Enum.reverse(framelist.c))
-      framelist = put_in(framelist, [:d], Enum.reverse(framelist.d))
-      framelist = put_in(framelist, [:e], Enum.reverse(framelist.e))
-      framelist
-    else
-      framelist = if framelist.frame == 0 do
+    cond do
+      framelist.frame >= 600 ->
+        framelist = put_in(framelist, [:a], Enum.reverse(framelist.a))
+        framelist = put_in(framelist, [:b], Enum.reverse(framelist.b))
+        framelist = put_in(framelist, [:c], Enum.reverse(framelist.c))
+        framelist = put_in(framelist, [:d], Enum.reverse(framelist.d))
+        framelist = put_in(framelist, [:e], Enum.reverse(framelist.e))
+        framelist
+
+      framelist.frame == 0 ->
         horse_a = Records.get_horse_by_name(Map.get(horses[:a], "name"))
         horse_b = Records.get_horse_by_name(Map.get(horses[:b], "name"))
         horse_c = Records.get_horse_by_name(Map.get(horses[:c], "name"))
@@ -139,39 +140,54 @@ defmodule Bitracer.Game do
             e: odds_e
           })
         end
-        put_in(framelist, [:names], %{
+        framelist = put_in(framelist, [:names], %{
           a: Map.get(horses[:a], "name"),
           b: Map.get(horses[:b], "name"),
           c: Map.get(horses[:c], "name"),
           d: Map.get(horses[:d], "name"),
           e: Map.get(horses[:e], "name")
         })
-      else
-        framelist
-      end
-      framelist = put_in(framelist, [:a], [ Map.get(horses[:a], "posx") | framelist.a ])
-      framelist = put_in(framelist, [:b], [ Map.get(horses[:b], "posx") | framelist.b ])
-      framelist = put_in(framelist, [:c], [ Map.get(horses[:c], "posx") | framelist.c ])
-      framelist = put_in(framelist, [:d], [ Map.get(horses[:d], "posx") | framelist.d ])
-      framelist = put_in(framelist, [:e], [ Map.get(horses[:e], "posx") | framelist.e ])
-      framelist = put_in(framelist, [:frame], framelist.frame + 1)
+        framelist = put_in(framelist, [:a], [ 0 | framelist.a ])
+        framelist = put_in(framelist, [:b], [ 0 | framelist.b ])
+        framelist = put_in(framelist, [:c], [ 0 | framelist.c ])
+        framelist = put_in(framelist, [:d], [ 0 | framelist.d ])
+        framelist = put_in(framelist, [:e], [ 0 | framelist.e ])
+        framelist = put_in(framelist, [:frame], framelist.frame + 1)
+        race_frames(horses, framelist)
 
-      win = framelist.winner
-      len = String.length(win)
-      framelist = case Enum.any?(horses, fn({_key, horse}) -> Map.get(horse, "finished") end)  do
-        true when win == "" ->
-          winner = Enum.map_join(horses, fn({key, horse}) -> if Map.get(horse, "finished"), do: key end)
-          framelist = put_in(framelist, [:winner], winner)
-          framelist = put_in(framelist, [:winner_odds], framelist[:odds][String.to_atom(winner)])
-          framelist
-        true when len > 1 ->
-          put_in(framelist, [:winner], String.slice(win, 0, 1))
-        _ ->
-          framelist
-      end
+      framelist.frame <= 150 ->
+        framelist = put_in(framelist, [:a], [ 0 | framelist.a ])
+        framelist = put_in(framelist, [:b], [ 0 | framelist.b ])
+        framelist = put_in(framelist, [:c], [ 0 | framelist.c ])
+        framelist = put_in(framelist, [:d], [ 0 | framelist.d ])
+        framelist = put_in(framelist, [:e], [ 0 | framelist.e ])
+        framelist = put_in(framelist, [:frame], framelist.frame + 1)
+        race_frames(horses, framelist)
 
-      new_positions = horse_positions(horses)
-      race_frames(new_positions, framelist)
+      true ->
+        framelist = put_in(framelist, [:a], [ Map.get(horses[:a], "posx") | framelist.a ])
+        framelist = put_in(framelist, [:b], [ Map.get(horses[:b], "posx") | framelist.b ])
+        framelist = put_in(framelist, [:c], [ Map.get(horses[:c], "posx") | framelist.c ])
+        framelist = put_in(framelist, [:d], [ Map.get(horses[:d], "posx") | framelist.d ])
+        framelist = put_in(framelist, [:e], [ Map.get(horses[:e], "posx") | framelist.e ])
+        framelist = put_in(framelist, [:frame], framelist.frame + 1)
+
+        win = framelist.winner
+        len = String.length(win)
+        framelist = case Enum.any?(horses, fn({_key, horse}) -> Map.get(horse, "finished") end)  do
+          true when win == "" ->
+            winner = Enum.map_join(horses, fn({key, horse}) -> if Map.get(horse, "finished"), do: key end)
+            framelist = put_in(framelist, [:winner], winner)
+            framelist = put_in(framelist, [:winner_odds], framelist[:odds][String.to_atom(winner)])
+            framelist
+          true when len > 1 ->
+            put_in(framelist, [:winner], String.slice(win, 0, 1))
+          _ ->
+            framelist
+        end
+
+        new_positions = horse_positions(horses)
+        race_frames(new_positions, framelist)
     end
   end
 
