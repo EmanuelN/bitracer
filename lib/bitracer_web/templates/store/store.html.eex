@@ -4,8 +4,9 @@
 
 <div class="profile"> Welcome to our store <%= current_user(@conn).username %>!</div>
 
-<div class="betting">
-  <table id="bets-table">
+<div class="buying">
+
+  <table class="bets-table">
     <thead>
       <tr>
         <th>Cost</th>

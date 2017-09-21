@@ -1,11 +1,11 @@
-/* This file is for your main application css. */
+
 @import 'normalize.css';
 
 
 /* Phoenix flash messages */
 .alert:empty { display: none; }
 
-/* custom css */
+/* custom css for react pages */
 
 
 .sprite {
@@ -71,22 +71,6 @@
   color: #91C61E;
 }
 
-/*
-.user {
-  float: right;
-}
-
-.user a {
-  text-decoration: none;
-  color: black;
-}
-
-navbar span {
-  text-decoration: none;
-  margin: 0 5px;
-}
-*/
-
 .logo {
   width: 100%;
   height: 72px;
@@ -94,92 +78,6 @@ navbar span {
   margin-bottom: 1em;
   background-image: url("/images/horse.png");
   background-size: 100px 71px;
-}
-
-#login-forms {
-  display: grid;
-  grid-template-areas:  "login register";
-  grid-gap: 5px;
-
-  .login {
-    grid-area: "login";
-    margin: 10px;
-  }
-
-  .register {
-    grid-area: "register";
-    margin: 10px;
-  }
-
-  .form-group {
-    input {
-      width: 100%;
-      margin: 10;
-      border: 2px solid #91C61E;
-      border-radius: 5px;
-    }
-    button, input[type=button], input[type=submit], input[type=reset] {
-      background-color: #91C61E;
-      border: 1px solid black;
-      border-radius: 5px;
-      color: white;
-      padding: 8px 16px;
-      text-decoration: none;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
-  }
-}
-
-.profile {
-  margin: auto;
-  width: 50%;
-  text-align: center;
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 26px;
-  font-weight: bold;
-  //font-variant: small-caps;
-  color: #91C61E;
-}
-
-.betting {
-  margin: 20px 0 40px 0;
-}
-
-#bets-table {
-  width: 100%;
-  border: 5px solid #91C61E;
-  border-spacing: 0px;
-  border-radius: 10px;
-  tr:last-child td:first-child {
-    border-bottom-left-radius: 5px;
-  }
-
-  tr:last-child td:last-child {
-    border-bottom-right-radius: 5px;
-  }
-  th {
-    border-bottom: 5px solid #91C61E;
-    border-right: 5px solid #91C61E;
-  }
-  th:last-of-type {
-    border-right: 0px solid #91C61E;
-  }
-  th, td {
-    padding: 15px;
-    //border: 5px solid #91C61E;
-  }
-  tr {
-    width: 100%;
-    text-align: center;
-  }
-  tr:nth-child(even) {background-color: #f2f2f2}
-}
-
-.store {
-  height:100px;
-  width:100px;
-  transform: translateX(4px);
 }
 
 .audio-player {
@@ -203,6 +101,7 @@ navbar span {
     text-indent:-999px;
   }
 }
+
 .marquee {
   display: inline-block;
   height: 25px;
@@ -214,10 +113,9 @@ navbar span {
 
   div {
     position: absolute;
-  
     animation: marquee 10s linear infinite;
   }
-  
+
   span {
     display: inline;
   }
@@ -235,11 +133,9 @@ navbar span {
 }
 
 @media (min-width: 1200px) {
-  .marquee div { animation: none; }
-}
-
-.root {
-  padding: 20px 0;
+  .marquee div {
+    animation: none;
+  }
 }
 
 .container {
@@ -255,25 +151,26 @@ navbar span {
   flex-direction: column;
 }
 
-.chatbar-message {
-  margin: 0 auto;
-}
-
 .messages {
+  grid-area: messages;
   padding: 10px;
   border: 5px solid #91C61E;
   border-radius: 10px;
   max-height: 95%;
+  max-width: 95%;
   overflow: scroll;
 }
 
 .chatbar-message {
+  grid-area: input-field;
+  margin: 0 auto;
   padding: 10px;
   border: 5px solid #91C61E;
   border-radius: 10px;
 }
 
 .talk-area {
+  max-width: 80vw;
   display: grid;
   grid-gap: 20px;
   grid-template-rows: 10fr 1fr;
@@ -299,41 +196,12 @@ navbar span {
   color: #91C61E;
 }
 
-.wrapper {
-  background-color: white;
-  font-family: 'Dosis', sans-serif;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-areas:
-    "nav"
-    "content"
-    "sidebar"
-    "footer";
-}
-
-@media (min-width: 500px) {
-  .wrapper {
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas:
-      "nav     nav"
-      "content sidebar"
-      "footer  footer"
-  }
-
-}
-
-@media (min-width: 800px) {
-  .sprite {
-    transform: translateX(-50%);
-  }
-}
-
 .start {
   list-style: none;
 }
 
 .someDiv {
-  height: 80vh;
+  min-height: 70vh;
 }
 
 .racer {
@@ -398,11 +266,6 @@ navbar span {
   to {color: blue;}
 }
 
-.won {
-  height: 300px;
-  width: 300px;
-}
-
 .finish {
   float: right;
   height: 90px;
@@ -416,3 +279,184 @@ navbar span {
   height: 70px;
   width: 70px;
 }
+
+@media (min-width: 1px) and (max-width: 320px) {
+
+  .sprite {
+    transform: translateX(-75%);
+  }
+
+  .wrapper {
+    transform: translateX(-40px);
+    width: 98%;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+      "nav"
+      "content"
+      "sidebar"
+      "footer";
+  }
+}
+
+@media (min-width: 321px) and (max-width: 360px) {
+
+  .sprite {
+    transform: translateX(-75%);
+  }
+
+  .wrapper {
+    transform: translateX(-20px);
+    width: 98%;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+      "nav"
+      "content"
+      "sidebar"
+      "footer";
+  }
+}
+
+@media (min-width: 361px) and (max-width: 375px) {
+
+  .sprite {
+    transform: translateX(-75%);
+  }
+
+  .wrapper {
+    transform: translateX(-20px);
+    width: 98%;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+      "nav"
+      "content"
+      "sidebar"
+      "footer";
+  }
+}
+
+@media (min-width: 376px) and (max-width: 414px) {
+
+  .sprite {
+    transform: translateX(-70%);
+  }
+
+  .wrapper {
+    transform: translateX(-10px);
+    width: 98%;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+      "nav"
+      "content"
+      "sidebar"
+      "footer";
+  }
+}
+
+@media (min-width: 415px) and (max-width: 768px) {
+
+  .sprite {
+    transform: translateX(-65%);
+  }
+
+  .wrapper {
+    width: 98%;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "nav     nav"
+      "content sidebar"
+      "footer  footer"
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .sprite {
+    transform: translateX(-50%);
+  }
+
+  .wrapper {
+    width: 98%;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "nav     nav"
+      "content sidebar"
+      "footer  footer"
+  }
+
+  .someDiv {
+    transform: translateY(10%)
+  }
+
+  .talk-area {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: 15fr 1fr;
+    grid-template-areas:
+      "messages"
+      "input-field";
+  }
+}
+
+@media (min-width: 1025px) {
+
+  .sprite {
+    transform: translateX(-40%);
+  }
+
+  .winner {
+    transform: translateY(20%);
+    text-align: center;
+  }
+
+  .marquee {
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrapper {
+    width: 98%;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "nav     nav"
+      "content sidebar"
+      "footer  footer"
+  }
+}
+
+.won {
+  height: 100px;
+  width: 100px;
+}
+
+@media (min-width: 769px) {
+  .won {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+
