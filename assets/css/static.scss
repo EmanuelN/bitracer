@@ -1,0 +1,103 @@
+
+@import 'normalize.css';
+
+
+/* Phoenix flash messages */
+.alert:empty { display: none; }
+
+/* custom css for static pages */
+
+.login-forms {
+  min-height: 70vh;
+  display: grid;
+  grid-template-areas:  "login register";
+  grid-gap: 10px;
+
+  .login {
+    grid-area: "login";
+    margin: 10px;
+  }
+
+  .register {
+    grid-area: "register";
+    margin: 10px;
+  }
+
+  .form-group {
+    input {
+      width: 100%;
+      margin: 10;
+      border: 2px solid #91C61E;
+      border-radius: 5px;
+    }
+    button, input[type=button], input[type=submit], input[type=reset] {
+      background-color: #91C61E;
+      border: 2px solid black;
+      border-radius: 5px;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      margin: 10px 2px;
+      cursor: pointer;
+    }
+  }
+}
+
+.profile {
+  margin: 20px;
+  text-align: center;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  color: #91C61E;
+}
+
+.betting {
+  min-height: 70vh;
+  margin: 40px 0;
+}
+
+.buying {
+  margin: 40px 0;
+}
+
+.bets-table {
+  width: 100%;
+  border: 5px solid #91C61E;
+  border-spacing: 0px;
+  border-radius: 10px;
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+  }
+
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+  }
+  th {
+    border-bottom: 5px solid #91C61E;
+    border-right: 5px solid #91C61E;
+  }
+  th:last-of-type {
+    border-right: 0px solid #91C61E;
+  }
+  th, td {
+    padding: 15px;
+    //border: 5px solid #91C61E;
+  }
+  tr {
+    width: 100%;
+    text-align: center;
+  }
+  tr:nth-child(even) {background-color: #f2f2f2}
+}
+
+.store {
+  height:100px;
+  width:100px;
+  transform: translateX(4px);
+}
+
+.root {
+  padding: 20px 0;
+}
+

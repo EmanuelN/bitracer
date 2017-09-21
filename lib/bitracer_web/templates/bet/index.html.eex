@@ -10,7 +10,7 @@
   <br>
 
   <%= if current_user(@conn) do %>
-    <table id="bets-table">
+    <table class="bets-table">
       <thead>
         <tr>
           <th>Bet Amount</th>
