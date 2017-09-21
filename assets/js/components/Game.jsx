@@ -71,8 +71,8 @@ class Game extends Component {
           <Racer racer={this.state.a} name={this.state.names.a} image="images/pikachu.gif" />
           <Racer racer={this.state.b} name={this.state.names.b} image="images/flareon.gif" />
           <Racer racer={this.state.c} name={this.state.names.c} image="images/crossfox.gif" />
-          <Racer racer={this.state.c} name={this.state.names.d} image="images/zoroark.gif" />
-          <Racer racer={this.state.c} name={this.state.names.e} image="images/homer.gif" />
+          <Racer racer={this.state.d} name={this.state.names.d} image="images/zoroark.gif" />
+          <Racer racer={this.state.e} name={this.state.names.e} image="images/homer.gif" />
         </div>
       );
     }
