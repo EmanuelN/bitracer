@@ -27,6 +27,17 @@ class Chat extends Component {
     });
     this.channel.on('pos', (payload) => {
       const pos = payload.pos;
+      if (pos === 0) {
+        this.channel.push('post_message', {
+          content: 'Betting time begins!',
+          username: 'System',
+        });
+      } else if (pos === 150) {
+        this.channel.push('post_message', {
+          content: 'Betting time has ended!',
+          username: 'System',
+        });
+      }
       this.setState({ pos });
     });
     this.channel.on('incoming_notification', (payload) => {
@@ -101,7 +112,7 @@ class Chat extends Component {
           content: 'Bet amount must be a number',
           sender: 'System',
         });
-      } else if (this.state.pos >= 300) {
+      } else if (this.state.pos >= 150) {
         this.channel.push('post_whisper', {
           target: this.state.currUser,
           content: 'It\'s too late to bet now.',
