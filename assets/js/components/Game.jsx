@@ -23,7 +23,6 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    let winnerSent = false;
     this.channel.on('game_data', (payload) => {
       const a = payload.state.a / 6;
       const b = payload.state.b / 6;
@@ -34,13 +33,6 @@ class Game extends Component {
     });
     this.channel.on('winner_data', (payload) => {
       const winner = payload.winner;
-      if (payload.winner !== '' && winnerSent !== true) {
-        this.channel.push('post_message', {
-          username: 'System',
-          content: `${this.state.names[winner]} won!`,
-        });
-        winnerSent = true;
-      }
       this.setState({ winner });
     });
     this.channel.on('odds', (payload) => {
