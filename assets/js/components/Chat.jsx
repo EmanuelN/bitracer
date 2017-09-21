@@ -28,14 +28,16 @@ class Chat extends Component {
     this.channel.on('pos', (payload) => {
       const pos = payload.pos;
       if (pos === 0) {
-        this.channel.push('post_message', {
+        this.channel.push('post_whisper', {
+          target: this.state.currUser,
           content: 'Betting time begins!',
-          username: 'System',
+          sender: 'System',
         });
       } else if (pos === 150) {
-        this.channel.push('post_message', {
+        this.channel.push('post_whisper', {
+          target: this.state.currUser,
           content: 'Betting time has ended!',
-          username: 'System',
+          sender: 'System',
         });
       }
       this.setState({ pos });
@@ -123,6 +125,7 @@ class Chat extends Component {
           username: message.username,
           horse,
           bet,
+          name: this.state.names[horse],
         });
       }
     } else if (message.value[1] === 'w') {
