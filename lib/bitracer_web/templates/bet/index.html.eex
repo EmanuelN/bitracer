@@ -10,7 +10,6 @@
   <br>
 
   <%= if current_user(@conn) do %>
-    <h4>Betting History for <%= current_user(@conn).username %></h4>
     <table class="bets-table">
       <thead>
         <tr>
