@@ -26,12 +26,12 @@ defmodule BitracerWeb.ChatChannel do
     {:noreply, socket}
   end
 
-  def handle_in("post_bet", %{"username" => username, "bet" => bet, "horse" => horse}, socket) do
+  def handle_in("post_bet", %{"username" => username, "bet" => bet, "horse" => horse, "name" => name}, socket) do
     if String.to_integer(bet) > 0 && String.to_integer(bet) <= 100 do
       if BitracerWeb.UserController.balance_check(username, bet) do
         Bitracer.Bets.add(:bookie, %{user: username, horse: horse, bet: bet})
         BitracerWeb.UserController.bet(username, bet)
-        broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{horse}."}
+        broadcast! socket, "incoming_notification", %{content: "#{username} bet $#{bet} on #{name}."}
         user = Bitracer.Accounts.get_user_by_username!(username)
         BitracerWeb.Endpoint.broadcast! "chat:#{username}", "new_coins", %{coins: user.coins}
         {:noreply, socket}
