@@ -1,26 +1,35 @@
-# bitracer
+# BitRacer
 
-## Goals
+# Goals
 
 Enable our users to enjoy the thrill of horse race gambling from the comfort of their own homes without any of the risks!
 
-## [Roadmap](https://github.com/greatlakesracing/bitracer/projects/1)
-The Roadmap will give you an overview of the features and tasks that we are currently discussing, working on and have completed.
+# Authors:
 
-You can view the public GitHub Projects board [here](https://github.com/greatlakesracing/bitracer/projects/1) or click on the "Roadmap".
+- Saj Bandaranayake (https://github.com/Sanju3001)
+- John Goff (https://github.com/JohnTheScout)
+- Emanuel Neves (https://github.com/EmanuelN)
 
 # Requirements
 
-  [Phoenix](https://hexdocs.pm/phoenix/installation.html)
-  
-  [Comeonin](https://github.com/riverrun/comeonin)
+[Phoenix](https://hexdocs.pm/phoenix/installation.html)
 
-# Installation
+[Comeonin](https://github.com/riverrun/comeonin)
 
-After installing Phoenix and all its dependencies, create a Postgres role called "final" with the password "final" using this command:
-`CREATE ROLE final WITH PASSWORD 'final' CREATEDB LOGIN;`
-Then use `mix ecto.create` to initialize the app and its databse
+# Setup
 
-## Usage
+1. Fork & Clone
+2. Install Phoenix and all of its dependencies using `mix deps.get`
+3. Compile assets by running `cd assets && npm install`
+4. Create a Postgres role called "final" with the password "final" using this command: `CREATE ROLE final WITH PASSWORD 'final' CREATEDB LOGIN;`
+5. Use `mix ecto.create` to initialize the app and its databse
+6. Use `mix phx.server` to run the Phoenix server; the app will be served at <http://localhost:4000/> in your browser
 
-Usage instructions go here
+## Screenshots
+
+!["Screenshot of race"](https://github.com/Sanju3001/bitracer/blob/master/docs/race-1.png)
+!["Screenshot of winner"](https://github.com/Sanju3001/bitracer/blob/master/docs/winner.png)
+!["Screenshot of store"](https://github.com/Sanju3001/bitracer/blob/master/docs/store.png)
+!["Screenshot of login"](https://github.com/Sanju3001/bitracer/blob/master/docs/login.png)
+
+
